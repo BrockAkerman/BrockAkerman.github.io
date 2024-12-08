@@ -2460,24 +2460,28 @@
 			margin: 0;
 		}
 
-/* Header */
+/* Header -- THIS CONTROLS THE MARGIN TO THE LEFT THAT IS DARKENED*/
 
-	#header {
-		background-color: #1f1815;
-		background-attachment: scroll,								fixed;
-		background-image: url("images/overlay.png"), url("../../images/bg.jpg");
-		background-position: top left,							top left;
-		background-repeat: repeat,								no-repeat;
-		background-size: auto,								auto 100%;
-		color: rgba(255, 255, 255, 0.5);
-		height: 100%;
-		left: 0;
-		padding: 8em 4em 0 0;
-		position: fixed;
-		text-align: right;
-		top: 0;
-		width: 35%;
-	}
+		#header {
+			background-color: #1f1815;
+			background-attachment: scroll, fixed;
+			background-image: url("assets/media/fulls/05.jpg"), url("assets/media/fulls/05.jpg");
+			background-position: top left, top left;
+			background-repeat: repeat, no-repeat;
+			background-size: auto, auto 100%;
+			color: rgba(255, 255, 255, 0.5);
+			height: 100%;
+			left: 0;
+			position: fixed;
+			text-align: right;
+			top: 0;
+			width: 25%;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
 
 		#header strong, #header b {
 			color: #ffffff;
@@ -2485,18 +2489,23 @@
 
 		#header h2, #header h3, #header h4, #header h5, #header h6 {
 			color: #ffffff;
+			text-align: center;
+			font-size:  0.85em;
 		}
 
 		#header h1 {
 			color: rgba(255, 255, 255, 0.5);
-			font-size: 1.35em;
+			font-size: 1.5em;
 			line-height: 1.75em;
 			margin: 0;
+			text-align: center;
 		}
 
 		#header .image.avatar {
-			margin: 0 0 1em 0;
-			width: 6.25em;
+			width: 75%; /* Avatar takes up 75% of header width */
+			max-width: 12.25em; /* Prevents the avatar from growing too large */
+			height: auto; /* Maintain aspect ratio */
+			margin-top: 12.5%; /* Top margin equal to the side margin (12.5%) */
 		}
 
 /* Footer */
@@ -2504,10 +2513,10 @@
 	#footer {
 		bottom: 0;
 		left: 0;
-		padding: 0 4em 6em 0;
+		padding: 0 3em 3em 0;
 		position: fixed;
 		text-align: right;
-		width: 35%;
+		width: 25%;
 	}
 
 		#footer .icons {
@@ -3110,3 +3119,8 @@
 			}
 
 	} 
+
+
+/*My Custom Parameters*/
+
+  

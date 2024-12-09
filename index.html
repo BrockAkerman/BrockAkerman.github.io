@@ -16,14 +16,32 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body id="top">
+	
+		<!-- Hamburger Menu -->
+		<div id="hamburger-menu">
+			<button id="menu-toggle">
+				<!-- Hamburger Icon -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<div id="menu-items" class="hidden">
+				<a href="#home">Home</a>
+				<a href="#projects-in-the-pipeline">Projects in the Pipeline</a>
+				<a href="#recent-works">Portfolio</a>
+				<a href="#blogs-and-interests">Blogs and Interests</a>
+				<a href="#Contact-Me">Contact Me</a>
+			</div>
+		</div>
 
 		<!-- Header -->
 			<header id="header">
 				<a href="#" class="image avatar"><img src="assets/media/thumbs/SelfPort.jpg" alt="" /></a>
 				<h1><strong>Brock Akerman</strong></h1>
-                <h4>Optimization and Insights through<br />
+                <h4>Optimization and Insight through<br />
 					Statistics and Mathematics<br />
 				</h4>
+				
 			</header>
 
 		<!-- Main -->
@@ -32,55 +50,61 @@
 				<!-- One -->
 					<section id="one">
 						<h2>Projects In the Pipeline<br /></h2>
-						<a href="assets/media/animations/ML_Algorithm.gif" class="image fit thumb">
-					  	<img src="assets/media/animations/ML_Algorithm.gif" alt="" class="small-image" /></a>
+						<h5>Application of Modeling<br />
+							Sports JSON Shiny Dash<br />
+							Testing of Kaggle Medical Data<br />
+						</h5>
+						<!-- <a href="assets/media/animations/ML_Algorithm.gif" class="image fit thumb">
+					  	<img src="assets/media/animations/ML_Algorithm.gif" alt="" class="small-image" /></a> -->
 				  	</section>
 				  
 
 				<!-- Two -->
 					<section id="two">
-						<h2>Recent Work</h2>
+						<h2>Portfolio</h2>
 						<div class="row">
 							<article class="6u 12u$(xsmall) work-item">
 								<a href="assets/media//thumbs/ST558_WindSpeeds.PNG" class="image fit thumb"><img src="assets/media/thumbs/ST558_WindSpeeds.PNG" alt="" /></a>
-								<h3>Magna sed consequat tempus</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<h3>Airport Windspeed Density Curves</h3>
+								<p>Project:  Shiny Dash ST558</p>
 							</article>
 							<article class="6u$ 12u$(xsmall) work-item">
 								<a href="assets/media/thumbs/ST558_Temp.PNG" class="image fit thumb"><img src="assets/media/thumbs/ST558_Temp.PNG" alt="" /></a>
-								<h3>Ultricies lacinia interdum</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<h3>Temperature Min/Max Barchart</h3>
+								<p>Project:  Shiny Dash ST558</p>
 							</article>
 							<article class="6u 12u$(xsmall) work-item">
 								<a href="assets/media/thumbs/ST558_ScatPlot.PNG" class="image fit thumb"><img src="assets/media/thumbs/ST558_ScatPlot.PNG" alt="" /></a>
-								<h3>Tortor metus commodo</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<h3>Dotplot of Observations</h3>
+								<p>Project:  Shiny Dash ST558</p>
 							</article>
 							<article class="6u$ 12u$(xsmall) work-item">
 								<a href="assets/media/thumbs/ST558_Viz.PNG" class="image fit thumb"><img src="assets/media/thumbs/ST558_Viz.PNG" alt="" /></a>
-								<h3>Quam neque phasellus</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<h3>Airport Visualization</h3>
+								<p>Project:  Shiny Dash ST558</p>
 							</article>
 							<article class="6u 12u$(xsmall) work-item">
 								<a href="assets/media/animations/Filler_GIF_01.gif" class="image fit thumb"><img src="assets/media/animations/Filler_GIF_01.gif" alt="" /></a>
-								<h3>Nunc enim commodo aliquet</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<h3>Sample Animation</h3>
+								<p>Relation to gganimate package practice</p>
 							</article>
 							<article class="6u$ 12u$(xsmall) work-item">
 								<a href="assets/media/thumbs/ST558_AirportStat.PNG" class="image fit thumb"><img src="assets/media/thumbs/ST558_AirportStat.PNG" alt="" /></a>
-								<h3>Risus ornare lacinia</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+								<h3>Violin Chart; Airport Runway Length, Surface</h3>
+								<p>Project:  Shiny Dash ST558</p>
 							</article>
-                            <article class="6u$ 12u$(xsmall) work-item">
-								<a href="literature/Undergraduate_Research_Paper.pdf" class="image fit thumb"><img src="images/logos/PDF.png" alt="" /></a>
-								<h3>Risus ornare lacinia</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+							<article class="6u 12u$(xsmall) work-item">
+								<a href="assets/literature/Undergraduate_Research_Paper.pdf" class="image fit thumb"><img src="assets/media/thumbs/Oxygen_cover.png" alt="" /></a>
+								<h3>University of North Georgia: Senior Project</h3>
+								<p>Analysis of Dissolved Oxygen/Temperature effects on trout</p>
 							</article>
-                            <article class="6u$ 12u$(xsmall) work-item">
-								<a href="literature/Brock_Akerman_MATH3390.pdf" class="image fit thumb"><img src="images/logos/PDF.png" alt="" /></a>
-								<h3>Risus ornare lacinia</h3>
-								<p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
+							<article class="6u$ 12u$(xsmall) work-item">
+								<a href="assets/literature/Brock_Akerman_MATH3390.pdf" class="image fit thumb"><img src="assets/media/thumbs/SweetPotato_Cover.PNG" alt="" /></a>
+								<h3>University of North Georgia: Special Topics in Mathematics</h3>
+								<p>Statistical Analysis Organic vs Conventional</p>
+								<p>Presented Topic at International Conference on Technology and Collegiate Mathematics; Atlanta 2016</p>
 							</article>
+							
 						</div>
 						<ul class="actions">
 							<li><a href="#" class="button">Full Portfolio</a></li>
@@ -91,12 +115,14 @@
 					<section id="three">
 						<h2>Blogs and Interests</h2>
 						<p>I do other things too!  See what I have been up to</p>
+						<div id="RPackageLogo">
+							<img src="assets/media/logos/R_Logo_Collage.png" alt="R Package Logos" />
+						</div>
 					</section>
 
 				<!-- Four -->
 					<section id="four">
-						<h2>Get In Touch</h2>
-						<p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
+						<h2>Contact Me</h2>
 						<div class="row">
 							<div class="8u 12u$(small)">
 								<form method="post" action="#">
@@ -135,15 +161,17 @@
 			</div>
 
 		<!-- Footer -->
-			<footer id="footer">
-				<ul class="icons">
-                    <li><a href="https://www.linkedin.com/in/brock-l-akerman/" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
-                    <li><a href="https://github.com/Bakerman1982" class="icon fa-github"><span class="label">Github</span></a></li>
-				</ul>
-				<ul class="copyright">
-					<li>Templated Design by <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</footer>
+		<footer id="footer">
+			<p class="availability">Open to Freelance and Consulting Opportunities!</p>
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/brock-l-akerman/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+				<li><a href="https://github.com/Bakerman1982" class="icon fa-github"><span class="label">GitHub</span></a></li>
+			</ul>
+			<ul class="copyright">
+				<li>Templated Design by <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</footer>
+
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
@@ -152,6 +180,13 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
+			<script>
+				document.getElementById('menu-toggle').addEventListener('click', function () {
+					const menuItems = document.getElementById('menu-items');
+					menuItems.classList.toggle('visible');
+				});
+			</script>
+			
 	</body>
 </html>
+

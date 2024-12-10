@@ -10,9 +10,9 @@ const lightbox = document.getElementById('lightbox');
 const closeLightbox = document.getElementById('closeLightbox');
 
 // Show the lightbox when "About Me" button is clicked
-aboutMeButton.addEventListener('click', () => {
-    lightbox.classList.remove('hidden');  // Show the lightbox
-});
+//aboutMeButton.addEventListener('click', () => {
+//    lightbox.classList.remove('hidden');  // Show the lightbox
+//});
 
 // Hide the lightbox when the "Close" button is clicked
 closeLightbox.addEventListener('click', () => {

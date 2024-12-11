@@ -3222,3 +3222,71 @@
 			visibility: hidden;
 			opacity: 0;
 		}
+
+
+/*WEBSITE PAGES*/
+/* Custom CSS for Blogs and Interests page */
+
+.blogs-and-interests {
+    position: relative; /* Allow absolute positioning of pseudo-elements */
+    height: 100vh; /* Ensure the content area fills the viewport */
+    width: 100%; /* Ensure the content area spans the full width */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ffffff; /* Main background color */
+    color: rgba(255, 255, 255, 0.5); /* Text color */
+    text-align: right;
+}
+
+	.blogs-and-interests::before,
+	.blogs-and-interests::after {
+		content: ""; /* No actual content, just used for the background */
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 5.5vw; /* 10% of the viewport width */
+		background-color: transparent; /* Transparent to let the background image show */
+		background-image: url("../fulls/bg.jpg");
+		background-attachment: fixed;
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: cover;
+		z-index: -1; /* Place behind content */
+		height: 100vh; /* Ensure the pseudo-elements cover the full height of the viewport */
+	}
+
+	.blogs-and-interests::before {
+		left: 0; /* Left margin */
+	}
+
+	.blogs-and-interests::after {
+		right: 0; /* Right margin */
+	}
+
+	.blogs-and-interests {
+		color: #000000; /* Replace with your desired color */
+	}
+
+	/* Change font color for all headings */
+		.blogs-and-interests h1,
+		.blogs-and-interests h2,
+		.blogs-and-interests h3 {
+			color: #333333; /* Replace with your desired color */
+		}
+
+		/* Change font color for paragraphs */
+		.blogs-and-interests p {
+			color: #555555; /* Replace with your desired color */
+		}
+
+		/* Change font color for links */
+		.blogs-and-interests a {
+			color: #007BFF; /* Replace with your desired color */
+			text-decoration: none; /* Optional: Remove underline from links */
+		}
+
+		.blogs-and-interests a:hover {
+			color: #0056b3; /* Optional: Change link color on hover */
+		}

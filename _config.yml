@@ -2,6 +2,7 @@ title: Statistics
 first_name: Brock
 last_name: Akerman
 email:  Brock.Akerman@outlook.com
+future: true
 
 url: BrockAkerman.github.io
-baseurl:
+baseurl: ""

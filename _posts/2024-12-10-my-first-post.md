@@ -1,23 +1,10 @@
 ---
 layout: post
-title: "My First Post"
-date: 2024-12-10 10:00:00 +0000
-categories: [blog, personal]
-tags: [introduction, first-post]
-author: Your Name
+title: "Setting out"
+date: 2024-12-10
+categories: personal
+image: "/assets/media/blog_tile_img/Abstract_Journey_01.png"
+excerpt: "Making a move in the general direction of where you are trying to get to is often times the hardest part.  Other times, knowing where you want to go or even wanting to go where you know you need to go presents resistance and challenges.  One foot in front of the other.  Once your feet start moving--progress!"
 ---
 
-# Welcome to My First Blog Post!
-
-This is my very first blog post using Jekyll! I'm excited to share my thoughts and ideas with the world.
-
-## What You'll Find Here
-
-- Insights on topics I care about
-- Personal anecdotes and experiences
-- And much more!
-
-Stay tuned for more updates, and thank you for reading!
-
-![Sample Image](https://via.placeholder.com/800x400)  
-*Above: A placeholder image for visual interest!*
+Hello, World!

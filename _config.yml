@@ -4,5 +4,12 @@ last_name: Akerman
 email:  Brock.Akerman@outlook.com
 future: true
 
-url: BrockAkerman.github.io
+url: "http://BrockAkerman.github.io"
 baseurl: ""
+
+# Ensure posts use a standard date-based URL structure
+permalink: /:year/:month/:day/:title/
+
+
+paginate: 5 # Number of posts per page
+paginate_path: "/page:num/"

@@ -3313,7 +3313,7 @@
 				.blog-card {
 					width: 300px;
 					background-color: #ffffff; /* White card background */
-					border: 1px solid #ddd; /* Subtle border */
+					border: 1px solid #dddddd; /* Subtle border */
 					border-radius: 10px; /* Rounded corners */
 					overflow: hidden;
 					box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
@@ -3321,7 +3321,7 @@
 				}
 
 				.blog-card:hover {
-					transform: scale(1.25);
+					transform: scale(1.1);
 					box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 				}
 
@@ -3424,14 +3424,36 @@
 				color: #888888;
 			}
 
-/* Post image */
-			.post-image {
-				height: 300px;
-				background-size: cover;
-				background-position: center;
-				border-radius: 10px;
-				margin-bottom: 20px;
+/* Post footer */
+			.post-footer a {
+				color: #007BFF;
+				text-decoration: none;
 			}
+			  
+			.post-footer a:hover {
+			
+			}
+			
+			
+			.post-footer p {
+			margin: 2px 0;
+			font-size: 12px; /* Adjust to your desired size */
+			}
+			  
+/* Post image */
+.post-image {
+    text-align: center; /* Center the image wrapper */
+    margin: 0 auto 20px; /* Add vertical spacing */
+}
+
+.post-image img {
+    width: 100%; /* Make the image responsive */
+    max-width: 800px; /* Cap the maximum width */
+	max-height: 400px; /* Cap the maximum width */
+    /*height: auto; /* Maintain aspect ratio */ 
+    border-radius: 10px; /* Add rounded corners */
+    display: block; /* Ensure no extra spacing below the image */
+}
 
 /* Post content */
 			.post-content {
@@ -3440,6 +3462,16 @@
 				color: #555555;
 			}
 
+			.post-content a {
+				color: #007BFF; /* Match your link color */
+				text-decoration: underline; /* Optional for clarity */
+			  }
+
+			.post-content a:hover {
+			color: #0056b3;
+			text-decoration: none; /* Reverse for hover */
+			}
+			  
 /* Responsive design */
 			@media (max-width: 768px) {
 				.post-container {
@@ -3472,3 +3504,57 @@
 				border-radius: 5px;
 			}
 			
+/*Post Navigation*/
+.post-navigation {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 30px;
+  }
+  
+  .post-navigation a {
+	text-decoration: none;
+	font-size: 16px;
+	color: #007BFF;
+	font-weight: bold;
+  }
+  
+  .post-navigation a:hover {
+	color: #0056b3;
+  }
+  
+  /* Ensure previous is always left-aligned */
+  .prev-post {
+	text-align: left;
+	flex-grow: 0; /* Do not allow it to grow to take extra space */
+  }
+  
+  /* Ensure next is always right-aligned */
+  .next-post {
+	text-align: right;
+	flex-grow: 0; /* Do not allow it to grow to take extra space */
+  }
+  
+  /* When only one link is present, it should remain aligned appropriately */
+  .post-navigation a:only-child {
+	flex-grow: 0; /* Prevent it from taking up space */
+	text-align: center; /* Center it */
+  }
+  
+
+/* social sharing */
+			  .social-share {
+				margin-top: 20px;
+				text-align: center;
+			  }
+			  
+			  .social-share a {
+				color: #007BFF;
+				text-decoration: none;
+				margin: 0 10px;
+				font-weight: bold;
+			  }
+			  
+			  .social-share a:hover {
+				text-decoration: underline;
+			  }
+			  

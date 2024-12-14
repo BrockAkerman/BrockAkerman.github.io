@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post_archive
 title: "The Math Path: A Statistics Enthusiast's Journal"
 permalink: /blogs-and-interests/
 ---

@@ -8,7 +8,7 @@ permalink: /blogs-and-interests/
   <div class="blog-cards-container">
   {% for post in site.posts %}
     <a href="{{ post.url | relative_url }}" class="blog-card">
-      <div class="blog-image" style="background-image: url('{{ post.image | default: '/assets/default-image.jpg' }}');"></div>
+      <div class="blog-image" style="background-image: url('{{ post.image | default: '/assets/default-image.jpg' | relative_url }}');"></div>
       <div class="blog-content">
         <h2>{{ post.title }}</h2>
         <p class="blog-meta">{{ post.date | date: "%B %d, %Y" }}</p>

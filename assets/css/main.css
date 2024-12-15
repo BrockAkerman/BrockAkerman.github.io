@@ -2510,14 +2510,14 @@
 
 		#header h1 {
 			color: rgba(255, 255, 255, 0.5);
-			font-size: 1.5em;
+			font-size: 2em;
 			line-height: 1.75em;
 			margin: 0;
 			text-align: center;
 		}
 
 		#header .image.avatar {
-			width: 50%; /* Avatar takes up 75% of header width */
+			width: 60%; /* Avatar takes up 75% of header width */
 			max-width: 20em; /* Prevents the avatar from growing too large */
 			height: auto; /* Maintain aspect ratio */
 			margin-top: 12.5%; /* Top margin equal to the side margin (12.5%) */
@@ -2535,10 +2535,10 @@
 }
 
 #footer .availability {
-    font-size: 0.6em;
+    font-size: 0.75em;
     text-align: center;
     color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 2em;
+    margin-bottom: 1.5em;
 }
 
 #footer .icons {

@@ -18,25 +18,8 @@ layout: default
 	</head>
 	<!--<body id="top">-->
     <body class="{% if page.url == '/blogs-and-interests/' %}blogs-and-interests{% endif %}">
-		<!-- Hamburger Menu -->
-		<div id="hamburger-menu">
-			<button id="menu-toggle">
-				<!-- Hamburger Icon -->
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<div id="menu-items" class="hidden">
-				<div id="menu-items" class="hidden">
-					<a href="{{ '/' | relative_url }}">Home</a>
-					<a href="{{ site.baseurl }}/#projects-in-the-pipeline">Projects in the Pipeline</a>
-					<a href="{{ site.baseurl }}/portfolio/">Portfolio</a>
-					<a href="{{ '/blogs-and-interests/' | relative_url }}">Blogs and Interests</a>
-					<a href="{{ site.baseurl }}/#Contact-Me">Contact Me</a>
-					
-				</div>
-			</div>
-		</div>
+		{% include burger_menu.html %}
+
         
 		<!-- Main Content -->
 		<main>

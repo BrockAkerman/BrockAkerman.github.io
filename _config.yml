@@ -5,7 +5,7 @@ email:  Brock.Akerman@outlook.com
 future: true
 
 url: "http://BrockAkerman.github.io"
-baseurl: ""
+baseurl: "/BrockAkerman.github.io"
 
 # Ensure posts use a standard date-based URL structure
 permalink: /:year/:month/:day/:title/

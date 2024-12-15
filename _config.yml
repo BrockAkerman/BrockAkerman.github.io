@@ -1,15 +1,15 @@
 title: Statistics
 first_name: Brock
 last_name: Akerman
-email:  Brock.Akerman@outlook.com
+email: Brock.Akerman@outlook.com
 future: true
 
-url: "http://BrockAkerman.github.io"
-baseurl: "/BrockAkerman.github.io"
+# Set baseurl to your project folder name
+baseurl: "/BrockAkerman.github.io"  # Ensure this matches the repository name
+url: "https://bakerman1982.github.io"
 
 # Ensure posts use a standard date-based URL structure
 permalink: /:year/:month/:day/:title/
-
 
 paginate: 5 # Number of posts per page
 paginate_path: "/page:num/"

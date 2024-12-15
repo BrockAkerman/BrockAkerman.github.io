@@ -27,11 +27,14 @@ layout: default
 				<span></span>
 			</button>
 			<div id="menu-items" class="hidden">
-				<a href="/">Home</a>
-				<a href="{{ '/#projects-in-the-pipeline' | relative_url }}">Projects in the Pipeline</a>
-				<a href="{{ '/portfolio/' | relative_url }}">Portfolio</a>
-				<a href="/blogs-and-interests/">Blogs and Interests</a>
-				<a href="{{ '/#Contact-Me' | relative_url }}">Contact Me</a>
+				<div id="menu-items" class="hidden">
+					<a href="{{ '/' | relative_url }}">Home</a>
+					<a href="{{ site.baseurl }}/#projects-in-the-pipeline">Projects in the Pipeline</a>
+					<a href="{{ site.baseurl }}/portfolio/">Portfolio</a>
+					<a href="{{ '/blogs-and-interests/' | relative_url }}">Blogs and Interests</a>
+					<a href="{{ site.baseurl }}/#Contact-Me">Contact Me</a>
+					
+				</div>
 			</div>
 		</div>
         

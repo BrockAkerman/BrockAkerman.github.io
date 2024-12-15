@@ -21,7 +21,7 @@ I will save my personal comeback story from the 2000s for another blog post, but
 Then there are those moments when the first step is an actual step and not a mental one. 
 
 <div class="post-image">
-    <img src="/assets/media/animations/leap-of-faith-indiana-jones.gif" alt="Indiana Jones' leap of faith">
+    <img src="{{ '/assets/media/animations/leap-of-faith-indiana-jones.gif' | relative_url }}" alt="Indiana Jones' leap of faith">
 </div>
 
 For the recitals or the gym, just walk to the car. Don’t dither and give your mind the opportunity for excuse-making. Just go. You defeat that kind of thinking before it ever takes root by just doing.

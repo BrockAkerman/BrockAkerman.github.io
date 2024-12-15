@@ -5,10 +5,10 @@ email: Brock.Akerman@outlook.com
 future: true
 
 # Set baseurl to your project folder name
-#url: "https://bakerman1982.github.io"
-#baseurl: "/BrockAkerman.github.io"  # Ensure this matches the repository name
-url: "https://BrockAkerman.github.io"
-baseurl: ""
+url: "https://bakerman1982.github.io"
+baseurl: "/BrockAkerman.github.io"  # Ensure this matches the repository name
+#url: "https://BrockAkerman.github.io"
+#baseurl: ""
 
 
 # Ensure posts use a standard date-based URL structure

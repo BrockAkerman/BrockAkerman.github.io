@@ -1,0 +1,858 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={R-Project\_501},
+  pdfauthor={Brock Akerman},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{R-Project\_501}
+\author{Brock Akerman}
+\date{11/16/2020}
+
+\begin{document}
+\maketitle
+
+\textbf{Part 1: ``Visualizing Convergence in Probability''}
+
+Show that the minimum order statistic converges in probability to 0.
+Hint: We know the CDF of an exponential and how to find the CDF of the
+minimum order statistic Y(1). Start with the probability you want to
+show from the definition of convergence in probability to 0, i.e.,
+P(\textbar Y(1) − 0\textbar{} \textless{} ε) and take the limit as n
+goes to infinity and show that this probability converges to 1.
+
+To visualize this we'll simulate data and approximate the probability
+statement proven in the previous part. -- For a sample size of n = 1,
+generate N = 1000 data sets from an exp(1) distribution -- For each data
+set, find the minimum value (for a sample of size 1 that will just be
+the value itself) -- Save these minimum values for plotting
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{841}\NormalTok{)}
+\NormalTok{n <-}\StringTok{ }\DecValTok{1}
+\NormalTok{N <-}\StringTok{ }\DecValTok{1000}
+\NormalTok{minmat <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{,}\DataTypeTok{nrow=}\DecValTok{1000}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{N)\{}
+\NormalTok{    ds <-}\StringTok{ }\KeywordTok{replicate}\NormalTok{(i,(}\KeywordTok{rexp}\NormalTok{(n,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{)))}
+\NormalTok{    minmat[i] <-}\StringTok{ }\KeywordTok{min}\NormalTok{(ds)}
+\NormalTok{    \}}
+\NormalTok{i <-}\StringTok{ }\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+Now set ε = 0.05. Next approximate the probability of interest
+P(\textbar Y(1) − 0\textbar{} \textless= ε) using the N = 1000 simulated
+minimum values. (This is a Monte Carlo estimate of the probability.)
+Save this probability
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ε <-}\StringTok{ }\FloatTok{0.05}
+\NormalTok{TF_values <-}\StringTok{ }\NormalTok{(}\KeywordTok{abs}\NormalTok{(minmat}\DecValTok{-0}\NormalTok{) }\OperatorTok{<=}\StringTok{ }\NormalTok{ε) }\CommentTok{#Assign Boolean values to a vector}
+\NormalTok{dsprob <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values)}\OperatorTok{/}\NormalTok{N }\CommentTok{#Probability of true values from our 1000 dataset minimums. }
+\end{Highlighting}
+\end{Shaded}
+
+Repeat the above simulation and approximation of the probability of
+interest for n = 2, 3, \ldots, 50.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fullminmat <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{ncol=}\DecValTok{50}\NormalTok{,}\DataTypeTok{nrow=}\DecValTok{1000}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{)\{}
+  \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{N) \{}
+\NormalTok{  fullds <-}\StringTok{ }\KeywordTok{replicate}\NormalTok{(k,(}\KeywordTok{rexp}\NormalTok{(j,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{)))}
+\NormalTok{  fullminmat[k,j] <-}\StringTok{ }\KeywordTok{min}\NormalTok{(fullds) \} }\CommentTok{#Creates our }
+\NormalTok{\}}
+
+\NormalTok{TFmat <-}\StringTok{ }\KeywordTok{abs}\NormalTok{(fullminmat}\DecValTok{-0}\NormalTok{)}\OperatorTok{<=}\StringTok{ }\NormalTok{ε}
+\NormalTok{fulldsprob <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{colSums}\NormalTok{(TFmat, }\DataTypeTok{na.rm=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{dims=}\DecValTok{1}\NormalTok{),}\DataTypeTok{ncol=}\DecValTok{50}\NormalTok{,}\DataTypeTok{nrow=}\DecValTok{1}\NormalTok{)}
+\NormalTok{probmatrix <-}\StringTok{ }\NormalTok{fulldsprob}\OperatorTok{/}\NormalTok{N}
+\end{Highlighting}
+\end{Shaded}
+
+Now create a plot with the sample size on the x-axis and the probability
+of interest on the y-axis. The plot should have an appropriate title and
+appropriate axis labels. In a comment explain how this plot can help
+someone understand convergence in probability to a constant.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{50}\NormalTok{,}
+     \DataTypeTok{y=}\NormalTok{probmatrix,}
+     \DataTypeTok{main=}\StringTok{"Monte Carlo Plot Simulation of Convergence"}\NormalTok{, }
+     \DataTypeTok{xlab=}\StringTok{"Sample Size"}\NormalTok{, }
+     \DataTypeTok{ylab=}\StringTok{"probability of Interest"}\NormalTok{, }
+\NormalTok{     )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+Now for each value of n\{1, 5, 10, 25, 50\}, draw one histogram of the
+minimum values for a sample of size n.~You will thus have 5 histogram
+plots and, for example, the histogram plot for n = 10 will be a
+histogram plot of the N = 1000 minimum values for the N = 1000 samples
+of size n = 10. In a comment, explain how these histogram plots (for n
+changing), can help someone understand convergence in probability to a
+constant.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F01 <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(N, }\KeywordTok{min}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{))))}
+\NormalTok{FM01 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(F01,}\DataTypeTok{nrow=}\NormalTok{N,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{probability01 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(FM01}\OperatorTok{<=}\NormalTok{ε)}\OperatorTok{/}\NormalTok{N}
+\KeywordTok{hist}\NormalTok{(FM01, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{prob=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{400}\NormalTok{), }\DataTypeTok{main=}\StringTok{"One-Thousand minimum values of an exp(1) distr. with size n=1"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Minimum Values"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Frequency"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F05 <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(N, }\KeywordTok{min}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{))))}
+\NormalTok{FM05 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(F05,}\DataTypeTok{nrow=}\NormalTok{N,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{probability05 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(FM05}\OperatorTok{<=}\NormalTok{ε)}\OperatorTok{/}\NormalTok{N}
+\KeywordTok{hist}\NormalTok{(FM05, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{prob=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{400}\NormalTok{), }\DataTypeTok{main=}\StringTok{"One-Thousand minimum values of an exp(1) distr. with size n=5"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Minimum Values"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Frequency"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F10 <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(N, }\KeywordTok{min}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{))))}
+\NormalTok{FM10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(F10,}\DataTypeTok{nrow=}\NormalTok{N,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{probability10 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(FM10}\OperatorTok{<=}\NormalTok{ε)}\OperatorTok{/}\NormalTok{N}
+\KeywordTok{hist}\NormalTok{(FM10, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{prob=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{400}\NormalTok{), }\DataTypeTok{main=}\StringTok{"One-Thousand minimum values of an exp(1) distr. with size n=10"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Minimum Values"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Frequency"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F25 <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(N, }\KeywordTok{min}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DecValTok{25}\NormalTok{,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{))))}
+\NormalTok{FM25 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(F25,}\DataTypeTok{nrow=}\NormalTok{N,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{probability25 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(FM25}\OperatorTok{<=}\NormalTok{ε)}\OperatorTok{/}\NormalTok{N}
+\KeywordTok{hist}\NormalTok{(FM25, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{prob=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{6}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{400}\NormalTok{), }\DataTypeTok{main=}\StringTok{"One-Thousand minimum values of an exp(1) distr. with size n=25"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Minimum Values"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Frequency"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F50 <-}\StringTok{ }\KeywordTok{sort}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(N, }\KeywordTok{min}\NormalTok{(}\KeywordTok{rexp}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DataTypeTok{rate =} \DecValTok{1}\NormalTok{))))}
+\NormalTok{FM50 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(F50,}\DataTypeTok{nrow=}\NormalTok{N,}\DataTypeTok{ncol=}\DecValTok{1000}\NormalTok{)}
+\NormalTok{probability50 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(FM50}\OperatorTok{<=}\NormalTok{ε)}\OperatorTok{/}\NormalTok{N}
+\KeywordTok{hist}\NormalTok{(FM50, }\DataTypeTok{breaks=}\DecValTok{20}\NormalTok{, }\DataTypeTok{prob=}\OtherTok{FALSE}\NormalTok{, }\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{10}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1000}\NormalTok{), }\DataTypeTok{main=}\StringTok{"One-Thousand minimum values of an exp(1) distr. with size n=50"}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{"Minimum Values"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Frequency"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\textbf{Discussion Question:} With a small sampling of data, the Exp(1)
+shows some variability which manifests itself as a right-tail in the
+distribution. However, as sample size increases the Exp(1) distirbution
+begins to converge on zero. With enough samples, such is the case when n
+= 50, the distribution nearly resembles a vertical line about zero.
+There are values within the minimum value dataset that are greater than
+zero. There are simply too many values at or nearer to zero that the
+exp(1) looks almost tail-less. In fact, that is precisely what is
+occuring. In a convergence in probability to a constant--in the case of
+Exp(1) is zero--the Exp(1) is converging to a number while its variance
+collapses to zero. When looking at our ordered datasets, from n=1 to
+n=50, the distribution is consistently becoming thinner and
+``squishing'' toward the y-axis.
+
+\textbf{Part 2: ``Visualizing Convergence in Distribution''} This part
+will consider how well the Central Limit Theorem applies to sample means
+from Poisson data
+
+Consider a sample size of n = 5 from a Poisson distribution with rate
+parameter \(\lambda\) = 1. Generate N = 50000 data sets of size n from
+the Poisson distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m =}\StringTok{ }\DecValTok{5}
+\NormalTok{lambda =}\StringTok{ }\DecValTok{1}
+\NormalTok{M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds2 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m,}\DecValTok{1}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For each data set, find the sample mean value. Hint If you saved the
+above data in a large matrix the colMeans or rowMeans functions can be
+handy here), e.g., n \textless- 5 N \textless- 50000 A matrix of N =
+50000 rows, each rows containing n = 5 sample from a Poisson
+distribution with rate 1 X \textless- matrix(rpois(n*N, \(\lambda\) =
+1), nrow = N), rowMeans(X) - This will give you a vector of N = 50000
+sample means.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rMeans <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds2),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+Create a histogram of the sample means. Make the bins of appropriate
+width so that each bin only has one value of the support. For instance,
+the possible values for the sample mean here are 0, 0.2, 0.4, 0.6, . .
+.. Make sure that each bar only has one of these values included (so the
+bins would go from say −0.1 to 0.1, 0.1 to 0.3, 0.3 to 0.5. The use of
+the breaks argument for the histogram function hist will be helpful
+here. The central limit theorem says that \(\bar{X}\) \textasciitilde{}
+N(\(\lambda\), \(\lambda\)/n) when \(\bar{X}\) is the sample mean of n
+i.i.d Pois(\(\lambda\)) random variables. Overlay this large-sample
+distribution on the histogram (Hint:use freq = FALSE in your histogram
+and the curve function with add = TRUE to overlay the normal
+distribution). All plots should have appropriate titles and axis labels.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{bg=}\StringTok{"gray"}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{);}
+\KeywordTok{hist}\NormalTok{(rMeans ,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\StringTok{"Visualizing Convergence in Distribution"}\NormalTok{ ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.5}\NormalTok{,}\FloatTok{2.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{1.1}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =}\NormalTok{ lambda, }\DataTypeTok{sd =}\NormalTok{ lambda}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda, }\DataTypeTok{sd=}\NormalTok{lambda}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"orange"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+Use the N = 50000 {[}mean{]} values to approximate the probability that
+\(\bar{X}\) is greater than or equal to \(\lambda\) +
+2\(\lambda\)/sqrt(n). Also report this probability as approximated by
+the normal distribution.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.2}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m)))}
+\NormalTok{TFprob <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.2}\NormalTok{)}\OperatorTok{/}\NormalTok{M}
+\KeywordTok{print}\NormalTok{(}\DecValTok{1}\OperatorTok{-}\NormalTok{TFprob)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.967
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb <-}\StringTok{ }\DecValTok{1}\OperatorTok{-}\KeywordTok{dnorm}\NormalTok{((lambda}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m))),}\DataTypeTok{mean=}\NormalTok{lambda,}\DataTypeTok{sd=}\NormalTok{(lambda}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m)))}
+\KeywordTok{print}\NormalTok{(NormProb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8792725
+\end{verbatim}
+
+Repeat the above for n = 10, n = 30, and n = 100. FOR m = 1,\(\lambda\)
+= 1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 =}\StringTok{ }\DecValTok{1}\NormalTok{; lambda}\FloatTok{.1}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m1,lambda}\FloatTok{.1}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds1),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{8.5}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{11.5}\NormalTok{,}\FloatTok{12.5}\NormalTok{,}\FloatTok{13.5}\NormalTok{,}\FloatTok{14.5}\NormalTok{,}\FloatTok{15.5}\NormalTok{,}\FloatTok{16.5}\NormalTok{,}\FloatTok{17.5}\NormalTok{,}\FloatTok{18.5}\NormalTok{,}\FloatTok{19.5}\NormalTok{,}\FloatTok{20.5}\NormalTok{,}\FloatTok{21.5}\NormalTok{,}\FloatTok{22.5}\NormalTok{);}
+\KeywordTok{hist}\NormalTok{(rMeans1,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=1,"}\NormalTok{,lambda,}\StringTok{"=1"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{viridis}\NormalTok{(}\DecValTok{4}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{y1 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.1}\OperatorTok{/}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(m1)))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#cc0000"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans1 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1)))}
+\NormalTok{TFprob1 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07924
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb1 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))); }\KeywordTok{print}\NormalTok{(NormProb1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.05399097
+\end{verbatim}
+
+FOR m = 10,\(\lambda\) = 1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m10 =}\StringTok{ }\DecValTok{10}\NormalTok{; lambda}\FloatTok{.1}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m10,}\DecValTok{1}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds10),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{5.1}\NormalTok{,}\OperatorTok{-}\FloatTok{4.9}\NormalTok{,}\OperatorTok{-}\FloatTok{4.7}\NormalTok{,}\OperatorTok{-}\FloatTok{4.5}\NormalTok{,}\OperatorTok{-}\FloatTok{4.3}\NormalTok{,}\OperatorTok{-}\FloatTok{4.1}\NormalTok{,}\OperatorTok{-}\FloatTok{3.9}\NormalTok{,}\OperatorTok{-}\FloatTok{3.7}\NormalTok{,}\OperatorTok{-}\FloatTok{3.5}\NormalTok{,}\OperatorTok{-}\FloatTok{3.3}\NormalTok{,}\OperatorTok{-}\FloatTok{3.1}\NormalTok{,}\OperatorTok{-}\FloatTok{2.9}\NormalTok{,}\OperatorTok{-}\FloatTok{2.7}\NormalTok{,}\OperatorTok{-}\FloatTok{2.5}\NormalTok{,}\OperatorTok{-}\FloatTok{2.3}\NormalTok{,}\OperatorTok{-}\FloatTok{2.1}\NormalTok{,}\OperatorTok{-}\FloatTok{1.9}\NormalTok{,}\OperatorTok{-}\FloatTok{1.7}\NormalTok{,}\OperatorTok{-}\FloatTok{1.5}\NormalTok{,}\OperatorTok{-}\FloatTok{1.3}\NormalTok{,}\OperatorTok{-}\FloatTok{1.1}\NormalTok{,}\OperatorTok{-}\FloatTok{0.9}\NormalTok{,}\OperatorTok{-}\FloatTok{0.7}\NormalTok{,}\OperatorTok{-}\FloatTok{0.5}\NormalTok{,}\OperatorTok{-}\FloatTok{0.3}\NormalTok{,}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{,}\FloatTok{4.3}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans10,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=10,"}\NormalTok{,lambda,}\StringTok{"=1"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{2.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{viridis}\NormalTok{(}\DecValTok{19}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{y10 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.1}\OperatorTok{/}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(m10)))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#cc0000"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.10}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans10 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10)))}
+\NormalTok{TFprob10 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.10}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0668
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb10 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))); }\KeywordTok{print}\NormalTok{(NormProb10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1707344
+\end{verbatim}
+
+FOR m = 30,\(\lambda\) = 1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m30 =}\StringTok{ }\DecValTok{30}\NormalTok{; lambda}\FloatTok{.1}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{; M =}\StringTok{ }\DecValTok{30000}
+\NormalTok{ds30 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m30,}\DecValTok{1}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans30 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds30),}\DataTypeTok{nrow=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{5.1}\NormalTok{,}\OperatorTok{-}\FloatTok{4.9}\NormalTok{,}\OperatorTok{-}\FloatTok{4.7}\NormalTok{,}\OperatorTok{-}\FloatTok{4.5}\NormalTok{,}\OperatorTok{-}\FloatTok{4.3}\NormalTok{,}\OperatorTok{-}\FloatTok{4.1}\NormalTok{,}\OperatorTok{-}\FloatTok{3.9}\NormalTok{,}\OperatorTok{-}\FloatTok{3.7}\NormalTok{,}\OperatorTok{-}\FloatTok{3.5}\NormalTok{,}\OperatorTok{-}\FloatTok{3.3}\NormalTok{,}\OperatorTok{-}\FloatTok{3.1}\NormalTok{,}\OperatorTok{-}\FloatTok{2.9}\NormalTok{,}\OperatorTok{-}\FloatTok{2.7}\NormalTok{,}\OperatorTok{-}\FloatTok{2.5}\NormalTok{,}\OperatorTok{-}\FloatTok{2.3}\NormalTok{,}\OperatorTok{-}\FloatTok{2.1}\NormalTok{,}\OperatorTok{-}\FloatTok{1.9}\NormalTok{,}\OperatorTok{-}\FloatTok{1.7}\NormalTok{,}\OperatorTok{-}\FloatTok{1.5}\NormalTok{,}\OperatorTok{-}\FloatTok{1.3}\NormalTok{,}\OperatorTok{-}\FloatTok{1.1}\NormalTok{,}\OperatorTok{-}\FloatTok{0.9}\NormalTok{,}\OperatorTok{-}\FloatTok{0.7}\NormalTok{,}\OperatorTok{-}\FloatTok{0.5}\NormalTok{,}\OperatorTok{-}\FloatTok{0.3}\NormalTok{,}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{,}\FloatTok{4.3}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans30,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=30,"}\NormalTok{,lambda,}\StringTok{"=1"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{2.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{viridis}\NormalTok{(}\DecValTok{19}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{y30 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.1}\OperatorTok{/}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(m30)))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#FF0033"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.30}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans30 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)))}
+\NormalTok{TFprob30 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.30}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.238
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb30 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))); }\KeywordTok{print}\NormalTok{(NormProb30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2957207
+\end{verbatim}
+
+FOR m = 100,\(\lambda\) = 1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m100 =}\StringTok{ }\DecValTok{100}\NormalTok{; lambda}\FloatTok{.1}\NormalTok{ =}\StringTok{ }\DecValTok{1}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds100 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m100,}\DecValTok{1}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans100 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds100),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{5.1}\NormalTok{,}\OperatorTok{-}\FloatTok{4.9}\NormalTok{,}\OperatorTok{-}\FloatTok{4.7}\NormalTok{,}\OperatorTok{-}\FloatTok{4.5}\NormalTok{,}\OperatorTok{-}\FloatTok{4.3}\NormalTok{,}\OperatorTok{-}\FloatTok{4.1}\NormalTok{,}\OperatorTok{-}\FloatTok{3.9}\NormalTok{,}\OperatorTok{-}\FloatTok{3.7}\NormalTok{,}\OperatorTok{-}\FloatTok{3.5}\NormalTok{,}\OperatorTok{-}\FloatTok{3.3}\NormalTok{,}\OperatorTok{-}\FloatTok{3.1}\NormalTok{,}\OperatorTok{-}\FloatTok{2.9}\NormalTok{,}\OperatorTok{-}\FloatTok{2.7}\NormalTok{,}\OperatorTok{-}\FloatTok{2.5}\NormalTok{,}\OperatorTok{-}\FloatTok{2.3}\NormalTok{,}\OperatorTok{-}\FloatTok{2.1}\NormalTok{,}\OperatorTok{-}\FloatTok{1.9}\NormalTok{,}\OperatorTok{-}\FloatTok{1.7}\NormalTok{,}\OperatorTok{-}\FloatTok{1.5}\NormalTok{,}\OperatorTok{-}\FloatTok{1.3}\NormalTok{,}\OperatorTok{-}\FloatTok{1.1}\NormalTok{,}\OperatorTok{-}\FloatTok{0.9}\NormalTok{,}\OperatorTok{-}\FloatTok{0.7}\NormalTok{,}\OperatorTok{-}\FloatTok{0.5}\NormalTok{,}\OperatorTok{-}\FloatTok{0.3}\NormalTok{,}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{,}\FloatTok{4.3}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans100,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=100,"}\NormalTok{,lambda,}\StringTok{"=1"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{2.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{viridis}\NormalTok{(}\DecValTok{19}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.2}\NormalTok{)}
+\NormalTok{y100 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.1}\OperatorTok{/}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(m100)))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#FF0033"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.100}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans100 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)))}
+\NormalTok{TFprob100 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.100}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob100)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.38108
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb100 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.1}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.1}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))); }\KeywordTok{print}\NormalTok{(NormProb100)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5399097
+\end{verbatim}
+
+Repeat all of the above for \(\lambda\) = 5 and \(\lambda\) = 25. You
+should have a total of 12 scenarios/plots FOR m = 1,\(\lambda\) = 5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 =}\StringTok{ }\DecValTok{1}\NormalTok{; lambda}\FloatTok{.5}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m1,lambda}\FloatTok{.5}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds1),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{8.5}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{11.5}\NormalTok{,}\FloatTok{12.5}\NormalTok{,}\FloatTok{13.5}\NormalTok{,}\FloatTok{14.5}\NormalTok{,}\FloatTok{15.5}\NormalTok{,}\FloatTok{16.5}\NormalTok{,}\FloatTok{17.5}\NormalTok{,}\FloatTok{18.5}\NormalTok{,}\FloatTok{19.5}\NormalTok{,}\FloatTok{20.5}\NormalTok{,}\FloatTok{21.5}\NormalTok{,}\FloatTok{22.5}\NormalTok{,}\FloatTok{23.5}\NormalTok{,}\FloatTok{24.5}\NormalTok{,}\FloatTok{25.5}\NormalTok{,}\FloatTok{26.5}\NormalTok{,}\FloatTok{27.5}\NormalTok{,}\FloatTok{28.5}\NormalTok{,}\FloatTok{29.5}\NormalTok{,}\FloatTok{30.5}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans1,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=1,"}\NormalTok{,lambda,}\StringTok{"=5"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{16}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.3}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{magma}\NormalTok{(}\DecValTok{13}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y1 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#66CC00"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans1 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1)))}
+\NormalTok{TFprob1 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.00016
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb1 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))); }\KeywordTok{print}\NormalTok{(NormProb1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01079819
+\end{verbatim}
+
+FOR m = 10,\(\lambda\) = 5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m10 =}\StringTok{ }\DecValTok{10}\NormalTok{; lambda}\FloatTok{.5}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m10,lambda}\FloatTok{.5}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds10),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{,}\FloatTok{4.3}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.1}\NormalTok{,}\FloatTok{5.3}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\FloatTok{5.9}\NormalTok{,}\FloatTok{6.1}\NormalTok{,}\FloatTok{6.3}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{6.9}\NormalTok{,}\FloatTok{7.1}\NormalTok{,}\FloatTok{7.3}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{8.3}\NormalTok{,}\FloatTok{8.5}\NormalTok{,}\FloatTok{8.7}\NormalTok{,}\FloatTok{8.9}\NormalTok{,}\FloatTok{9.1}\NormalTok{,}\FloatTok{9.3}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\FloatTok{9.7}\NormalTok{,}\FloatTok{9.9}\NormalTok{,}\FloatTok{10.1}\NormalTok{,}\FloatTok{10.3}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{10.7}\NormalTok{,}\FloatTok{10.9}\NormalTok{,}\FloatTok{11.1}\NormalTok{,}\FloatTok{11.3}\NormalTok{,}\FloatTok{11.5}\NormalTok{,}\FloatTok{11.7}\NormalTok{,}\FloatTok{11.9}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans10,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=10,"}\NormalTok{,lambda,}\StringTok{"=5"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{8.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{1.1}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{magma}\NormalTok{(}\DecValTok{50}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y10 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#66CC00"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.10}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans10 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10)))}
+\NormalTok{TFprob10 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.10}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0018
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb10 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))); }\KeywordTok{print}\NormalTok{(NormProb10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03414689
+\end{verbatim}
+
+FOR m = 30,\(\lambda\) = 5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m30 =}\StringTok{ }\DecValTok{30}\NormalTok{; lambda}\FloatTok{.5}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{; M =}\StringTok{ }\DecValTok{30000}
+\NormalTok{ds30 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m30,lambda}\FloatTok{.5}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans30 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds30),}\DataTypeTok{nrow=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{,}\FloatTok{4.3}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.1}\NormalTok{,}\FloatTok{5.3}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\FloatTok{5.9}\NormalTok{,}\FloatTok{6.1}\NormalTok{,}\FloatTok{6.3}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{6.9}\NormalTok{,}\FloatTok{7.1}\NormalTok{,}\FloatTok{7.3}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{8.3}\NormalTok{,}\FloatTok{8.5}\NormalTok{,}\FloatTok{8.7}\NormalTok{,}\FloatTok{8.9}\NormalTok{,}\FloatTok{9.1}\NormalTok{,}\FloatTok{9.3}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\FloatTok{9.7}\NormalTok{,}\FloatTok{9.9}\NormalTok{,}\FloatTok{10.1}\NormalTok{,}\FloatTok{10.3}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{10.7}\NormalTok{,}\FloatTok{10.9}\NormalTok{,}\FloatTok{11.1}\NormalTok{,}\FloatTok{11.3}\NormalTok{,}\FloatTok{11.5}\NormalTok{,}\FloatTok{11.7}\NormalTok{,}\FloatTok{11.9}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans30,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=30,"}\NormalTok{,lambda,}\StringTok{"=5"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{8.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{1.1}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{magma}\NormalTok{(}\DecValTok{50}\NormalTok{))}
+\NormalTok{x30 <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y30 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x30, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#66CC00"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.30}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans30 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)))}
+\NormalTok{TFprob30 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.30}\NormalTok{)}\OperatorTok{/}\NormalTok{M;}\KeywordTok{print}\NormalTok{(TFprob30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03346667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb30 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)));}\KeywordTok{print}\NormalTok{(NormProb30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.05914414
+\end{verbatim}
+
+FOR m = 100,\(\lambda\) = 5
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m100 =}\StringTok{ }\DecValTok{100}\NormalTok{; lambda}\FloatTok{.5}\NormalTok{ =}\StringTok{ }\DecValTok{5}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds100 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m100,lambda}\FloatTok{.5}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans100 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds100),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.7}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{1.3}\NormalTok{,}\FloatTok{1.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{1.9}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{2.3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{2.7}\NormalTok{,}\FloatTok{2.9}\NormalTok{,}\FloatTok{3.1}\NormalTok{,}\FloatTok{3.3}\NormalTok{,}\FloatTok{3.5}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{3.9}\NormalTok{,}\FloatTok{4.1}\NormalTok{,}\FloatTok{4.3}\NormalTok{,}\FloatTok{4.5}\NormalTok{,}\FloatTok{4.7}\NormalTok{,}\FloatTok{4.9}\NormalTok{,}\FloatTok{5.1}\NormalTok{,}\FloatTok{5.3}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{5.7}\NormalTok{,}\FloatTok{5.9}\NormalTok{,}\FloatTok{6.1}\NormalTok{,}\FloatTok{6.3}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{6.7}\NormalTok{,}\FloatTok{6.9}\NormalTok{,}\FloatTok{7.1}\NormalTok{,}\FloatTok{7.3}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{7.7}\NormalTok{,}\FloatTok{7.9}\NormalTok{,}\FloatTok{8.1}\NormalTok{,}\FloatTok{8.3}\NormalTok{,}\FloatTok{8.5}\NormalTok{,}\FloatTok{8.7}\NormalTok{,}\FloatTok{8.9}\NormalTok{,}\FloatTok{9.1}\NormalTok{,}\FloatTok{9.3}\NormalTok{,}\FloatTok{9.5}\NormalTok{,}\FloatTok{9.7}\NormalTok{,}\FloatTok{9.9}\NormalTok{,}\FloatTok{10.1}\NormalTok{,}\FloatTok{10.3}\NormalTok{,}\FloatTok{10.5}\NormalTok{,}\FloatTok{10.7}\NormalTok{,}\FloatTok{10.9}\NormalTok{,}\FloatTok{11.1}\NormalTok{,}\FloatTok{11.3}\NormalTok{,}\FloatTok{11.5}\NormalTok{,}\FloatTok{11.7}\NormalTok{,}\FloatTok{11.9}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans100,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=100,"}\NormalTok{,lambda,}\StringTok{"=5"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\FloatTok{8.5}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{1.1}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{magma}\NormalTok{(}\DecValTok{50}\NormalTok{))}
+\NormalTok{x100 <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y100 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x100, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"#66CC00"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.100}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans100 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)))}
+\NormalTok{TFprob100 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.100}\NormalTok{)}\OperatorTok{/}\NormalTok{M;}\KeywordTok{print}\NormalTok{(TFprob100)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.18026
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb100 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.5}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.5}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.5}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.5}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)));}\KeywordTok{print}\NormalTok{(NormProb100)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1079819
+\end{verbatim}
+
+FOR m = 1,\(\lambda\) = 25
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m1 =}\StringTok{ }\DecValTok{1}\NormalTok{; lambda}\FloatTok{.25}\NormalTok{ =}\StringTok{ }\DecValTok{25}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m1,lambda}\FloatTok{.25}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans1 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds1),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans1, }\DataTypeTok{breaks=}\DecValTok{40}\NormalTok{,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=1,"}\NormalTok{,lambda,}\StringTok{"=25"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{47}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{heat.colors}\NormalTok{(}\DecValTok{40}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y1 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.1}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans1 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1)))}
+\NormalTok{TFprob1 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.1}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb1 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m1))); }\KeywordTok{print}\NormalTok{(NormProb1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.002159639
+\end{verbatim}
+
+FOR m = 10,\(\lambda\) = 25
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m10 =}\StringTok{ }\DecValTok{10}\NormalTok{; lambda}\FloatTok{.25}\NormalTok{ =}\StringTok{ }\DecValTok{25}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m10,lambda}\FloatTok{.25}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans10 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds10),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{15.1}\NormalTok{,}\FloatTok{15.3}\NormalTok{,}\FloatTok{15.5}\NormalTok{,}\FloatTok{15.7}\NormalTok{,}\FloatTok{15.9}\NormalTok{,}\FloatTok{16.1}\NormalTok{,}\FloatTok{16.3}\NormalTok{,}\FloatTok{16.5}\NormalTok{,}\FloatTok{16.7}\NormalTok{,}\FloatTok{16.9}\NormalTok{,}\FloatTok{17.1}\NormalTok{,}\FloatTok{17.3}\NormalTok{,}\FloatTok{17.5}\NormalTok{,}\FloatTok{17.7}\NormalTok{,}\FloatTok{17.9}\NormalTok{,}\FloatTok{18.1}\NormalTok{,}\FloatTok{18.3}\NormalTok{,}\FloatTok{18.5}\NormalTok{,}\FloatTok{18.7}\NormalTok{,}\FloatTok{18.9}\NormalTok{,}\FloatTok{19.1}\NormalTok{,}\FloatTok{19.3}\NormalTok{,}\FloatTok{19.5}\NormalTok{,}\FloatTok{19.7}\NormalTok{,}\FloatTok{19.9}\NormalTok{,}\FloatTok{20.1}\NormalTok{,}\FloatTok{20.3}\NormalTok{,}\FloatTok{20.5}\NormalTok{,}\FloatTok{20.7}\NormalTok{,}\FloatTok{20.9}\NormalTok{,}\FloatTok{21.1}\NormalTok{,}\FloatTok{21.3}\NormalTok{,}\FloatTok{21.5}\NormalTok{,}\FloatTok{21.7}\NormalTok{,}\FloatTok{21.9}\NormalTok{,}\FloatTok{22.1}\NormalTok{,}\FloatTok{22.3}\NormalTok{,}\FloatTok{22.5}\NormalTok{,}\FloatTok{22.7}\NormalTok{,}\FloatTok{22.9}\NormalTok{,}\FloatTok{23.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{,}\FloatTok{23.5}\NormalTok{,}\FloatTok{23.7}\NormalTok{,}\FloatTok{23.9}\NormalTok{,}\FloatTok{24.1}\NormalTok{,}\FloatTok{24.3}\NormalTok{,}\FloatTok{24.5}\NormalTok{,}\FloatTok{24.7}\NormalTok{,}\FloatTok{24.9}\NormalTok{,}\FloatTok{25.1}\NormalTok{,}\FloatTok{25.3}\NormalTok{,}\FloatTok{25.5}\NormalTok{,}\FloatTok{25.7}\NormalTok{,}\FloatTok{25.9}\NormalTok{,}\FloatTok{26.1}\NormalTok{,}\FloatTok{26.3}\NormalTok{,}\FloatTok{26.5}\NormalTok{,}\FloatTok{26.7}\NormalTok{,}\FloatTok{26.9}\NormalTok{,}\FloatTok{27.1}\NormalTok{,}\FloatTok{27.3}\NormalTok{,}\FloatTok{27.5}\NormalTok{,}\FloatTok{27.7}\NormalTok{,}\FloatTok{27.9}\NormalTok{,}\FloatTok{28.1}\NormalTok{,}\FloatTok{28.3}\NormalTok{,}\FloatTok{28.5}\NormalTok{,}\FloatTok{28.7}\NormalTok{,}\FloatTok{28.9}\NormalTok{,}\FloatTok{29.1}\NormalTok{,}\FloatTok{29.3}\NormalTok{,}\FloatTok{29.5}\NormalTok{,}\FloatTok{29.7}\NormalTok{,}\FloatTok{29.9}\NormalTok{,}\FloatTok{30.1}\NormalTok{,}\FloatTok{30.3}\NormalTok{,}\FloatTok{30.5}\NormalTok{,}\FloatTok{30.7}\NormalTok{,}\FloatTok{30.9}\NormalTok{,}\FloatTok{31.1}\NormalTok{,}\FloatTok{31.3}\NormalTok{,}\FloatTok{31.5}\NormalTok{,}\FloatTok{31.7}\NormalTok{,}\FloatTok{31.9}\NormalTok{,}\FloatTok{32.1}\NormalTok{,}\FloatTok{32.3}\NormalTok{,}\FloatTok{32.5}\NormalTok{,}\FloatTok{32.7}\NormalTok{,}\FloatTok{32.9}\NormalTok{,}\FloatTok{33.1}\NormalTok{,}\FloatTok{33.3}\NormalTok{,}\FloatTok{33.5}\NormalTok{,}\FloatTok{33.7}\NormalTok{,}\FloatTok{33.9}\NormalTok{,}\FloatTok{34.1}\NormalTok{,}\FloatTok{34.3}\NormalTok{,}\FloatTok{34.5}\NormalTok{,}\FloatTok{34.7}\NormalTok{,}\FloatTok{34.9}\NormalTok{,}\FloatTok{35.1}\NormalTok{,}\FloatTok{35.3}\NormalTok{,}\FloatTok{35.5}\NormalTok{,}\FloatTok{35.7}\NormalTok{,}\FloatTok{35.9}\NormalTok{,}\FloatTok{36.1}\NormalTok{,}\FloatTok{36.3}\NormalTok{,}\FloatTok{36.5}\NormalTok{,}\FloatTok{36.7}\NormalTok{,}\FloatTok{36.9}\NormalTok{,}\FloatTok{37.1}\NormalTok{,}\FloatTok{37.3}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans10,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=10,"}\NormalTok{,lambda,}\StringTok{"=25"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{36}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{heat.colors}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y10 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.10}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans10 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10)))}
+\NormalTok{TFprob10 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.10}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb10 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m10))); }\KeywordTok{print}\NormalTok{(NormProb10)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.006829377
+\end{verbatim}
+
+FOR m = 30,\(\lambda\) = 25
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m30 =}\StringTok{ }\DecValTok{30}\NormalTok{; lambda}\FloatTok{.25}\NormalTok{ =}\StringTok{ }\DecValTok{25}\NormalTok{; M =}\StringTok{ }\DecValTok{30000}
+\NormalTok{ds30 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m30,lambda}\FloatTok{.25}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans30 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds30),}\DataTypeTok{nrow=}\DecValTok{30000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{15.1}\NormalTok{,}\FloatTok{15.3}\NormalTok{,}\FloatTok{15.5}\NormalTok{,}\FloatTok{15.7}\NormalTok{,}\FloatTok{15.9}\NormalTok{,}\FloatTok{16.1}\NormalTok{,}\FloatTok{16.3}\NormalTok{,}\FloatTok{16.5}\NormalTok{,}\FloatTok{16.7}\NormalTok{,}\FloatTok{16.9}\NormalTok{,}\FloatTok{17.1}\NormalTok{,}\FloatTok{17.3}\NormalTok{,}\FloatTok{17.5}\NormalTok{,}\FloatTok{17.7}\NormalTok{,}\FloatTok{17.9}\NormalTok{,}\FloatTok{18.1}\NormalTok{,}\FloatTok{18.3}\NormalTok{,}\FloatTok{18.5}\NormalTok{,}\FloatTok{18.7}\NormalTok{,}\FloatTok{18.9}\NormalTok{,}\FloatTok{19.1}\NormalTok{,}\FloatTok{19.3}\NormalTok{,}\FloatTok{19.5}\NormalTok{,}\FloatTok{19.7}\NormalTok{,}\FloatTok{19.9}\NormalTok{,}\FloatTok{20.1}\NormalTok{,}\FloatTok{20.3}\NormalTok{,}\FloatTok{20.5}\NormalTok{,}\FloatTok{20.7}\NormalTok{,}\FloatTok{20.9}\NormalTok{,}\FloatTok{21.1}\NormalTok{,}\FloatTok{21.3}\NormalTok{,}\FloatTok{21.5}\NormalTok{,}\FloatTok{21.7}\NormalTok{,}\FloatTok{21.9}\NormalTok{,}\FloatTok{22.1}\NormalTok{,}\FloatTok{22.3}\NormalTok{,}\FloatTok{22.5}\NormalTok{,}\FloatTok{22.7}\NormalTok{,}\FloatTok{22.9}\NormalTok{,}\FloatTok{23.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{,}\FloatTok{23.5}\NormalTok{,}\FloatTok{23.7}\NormalTok{,}\FloatTok{23.9}\NormalTok{,}\FloatTok{24.1}\NormalTok{,}\FloatTok{24.3}\NormalTok{,}\FloatTok{24.5}\NormalTok{,}\FloatTok{24.7}\NormalTok{,}\FloatTok{24.9}\NormalTok{,}\FloatTok{25.1}\NormalTok{,}\FloatTok{25.3}\NormalTok{,}\FloatTok{25.5}\NormalTok{,}\FloatTok{25.7}\NormalTok{,}\FloatTok{25.9}\NormalTok{,}\FloatTok{26.1}\NormalTok{,}\FloatTok{26.3}\NormalTok{,}\FloatTok{26.5}\NormalTok{,}\FloatTok{26.7}\NormalTok{,}\FloatTok{26.9}\NormalTok{,}\FloatTok{27.1}\NormalTok{,}\FloatTok{27.3}\NormalTok{,}\FloatTok{27.5}\NormalTok{,}\FloatTok{27.7}\NormalTok{,}\FloatTok{27.9}\NormalTok{,}\FloatTok{28.1}\NormalTok{,}\FloatTok{28.3}\NormalTok{,}\FloatTok{28.5}\NormalTok{,}\FloatTok{28.7}\NormalTok{,}\FloatTok{28.9}\NormalTok{,}\FloatTok{29.1}\NormalTok{,}\FloatTok{29.3}\NormalTok{,}\FloatTok{29.5}\NormalTok{,}\FloatTok{29.7}\NormalTok{,}\FloatTok{29.9}\NormalTok{,}\FloatTok{30.1}\NormalTok{,}\FloatTok{30.3}\NormalTok{,}\FloatTok{30.5}\NormalTok{,}\FloatTok{30.7}\NormalTok{,}\FloatTok{30.9}\NormalTok{,}\FloatTok{31.1}\NormalTok{,}\FloatTok{31.3}\NormalTok{,}\FloatTok{31.5}\NormalTok{,}\FloatTok{31.7}\NormalTok{,}\FloatTok{31.9}\NormalTok{,}\FloatTok{32.1}\NormalTok{,}\FloatTok{32.3}\NormalTok{,}\FloatTok{32.5}\NormalTok{,}\FloatTok{32.7}\NormalTok{,}\FloatTok{32.9}\NormalTok{,}\FloatTok{33.1}\NormalTok{,}\FloatTok{33.3}\NormalTok{,}\FloatTok{33.5}\NormalTok{,}\FloatTok{33.7}\NormalTok{,}\FloatTok{33.9}\NormalTok{,}\FloatTok{34.1}\NormalTok{,}\FloatTok{34.3}\NormalTok{,}\FloatTok{34.5}\NormalTok{,}\FloatTok{34.7}\NormalTok{,}\FloatTok{34.9}\NormalTok{,}\FloatTok{35.1}\NormalTok{,}\FloatTok{35.3}\NormalTok{,}\FloatTok{35.5}\NormalTok{,}\FloatTok{35.7}\NormalTok{,}\FloatTok{35.9}\NormalTok{,}\FloatTok{36.1}\NormalTok{,}\FloatTok{36.3}\NormalTok{,}\FloatTok{36.5}\NormalTok{,}\FloatTok{36.7}\NormalTok{,}\FloatTok{36.9}\NormalTok{,}\FloatTok{37.1}\NormalTok{,}\FloatTok{37.3}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans30,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=30,"}\NormalTok{,lambda,}\StringTok{"=25"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{36}\NormalTok{) }
+\NormalTok{     ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{heat.colors}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\NormalTok{x30 <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y30 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x30, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.30}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans30 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)))}
+\NormalTok{TFprob30 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.30}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.666667e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb30 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m30)));}\KeywordTok{print}\NormalTok{(NormProb30)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01182883
+\end{verbatim}
+
+FOR m = 100,\(\lambda\) = 25
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m100 =}\StringTok{ }\DecValTok{100}\NormalTok{; lambda}\FloatTok{.25}\NormalTok{ =}\StringTok{ }\DecValTok{25}\NormalTok{; M =}\StringTok{ }\DecValTok{50000}
+\NormalTok{ds100 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(M,(}\KeywordTok{rpois}\NormalTok{(m100,lambda}\FloatTok{.25}\NormalTok{))),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{5}\NormalTok{)}
+\NormalTok{rMeans100 <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rowMeans}\NormalTok{(ds100),}\DataTypeTok{nrow=}\DecValTok{50000}\NormalTok{,}\DataTypeTok{ncol=}\DecValTok{1}\NormalTok{)}
+\NormalTok{binlen <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{15.1}\NormalTok{,}\FloatTok{15.3}\NormalTok{,}\FloatTok{15.5}\NormalTok{,}\FloatTok{15.7}\NormalTok{,}\FloatTok{15.9}\NormalTok{,}\FloatTok{16.1}\NormalTok{,}\FloatTok{16.3}\NormalTok{,}\FloatTok{16.5}\NormalTok{,}\FloatTok{16.7}\NormalTok{,}\FloatTok{16.9}\NormalTok{,}\FloatTok{17.1}\NormalTok{,}\FloatTok{17.3}\NormalTok{,}\FloatTok{17.5}\NormalTok{,}\FloatTok{17.7}\NormalTok{,}\FloatTok{17.9}\NormalTok{,}\FloatTok{18.1}\NormalTok{,}\FloatTok{18.3}\NormalTok{,}\FloatTok{18.5}\NormalTok{,}\FloatTok{18.7}\NormalTok{,}\FloatTok{18.9}\NormalTok{,}\FloatTok{19.1}\NormalTok{,}\FloatTok{19.3}\NormalTok{,}\FloatTok{19.5}\NormalTok{,}\FloatTok{19.7}\NormalTok{,}\FloatTok{19.9}\NormalTok{,}\FloatTok{20.1}\NormalTok{,}\FloatTok{20.3}\NormalTok{,}\FloatTok{20.5}\NormalTok{,}\FloatTok{20.7}\NormalTok{,}\FloatTok{20.9}\NormalTok{,}\FloatTok{21.1}\NormalTok{,}\FloatTok{21.3}\NormalTok{,}\FloatTok{21.5}\NormalTok{,}\FloatTok{21.7}\NormalTok{,}\FloatTok{21.9}\NormalTok{,}\FloatTok{22.1}\NormalTok{,}\FloatTok{22.3}\NormalTok{,}\FloatTok{22.5}\NormalTok{,}\FloatTok{22.7}\NormalTok{,}\FloatTok{22.9}\NormalTok{,}\FloatTok{23.1}\NormalTok{,}\FloatTok{23.3}\NormalTok{,}\FloatTok{23.5}\NormalTok{,}\FloatTok{23.7}\NormalTok{,}\FloatTok{23.9}\NormalTok{,}\FloatTok{24.1}\NormalTok{,}\FloatTok{24.3}\NormalTok{,}\FloatTok{24.5}\NormalTok{,}\FloatTok{24.7}\NormalTok{,}\FloatTok{24.9}\NormalTok{,}\FloatTok{25.1}\NormalTok{,}\FloatTok{25.3}\NormalTok{,}\FloatTok{25.5}\NormalTok{,}\FloatTok{25.7}\NormalTok{,}\FloatTok{25.9}\NormalTok{,}\FloatTok{26.1}\NormalTok{,}\FloatTok{26.3}\NormalTok{,}\FloatTok{26.5}\NormalTok{,}\FloatTok{26.7}\NormalTok{,}\FloatTok{26.9}\NormalTok{,}\FloatTok{27.1}\NormalTok{,}\FloatTok{27.3}\NormalTok{,}\FloatTok{27.5}\NormalTok{,}\FloatTok{27.7}\NormalTok{,}\FloatTok{27.9}\NormalTok{,}\FloatTok{28.1}\NormalTok{,}\FloatTok{28.3}\NormalTok{,}\FloatTok{28.5}\NormalTok{,}\FloatTok{28.7}\NormalTok{,}\FloatTok{28.9}\NormalTok{,}\FloatTok{29.1}\NormalTok{,}\FloatTok{29.3}\NormalTok{,}\FloatTok{29.5}\NormalTok{,}\FloatTok{29.7}\NormalTok{,}\FloatTok{29.9}\NormalTok{,}\FloatTok{30.1}\NormalTok{,}\FloatTok{30.3}\NormalTok{,}\FloatTok{30.5}\NormalTok{,}\FloatTok{30.7}\NormalTok{,}\FloatTok{30.9}\NormalTok{,}\FloatTok{31.1}\NormalTok{,}\FloatTok{31.3}\NormalTok{,}\FloatTok{31.5}\NormalTok{,}\FloatTok{31.7}\NormalTok{,}\FloatTok{31.9}\NormalTok{,}\FloatTok{32.1}\NormalTok{,}\FloatTok{32.3}\NormalTok{,}\FloatTok{32.5}\NormalTok{,}\FloatTok{32.7}\NormalTok{,}\FloatTok{32.9}\NormalTok{,}\FloatTok{33.1}\NormalTok{,}\FloatTok{33.3}\NormalTok{,}\FloatTok{33.5}\NormalTok{,}\FloatTok{33.7}\NormalTok{,}\FloatTok{33.9}\NormalTok{,}\FloatTok{34.1}\NormalTok{,}\FloatTok{34.3}\NormalTok{,}\FloatTok{34.5}\NormalTok{,}\FloatTok{34.7}\NormalTok{,}\FloatTok{34.9}\NormalTok{,}\FloatTok{35.1}\NormalTok{,}\FloatTok{35.3}\NormalTok{,}\FloatTok{35.5}\NormalTok{,}\FloatTok{35.7}\NormalTok{,}\FloatTok{35.9}\NormalTok{,}\FloatTok{36.1}\NormalTok{,}\FloatTok{36.3}\NormalTok{,}\FloatTok{36.5}\NormalTok{,}\FloatTok{36.7}\NormalTok{,}\FloatTok{36.9}\NormalTok{,}\FloatTok{37.1}\NormalTok{,}\FloatTok{37.3}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(rMeans100,}\DataTypeTok{breaks=}\NormalTok{binlen ,}\DataTypeTok{main=}\KeywordTok{expression}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"Pois("}\NormalTok{,lambda,}\StringTok{") ~ N("}\NormalTok{,lambda,}\StringTok{","}\NormalTok{,lambda,}\StringTok{"/m) curve of 50,000 means where m=100,"}\NormalTok{,lambda,}\StringTok{"=25"}\NormalTok{))  ,}\DataTypeTok{xlab=}\StringTok{"sample poisson means"}\NormalTok{ ,}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{36}\NormalTok{) ,}\DataTypeTok{ylab=}\StringTok{"density"}\NormalTok{ ,}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.2}\NormalTok{) ,}\DataTypeTok{freq =} \OtherTok{FALSE}\NormalTok{, }\DataTypeTok{col=}\KeywordTok{heat.colors}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\NormalTok{x100 <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.1}\NormalTok{)}
+\NormalTok{y100 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{(x100, }\DataTypeTok{mean =}\NormalTok{ lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd =}\NormalTok{ lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))}
+\KeywordTok{curve}\NormalTok{(}\KeywordTok{dnorm}\NormalTok{(x, }\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{, }\DataTypeTok{sd=}\NormalTok{lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)), }\DataTypeTok{add=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{, }\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{RProjectST501_PDF_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TF_values}\FloatTok{.100}\NormalTok{ <-}\StringTok{ }\NormalTok{rMeans100 }\OperatorTok{>=}\StringTok{ }\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)))}
+\NormalTok{TFprob100 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(TF_values}\FloatTok{.100}\NormalTok{)}\OperatorTok{/}\NormalTok{M; }\KeywordTok{print}\NormalTok{(TFprob100)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01628
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NormProb100 <-}\StringTok{ }\KeywordTok{dnorm}\NormalTok{((lambda}\FloatTok{.25}\OperatorTok{+}\NormalTok{((}\DecValTok{2}\OperatorTok{*}\NormalTok{lambda}\FloatTok{.25}\NormalTok{)}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100))),}\DataTypeTok{mean=}\NormalTok{lambda}\FloatTok{.25}\NormalTok{,}\DataTypeTok{sd=}\NormalTok{(lambda}\FloatTok{.25}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(m100)));}\KeywordTok{print}\NormalTok{(NormProb100)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.02159639
+\end{verbatim}
+
+\textbf{Discuss how these plots and probabilities can help someone
+understand convergence in distribution.}
+
+"It is interesting to see a discrete poisson distribution converging
+toward a continuous normal on a single graph. While poisson(\(\lambda\))
+is observed at its smallest evaluated values, there are significantly
+less individually distinct values a mean can take on in the same
+interval length of the largest observed poisson(\(\lambda\)) value. For
+example, at \(\lambda\) = 1 from (0,3), a mean can be observed at the
+integers 0,1,2,3. At \(\lambda\) = 100, observed mean values on that
+same range include rational numbers whose means have intervals of 0.2;
+i.e.~0.0,0.2,0.4,0.6,\ldots etc. We can interpret that as having less
+variability at \(\lambda\) = 1 as opposed to \(\lambda\) = 100. Even at
+lower \(\lambda\) values, we can observe a relatively decent fit of the
+normality curve with small sample sizes. The normality curve fits
+\(\lambda\) = 1 best betwen m=10 and m=30. It appears that as m=100, the
+\(\lambda\) = 1 model show more variability than the curve. The inverse
+is usually true when \(\lambda\) is higher and m is lower.
+
+When poisson(\(\lambda\)) reaches \(\lambda\) = 5, we have a beautifully
+shaped histogram that looks far more closer to a normally-shaped curve
+than \(\lambda\) = 1. At \(\lambda\) = 5, the sample size of 1 is too
+small to fit this model well. The curve is too horizontal and
+illustrates more variability than the poisson(\(\lambda\)). We will need
+more sample. It is not until m=30 that we get our closest curve yet to
+the histogram.
+
+Finally, poisson(\(\lambda\))obtains our highest observed \(\lambda\) at
+\(\lambda\) = 25 and the m has to be big in order for the
+poisson(\(\lambda\)) to converge toward the
+normal(\(\lambda\),\(\lambda\)/m). The line is too horizontal at m=1 and
+m=10. At m=30 the curve begins to takes shape and by m=100, the curve is
+bending just beneath the histogram.
+
+This is an interesting result because of the implications for finding
+various statistical parameters for a poisson distribution from a normal
+distribution when that poisson distributionconverges to a normal."
+
+\textbf{Why do you think the large-sample approximation works better for
+larger \(\lambda\) values?}
+
+With smaller-sample approximation there are fewer observations and thus
+more oppurtunity for random values to appear distant from the constant
+to which the pois(\(\lambda\)) is expected to converge to. In a small
+sample, These values will carry more weight as it pertains to
+variability. A large enough sample and a large enough centering mass of
+observations about the constant will have a sort of diluting or drowning
+out effect on the values further from the converging constant. In turn,
+these larger samplings will fit the pois(\(\lambda\)) more closely.
+
+\end{document}

@@ -1,0 +1,144 @@
+---
+title: "Analysis of the Difference in Means of Systolic Blood Pressure between Smokers and Non-Smokers Using  Bootstrapping"
+author: "Brock Akerman and Hanan Ali"
+date: "ST502 - Spring 2022"
+output: html_document
+---
+
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+library(ggplot2)
+library(readr)
+library(qqplotr)
+library(janitor)
+```
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+framingham_data <- read_csv("framingham_data.csv")
+View(framingham_data)
+attach(framingham_data)
+names(framingham_data)
+class(currentSmoker)
+class(sysBP)
+```
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+Q1 <- quantile(framingham_data$sysBP, .25)
+Q3 <- quantile(framingham_data$sysBP, .75)
+IQR <- IQR(framingham_data$sysBP)
+framingham_data_no_outlier <- subset(framingham_data, framingham_data$sysBP > (Q1 -1.5*IQR) & framingham_data$sysBP < (Q3 + 1.5*IQR))
+```
+
+```{r}
+
+```
+
+
+
+
+An effective means of estimating a population parameter is the bootstrapping method.  To model the Framingham Heart Study data and their means, we will draw samples from the study and make inference based on those samples.  Computer software does the heavy lifting for this exercise as the iterations require randomization of normality and many calculations. 
+
+The first thought when considering the use of iterative functions was the creation of a "for" loop.  We wanted to process our data efficiently and creating a loop helped cut down on much of the manual formula making.  There are predefined parameter assumptions to consider which added a nesting feature within our "for" loop.  
+
+We considered variances of $\sigma^2_{1}$ = 1,4,9 and $\sigma^2_{2}$ = 1, samples sizes of $n_{1}$ = 10, 30, 70 and $n_{2}$ = 10, 30, 70 There are 135 combinations of 
+
+Using R software, we randomly generated 100 data sets 
+ 
+Codeblock.  
+```{r}
+N1 <- c(10,30,70) #Sampled number of samples from non-smokers, Column_1
+N2 <- c(10,30,70) #Sampled number of samples from smokers, Column_2
+S1 <- c(1, 4, 9) #Variance, Column_3
+MU2 <- c(5, 10, 6, 4, 0) #MU1 is always same cause Mu1 is 5 so I set different values of Mu2 to get this to work: Ho:u1-u2=0 and Ha:u1-u2 is not equal to 0, Column_4, vector c(1)= equal means, c(2:5) = unequal means. 
+
+B = 100  #Replicating 100 times
+alpha = 0.05 #Significance level.
+result1 = matrix(0, nr=135, nc=B)  #Creation of a dummy matrix to record p-values for equal variances
+result2 = matrix(0, nr=135, nc=B)  #Creation of a dummy matrix to record p-values for unequal variances
+
+para = matrix(0, nr=135, nc=4)  #Creation of a dummy matrix to record our four parameters (N1, N2, S1, MU2)
+#The following functions on "para" are meant to populate the matrice.  
+colnames(para) <- c("N1", "N2", "S1", "MU2") #Names the columns in the para matrix. 
+para[1:5,1]=10;     para[1:5,2]=10;     para[1:5,3]=1;      para[1:5,4]=MU2   
+para[6:10,1]=10;    para[6:10,2]=30;    para[6:10,3]=1;     para[6:10,4]=MU2
+para[11:15,1]=10;   para[11:15,2]=70;   para[11:15,3]=1;    para[11:15,4]=MU2
+para[16:20,1]=10;   para[16:20,2]=10;   para[16:20,3]=4;    para[16:20,4]=MU2
+para[21:25,1]=10;   para[21:25,2]=30;   para[21:25,3]=4;    para[21:25,4]=MU2
+para[26:30,1]=10;   para[26:30,2]=70;   para[26:30,3]=4;    para[26:30,4]=MU2
+para[31:35,1]=10;   para[31:35,2]=10;   para[31:35,3]=9;   para[31:35,4]=MU2
+para[36:40,1]=10;   para[36:40,2]=30;   para[36:40,3]=9;   para[36:40,4]=MU2
+para[41:45,1]=10;   para[41:45,2]=70;   para[41:45,3]=9;   para[41:45,4]=MU2
+para[46:50,1]=30;   para[46:50,2]=10;   para[46:50,3]=1;    para[46:50,4]=MU2  
+para[51:55,1]=30;   para[51:55,2]=30;   para[51:55,3]=1;    para[51:55,4]=MU2
+para[56:60,1]=30;   para[56:60,2]=70;   para[56:60,3]=1;    para[56:60,4]=MU2
+para[61:65,1]=30;   para[61:65,2]=10;   para[61:65,3]=4;    para[61:65,4]=MU2
+para[66:70,1]=30;   para[66:70,2]=30;   para[66:70,3]=4;    para[66:70,4]=MU2
+para[71:75,1]=30;   para[71:75,2]=70;   para[71:75,3]=4;    para[71:75,4]=MU2
+para[76:80,1]=30;   para[76:80,2]=10;   para[76:80,3]=9;   para[76:80,4]=MU2
+para[81:85,1]=30;   para[81:85,2]=30;   para[81:85,3]=9;   para[81:85,4]=MU2
+para[86:90,1]=30;   para[86:90,2]=70;   para[86:90,3]=9;   para[86:90,4]=MU2
+para[91:95,1]=70;   para[91:95,2]=10;   para[91:95,3]=1;    para[91:95,4]=MU2  
+para[96:100,1]=70;  para[96:100,2]=30;  para[96:100,3]=1;   para[96:100,4]=MU2
+para[101:105,1]=70; para[101:105,2]=70; para[101:105,3]=1;  para[101:105,4]=MU2
+para[106:110,1]=70; para[106:110,2]=10; para[106:110,3]=4;  para[106:110,4]=MU2
+para[111:115,1]=70; para[111:115,2]=30; para[111:115,3]=4;  para[111:115,4]=MU2
+para[116:120,1]=70; para[116:120,2]=70; para[116:120,3]=4;  para[116:120,4]=MU2
+para[121:125,1]=70; para[121:125,2]=10; para[121:125,3]=9; para[121:125,4]=MU2
+para[126:130,1]=70; para[126:130,2]=30; para[126:130,3]=9; para[126:130,4]=MU2
+para[131:135,1]=70; para[131:135,2]=70; para[131:135,3]=9; para[131:135,4]=MU2
+
+set.seed(1234) #Seeded for Replication
+for(i in 1:135){
+  sigma1 = para[i,3];  #Search Para for variance1
+  sigma2 = 1; #Search Para for variance2
+  n1 = para[i,1]; #Search Para for n1
+  n2 = para[i,2]; #Search Para for n2
+  mu1 = 5; #Search Para for mean1
+  mu2 = para[i,4]; #Search Para for mean2
+
+  #for loop to go through each case  
+  #n1 is 1st column of para matrix, n2 is 2nd column of para matrix, sigma1 is 3rd column of para matrix and    mu1 is 4th column of para matrix
+  #sigma2 will always equal 1 and mu1 will always equal 5
+  
+  for(b in 1:B){
+    Y1 = rnorm(n1, mu1, sqrt(sigma1)) #Creates randomly generated values from a normal distribution
+    Y2 = rnorm(n2, mu2, sqrt(sigma2)) #Creates randomly generated values from a normal distribution
+    
+    #Pooled
+    Sp_2 = ((n1-1)*sigma1^2 + (n2-1)*sigma2^2)/(n1+n2-2); #equal variance
+    T_1 = (mu1-mu2)/(sqrt(Sp_2)*sqrt(1/n1 + 1/n2)) #equal variance test statistic
+    df_1 = n1 + n2 - 2 #Degrees of Freedom
+    pvalue1 = 2*(1-pt(T_1, df_1)) #equal variance p-value
+    
+    #Satterthwaite
+    T_2 = (mu1-mu2)/(sqrt((sigma1^2/n1)+(sigma2^2/n2))) #Test Statistic for Satterthwaite
+    df_2 = ((sigma1^2/n1)+(sigma2^2/n2)^2)/((((sigma1^2/n1)^2)/(n1-1) + (((sigma2^2/n2)^2)/(n2-1)))) #Degrees of Freedom for the Satterthwaite t-test unpooled.  
+    pvalue2 = 2*(1-pt(T_2, df_2)) #unequal variance p-value
+    
+    if(pvalue1 <= alpha){  # checking if p-value for equal variance test is less than or equal to alpha 
+      result1[i, b] = 1    # recording number of rejections where ith row corresponds to ith situation/combination/scenario
+    } else{                # if p-value is greater than alpha
+      result1[i, b] = 0    # recording number of fail to rejections 
+    }
+    if(pvalue2 <= alpha){  # testing if p-value for unequal variance test is less than or equal to alpha
+      result2[i, b] = 1    # recording number of rejections
+    } else{                # if p-value is greater than alpha
+      result2[i, b] = 0    # recording number of fail to rejections
+    }
+  }
+  
+}
+
+as.data.frame(Y1)
+ggplot(data=Y1, mapping=aes()) +
+  geom_histogram()
+  
+
+dim(Type1error_1) <- c(27,5)
+
+Type1error_1 <- rowMeans(result1)  #this is type1error for the equal variance test and is the mean/proportion of results recorded of 100 samples 
+Type1error_2 <- rowMeans(result2)  #this is type1error for the unequal variance test and is the mean/proportion of results recorded of 100 samples 
+
+tabyl(Type1error_1) #Breaks down counts of Rejects and FAil to Rejects as a proportion.
+tabyl(Type1error_2) #Breaks down counts of Rejects and FAil to Rejects as a proportion.
+```

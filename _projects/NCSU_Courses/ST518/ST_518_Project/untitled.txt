@@ -1,0 +1,4 @@
+|Source|DF|Sum of Squares|Mean Square|F Value|Pr>F|
+|Model|11|2328.174357|211.652214|183.21|<.0001|
+|Error|36|41.589732|1.155270|||
+|Corrected|Total|47|2369.764090|||

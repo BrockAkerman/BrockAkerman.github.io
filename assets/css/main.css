@@ -2464,6 +2464,16 @@
 			margin: 0 0 1.5em 0;
 		}
 
+		/* Ensure images in portfolio have the same height */
+		.work-item .thumb img {
+			height: 200px; /* Adjust the height as needed */
+			object-fit: cover; /* Ensures the image scales proportionally while filling the dimensions */
+			width: 100%; /* Makes the images responsive */
+			display: block; /* Removes potential gaps below images */
+			border-radius: 5px; /* Optional: Adds slightly rounded corners for style */
+		}
+
+
 		.work-item h3 {
 			font-size: 1em;
 			margin: 0 0 0.5em 0;
@@ -2474,6 +2484,8 @@
 			line-height: 1.5em;
 			margin: 0;
 		}
+
+
 
 /* Header -- THIS CONTROLS THE MARGIN TO THE LEFT THAT IS DARKENED*/
 
@@ -3225,6 +3237,69 @@
 
 
 /*WEBSITE PAGES*/
+	/* Custom CSS for Portfolio page */
+		.portfolio {
+			position: relative; /* Anchor pseudo-elements */
+			height: 100vh; /* Full viewport height */
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: center;
+			background-color: #ffffff; /* Main background color */
+			color: rgba(0, 0, 0, 0.8); /* Text color with better visibility */
+			text-align: left;
+			overflow: hidden; /* Prevent content from spilling out */
+		}
+
+		.portfolio::before,
+		.portfolio::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 5.5vw; 
+			opacity: 0.6;     
+			background-image: url("/../assets/fulls/bg.jpg");
+			background-position: top left;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.portfolio::before {
+			left: 0; /* Left margin */
+		}
+
+		.portfolio::after {
+			right: 0; /* Right margin */
+		}
+
+	/* Portfolio Section */
+		#portfolio {
+			margin: 2rem auto;
+			padding: 1rem;
+		}
+
+		/* Custom CSS for Portfolio Page */
+		body.portfolio h1 {
+			text-align: center;
+			font-size: 3rem; /* Adjust font size */
+			margin-top: 50px; /* Optional: Adds space at the top */
+		}
+
+		body.portfolio main {
+			text-align: center;
+			padding: 0 20px;
+		}
+
+		body.portfolio h1 {
+			margin: 0;
+			padding: 0;
+		}
+
+		
+
+
 /* Custom CSS for Blogs and Interests page */
 
 			.blogs-and-interests {

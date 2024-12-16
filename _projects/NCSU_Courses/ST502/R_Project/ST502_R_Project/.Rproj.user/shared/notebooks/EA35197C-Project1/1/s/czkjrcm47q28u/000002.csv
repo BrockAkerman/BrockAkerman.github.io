@@ -1,0 +1,9 @@
+"0","framingham_data <- read_csv(""framingham_data.csv"")
+View(framingham_data)
+attach(framingham_data)
+names(framingham_data)
+class(currentSmoker)
+class(sysBP)"
+"2","'data' is not recognized as an internal or external command,
+operable program or batch file.
+"

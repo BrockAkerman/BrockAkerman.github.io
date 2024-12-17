@@ -5,8 +5,9 @@ email: Brock.Akerman@outlook.com
 future: true
 
 # Set baseurl to your project folder name
-url: "https://bakerman1982.github.io"
-baseurl: "/BrockAkerman.github.io"
+baseurl: "/BrockAkerman.github.io"   # If your site is in a subdirectory
+url: "https://bakerman1982.github.io"  # Your GitHub Pages domain
+
 
 #url: "https://BrockAkerman.github.io"
 #baseurl: ""

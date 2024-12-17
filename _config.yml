@@ -17,3 +17,6 @@ permalink: /:year/:month/:day/:title/
 
 paginate: 5 # Number of posts per page
 paginate_path: "/page:num/"
+
+include:
+  - "_projects"

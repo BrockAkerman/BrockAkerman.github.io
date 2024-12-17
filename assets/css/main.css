@@ -7,6 +7,11 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+html {
+    scroll-behavior: smooth;
+}
+
+
 /* Reset */
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -24,7 +29,14 @@
 
 	body {
 		line-height: 1;
+		overflow-y: auto; /* Enables vertical scrolling */
 	}
+
+	html, body {
+		height: auto; /* Allow content to dictate height */
+		overflow-y: scroll; /* Ensure vertical scrolling */
+	}
+	
 
 	ol, ul {
 		list-style: none;
@@ -2550,7 +2562,7 @@
     font-size: 0.75em;
     text-align: center;
     color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 1.5em;
+    margin-bottom: 0.75em;
 }
 
 #footer .icons {
@@ -2606,7 +2618,7 @@
 				border-top: 0;
 				margin-top: 0;
 				padding-top: 0;
-			}
+			}			
 
 /* Poptrox */
 
@@ -3238,19 +3250,20 @@
 
 /*WEBSITE PAGES*/
 	/* Custom CSS for Portfolio page */
-		.portfolio {
-			position: relative; /* Anchor pseudo-elements */
-			height: 100vh; /* Full viewport height */
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-start;
-			align-items: center;
-			background-color: #ffffff; /* Main background color */
-			color: rgba(0, 0, 0, 0.8); /* Text color with better visibility */
-			text-align: left;
-			overflow: hidden; /* Prevent content from spilling out */
-		}
+	.portfolio {
+		position: relative; /* Keep pseudo-elements anchored */
+		min-height: 100vh; /* At least full viewport height, but grows if content overflows */
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		background-color: #ffffff; /* Main background color */
+		color: rgba(0, 0, 0, 0.8); /* Text color with better visibility */
+		text-align: left;
+		overflow: visible; /* Allow content to be visible and scrollable */
+	}
+	
 
 		.portfolio::before,
 		.portfolio::after {
@@ -3297,6 +3310,66 @@
 			padding: 0;
 		}
 
+/* Container to center grid and add margins */
+		.portfolio-container {
+			width: 85%; /* Use 85% of the viewport width */
+			margin: 0 auto; /* Center the container */
+			padding: 2em 0; /* Add vertical padding */
+			max-width: 85%; /* Keeps the layout centered */
+			padding-bottom: 5em; /* Adds space at the bottom for visibility */
+		}
+
+	/* Grid layout for projects */
+		.portfolio-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
+			gap: 2em; /* Space between grid items */
+		}
+
+	/* Individual work items (cards) */
+		.work-item {
+			background: #ffffff; /* White background for card */
+			border: 1px solid #e0e0e0; /* Subtle border */
+			border-radius: 8px; /* Rounded corners */
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a slight shadow */
+			/*overflow: hidden; *//* Ensures nothing spills out */
+			text-align: center; /* Center text and content */
+			transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+		}
+
+	/* Hover effect for cards */
+		.work-item:hover {
+			transform: translateY(-5px); /* Slight lift on hover */
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+		}
+
+	/* Image styling for work-item */
+		.work-item .thumb img {
+			width: 100%; /* Full width of the card */
+			height: 200px; /* Fixed height for uniformity */
+			object-fit: cover; /* Crop and center the image */
+		}
+
+	/* Project titles */
+		.work-item h3 {
+			font-size: 1.2em;
+			margin: 0.5em 0 0.2em;
+			color: #333;
+		}
+
+	/* Project description */
+		.work-item p {
+			font-size: 0.9em;
+			color: #666;
+			margin-bottom: 1em;
+		}
+
+	/* Responsive Behavior for Smaller Screens */
+		@media (max-width: 768px) {
+			.portfolio-grid {
+				grid-template-columns: 1fr; /* Switch to a single column layout */
+			}
+		}
 		
 
 

@@ -24,21 +24,8 @@
 	<body id="top">
 	
 				<!-- Hamburger Menu -->
-				<div id="hamburger-menu">
-					<button id="menu-toggle">
-						<!-- Hamburger Icon -->
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-					<div id="menu-items" class="hidden">
-						<a href="{{ '/' | relative_url }}">Home</a>
-						<a href="{{ site.baseurl }}/#projects-in-the-pipeline">Projects in the Pipeline</a>
-						<a href="{{ site.baseurl }}/portfolio/">Portfolio</a>
-						<a href="{{ '/blogs-and-interests/' | relative_url }}">Blogs and Interests</a>
-						<a href="{{ site.baseurl }}/#Contact-Me">Contact Me</a>
-					</div>
-				</div>
+				{% include burger_menu.html %}
+
 
 		<!-- Header -->
 			<header id="header">
@@ -68,36 +55,28 @@
 				  
 
 				<!-- Two -->
-					<section id="two">
-						<h2>Portfolio</h2>
-						<div class="row">
-							<article class="6u 12u$(xsmall) work-item">
-								<a href="assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png" class="image fit thumb"><img src="assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png" alt="" /></a>
-								<h3>Airport JSON ShinyDash</h3>
-								<p>Project:  Shiny Dash ST558</p>
-							</article>
-							<article class="6u 12u$(xsmall) work-item">
-								<a href="assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png" class="image fit thumb"><img src="assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png" alt="" /></a>
-								<h3>Solubility Analysis of Cold Brand medicines</h3>
-								<p>Project:  Effervescence ST518</p>
-							</article>
-							<!-- <article class="6u 12u$(xsmall) work-item">
-								<a href="assets/literature/Undergraduate_Research_Paper.pdf" class="image fit thumb"><img src="assets/media/thumbs/Oxygen_Cover.PNG" alt="" /></a>
-								<h3>University of North Georgia: Senior Project</h3>
-								<p>Analysis of Dissolved Oxygen/Temperature effects on trout</p>
-							</article>
-							<article class="6u$ 12u$(xsmall) work-item">
-								<a href="assets/literature/Brock_Akerman_MATH3390.pdf" class="image fit thumb"><img src="assets/media/thumbs/SweetPotato_Cover.PNG" alt="" /></a>
-								<h3>University of North Georgia: Special Topics in Mathematics</h3>
-								<p>Statistical Analysis Organic vs Conventional</p>
-								<p>Presented Topic at International Conference on Technology and Collegiate Mathematics; Atlanta 2016</p>
-							</article> -->
-							
-						</div>
-						<ul class="actions">
-							<li><a href="{{ site.baseurl }}/portfolio/">Full Portfolio</a></li>
-						</ul>
-					</section>
+				<section id="two">
+					<h2>Portfolio</h2>
+					<div class="portfolio-container">
+					  <div class="portfolio-grid">
+						<!-- Project 1 -->
+						<article class="work-item">
+						  <a href="https://github.com/Bakerman1982/ST558_FinalProj.git" class="image fit thumb" target="_blank" rel="noopener"><img src="assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png" alt="ST558 Final Project Repository" /></a>
+						  <h3>Airport JSON ShinyDash</h3>
+						  <p>Project: Shiny Dash ST558</p>
+						</article>
+								
+						<article class="work-item">
+							<a href="/_projects/NCSU_Courses/ST518/ST_518_Project/Report_template2.pdf" class="image fit thumb" target="_blank" rel="noopener"><img src="/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png" alt="Solubility Analysis" /></a>
+							<h3>Solubility Analysis of Cold Brand Medicines</h3>
+							<p>Effervescence analysis project for ST518.</p>
+						</article>
+					  </div>
+					</div>
+					<ul class="actions">
+						<li><a href="{{ site.baseurl }}/portfolio/" class="button">Full Portfolio</a></li>
+					</ul>
+				</section>
 
 				<!-- Three -->
 					<section id="three">

@@ -16,3 +16,8 @@ paginate_path: "/page:num/"
 
 include:
   - "_projects"
+
+
+# Features I would like to add
+# Possible place for commenting on blog articles
+# Hashtags for projects based on the software used. 

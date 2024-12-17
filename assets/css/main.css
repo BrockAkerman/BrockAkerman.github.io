@@ -3273,7 +3273,7 @@ html {
 			bottom: 0;
 			width: 5.5vw; 
 			opacity: 0.6;     
-			background-image: url("/../assets/fulls/bg.jpg");
+			background-image: url("../fulls/bg.jpg");
 			background-position: top left;
 			background-repeat: no-repeat;
 			background-size: cover;

@@ -5,13 +5,8 @@ email: Brock.Akerman@outlook.com
 future: true
 
 # Set baseurl to your project folder name
-baseurl: "/BrockAkerman.github.io"   # If your site is in a subdirectory
-url: "https://bakerman1982.github.io"  # Your GitHub Pages domain
-
-
-#url: "https://BrockAkerman.github.io"
-#baseurl: ""
-
+baseurl: "/BrockAkerman.github.io"   # Your repo subpath
+url: "https://bakerman1982.github.io"
 
 # Ensure posts use a standard date-based URL structure
 permalink: /:year/:month/:day/:title/

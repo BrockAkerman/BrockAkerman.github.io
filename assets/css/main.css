@@ -3808,3 +3808,10 @@ html {
     border-radius: 5px;
     text-align: center;
 }
+
+
+/* SPLIDE, IMG CAROUSEL */
+.splide__slide img {
+	width: 100%;
+	height: auto;
+  }

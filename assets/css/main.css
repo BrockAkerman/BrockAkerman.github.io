@@ -33,9 +33,12 @@ html {
 	}
 
 	html, body {
-		height: auto; /* Allow content to dictate height */
-		overflow-y: scroll; /* Ensure vertical scrolling */
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		overflow-x: hidden; /* Prevent horizontal scroll caused by pseudo-elements */
 	}
+	
 	
 
 	ol, ul {
@@ -2562,8 +2565,9 @@ html {
     font-size: 0.75em;
     text-align: center;
     color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 0.75em;
+    margin-bottom: 1.75em; /* Reduce the gap between availability statements */
 }
+
 
 #footer .icons {
     display: flex; /* Use flexbox for alignment */
@@ -3112,16 +3116,17 @@ html {
 
 		/* List */
 
-			ul.actions {
-				margin: 0 0 2em 0;
-			}
+		ul.actions {
+			margin: 0 0 2em 0;
+			text-align: left; /* Align the content of the ul to the left */
+		  }
 
-				ul.actions li {
-					display: block;
-					padding: 1em 0 0 0;
-					text-align: center;
-					width: 100%;
-				}
+		  ul.actions li {
+			display: block;
+			padding: 1em 0 0 0;
+			text-align: left; /* Align the text (button) inside the li to the left */
+			width: auto; /* Remove full width to avoid stretching the button */
+		  }
 
 					ul.actions li:first-child {
 						padding-top: 0;
@@ -3129,8 +3134,8 @@ html {
 
 					ul.actions li > * {
 						margin: 0 !important;
-						width: 100%;
-					}
+						width: auto; /* Ensure the button doesn't stretch to full width */
+					  }
 
 						ul.actions li > *.icon:before {
 							margin-left: -2em;
@@ -3316,14 +3321,30 @@ html {
 			margin: 0 auto; /* Center the container */
 			padding: 2em 0; /* Add vertical padding */
 			max-width: 85%; /* Keeps the layout centered */
-			padding-bottom: 5em; /* Adds space at the bottom for visibility */
+			padding-bottom: 1em; /* Adds space at the bottom for visibility */
 		}
+		  
+		  .blog-tile {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		  }
+		  
+		  .blog-tile img {
+			max-width: 100%; /* Ensure images fit their container */
+			border-radius: 8px;
+			object-fit: cover;
+			max-height: 200px; /* Set a maximum height to control vertical size */
+		  }
+		  
+  
 
 	/* Grid layout for projects */
 		.portfolio-grid {
 			display: grid;
 			grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
-			gap: 2em; /* Space between grid items */
+			gap: 1.5em; /* Space between grid items */
 		}
 
 	/* Individual work items (cards) */
@@ -3377,7 +3398,8 @@ html {
 
 			.blogs-and-interests {
 				position: relative; /* Allow absolute positioning of pseudo-elements */
-				height: 100vh; /* Ensure the content area fills the viewport */
+				min-height: 100vh; /* Ensure the content area fills the viewport */
+				height: auto;
 				width: 100%; /* Ensure the content area spans the full width */
 				display: flex;
 				flex-direction: column;
@@ -3489,6 +3511,12 @@ html {
 			background-size: cover;
 			background-position: center;
 		}
+
+		.blog-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+			gap: 1.5rem; /* Space between columns */
+		  }
 
 /* Blog category image */		
 		.blog-category {
@@ -3706,3 +3734,77 @@ html {
 				text-decoration: underline;
 			  }
 			  
+
+/* Custom styles for the About Me page */
+.about-me {
+    width: 80%; /* Takes 80% of the width, leaving 10% margin on each side */
+    margin: 0 auto; /* Centers the content horizontally */
+    background-color: #f5f5f5; /* Set a background color */
+    color: #333; /* Set text color */
+    padding: 20px; /* Add padding around content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.about-me::before,
+.about-me::after {
+	content: ""; /* No actual content, just used for the background */
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 5.5vw; /* 10% of the viewport width */
+	opacity: 0.7; /* Slight transparency for a subtle effect */
+	background-color: transparent; /* Transparent to let the background image show */
+	background-image: url("../fulls/bg.jpg");
+	background-attachment: fixed;
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1; /* Place behind content */
+	height: 100vh; /* Ensure the pseudo-elements cover the full height of the viewport */
+}
+
+.about-me::before {
+	left: 0; /* Left margin */
+}
+
+.about-me::after {
+	right: 0; /* Right margin */
+}
+
+.about-me {
+	color: #000000; /* Replace with your desired color */
+}
+
+/* Section styling */
+.about-me .section {
+    width: 80%; /* Limit the width of each section */
+    margin-bottom: 20px;
+}
+
+.about-me .section h2 {
+    font-size: 2rem; /* Increase heading font size */
+    color: #2c3e50; /* Change heading color */
+}
+
+/* Example styling for the about-me sections */
+.about-me .bio {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about-me .skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Display skills in 3 columns */
+    gap: 10px;
+}
+
+.about-me .skills .skill {
+    background-color: #e0e0e0; /* Light background for each skill */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}

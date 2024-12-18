@@ -45,7 +45,6 @@
 					<section id="one">
 						<h2>Projects Waiting In the Pipeline<br /></h2>
 						<h5>
-							<p><u>Finishing this Website:</u> Essentially, I learned Ruby, CSS, and HTML on the fly and want to get this site up and running before the spring semester.<br /></p>
 							<p><u>Applications in Modeling:</u> The plan is to go over several modeling methodologies; inpired by a Linkedin graphic.  <br /></p>
 							<p><u>Sports JSON Shiny Dash Maship:</u> College football and ShinyDash board mashup.<br /></p>
 							<p></p><u>Testing of Kaggle Medical Data:</u> Pulling some epidemiological data covering challenges in the autism, sleep apnea, and pulmonary oncology realms.  <br /></p>
@@ -75,88 +74,114 @@
 					  </div>
 					</div>
 					<ul class="actions">
-						<li><a href="{{ site.baseurl }}/portfolio/" class="button">Full Portfolio</a></li>
+						<li><a href="{{ site.baseurl }}/portfolio/" class="button">Portfolio Archive</a></li>
 					</ul>
 				</section>
 
 				<!-- Three -->
 					<section id="three">
-						<!--<h2>Blogs and Interests</h2>
-						<p>I do other things too!  See what I have been up to</p>  -->
-						<div id="RPackageLogo">
-							<img src="assets/media/logos/R_Logo_Collage.png" alt="R Package Logos" />
+						<h2>Blogs and Interests</h2>
+						<div class="portfolio-container">
+							<div class="portfolio-grid">
+						{% if site.posts.size > 0 %}
+							{% for post in site.posts limit:2 %}
+							<article class="work-item">
+								<a href="{{ post.url | relative_url }}" class="image fit thumb">
+								<img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+								</a>
+								<h3>{{ post.title }}</h3>
+								<p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+								<ul class="actions">
+								<li><a href="{{ post.url | relative_url }}" class="button">Read More</a></li>
+								</ul>
+							</article>
+							{% endfor %}
+						{% else %}
+							<p>No blog posts available yet. Check back soon!</p>
+						{% endif %}
+						</div>
 						</div>
 						<ul class="actions">
-							<li><a href="{{ site.baseurl }}/blogs-and-interests/" class="button">Blog</a></li>
+							<li><a href="{{ site.baseurl }}/blogs-and-interests/" class="button">Blog Archive</a></li>
 						</ul>
+						
 					</section>
 
-				<!-- Four -->
+				<!-- Contact Section -->
 					<section id="four">
 						<h2>Contact Me</h2>
 						<div class="row">
-							<div class="8u 12u$(small)">
-								<form method="post" action="#">
-									<div class="row uniform 50%">
-										<div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-									</div>
-								</form>
+						<div class="8u 12u$(small)">
+							<!-- Formspree Example -->
+							<form method="post" action="https://formspree.io/f/mdkorwkw">
+							<div class="row uniform 50%">
+								<div class="6u 12u$(xsmall)">
+								<input type="text" name="name" id="name" placeholder="Name" required />
+								</div>
+								<div class="6u$ 12u$(xsmall)">
+								<input type="email" name="email" id="email" placeholder="Email" required />
+								</div>
+								<div class="12u$">
+								<textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
+								</div>
+								<div class="12u$">
 								<ul class="actions">
 									<li><input type="submit" value="Send Message" /></li>
 								</ul>
+								</div>
 							</div>
-							<div class="4u$ 12u$(small)">
-								<ul class="labeled-icons">
-									<li>
-										<h3 class="icon fa-home"><span class="label">Address</span></h3>
-										320 Andrew Ridge Drive<br />
-										Jefferson, Georgia, 30549<br />
-										United States
-									</li>
-									<li>
-										<h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
-										678-865-7296
-									</li>
-									<li>
-										<h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
-										<a href="#">Brock.Akerman@outlook.com</a>
-									</li>
-								</ul>
-							</div>
+							</form>
+						</div>
+						<div class="4u$ 12u$(small)">
+							<ul class="labeled-icons">
+							<li>
+								<h3 class="icon fa-home"><span class="label">Address</span></h3>
+								320 Andrew Ridge Drive<br />
+								Jefferson, Georgia, 30549<br />
+								United States
+							</li>
+							<li>
+								<h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
+								678-865-7296
+							</li>
+							<li>
+								<h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
+								<a href="mailto:Brock.Akerman@outlook.com">Brock.Akerman@outlook.com</a>
+							</li>
+							</ul>
+						</div>
 						</div>
 					</section>
-
+  
 
 			</div>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<p class="availability">Open to Freelance and Consulting Opportunities.</p>
-			<p class="availability">I have a lot left to learn; a mentor welcomed too!</p>
-			<ul class="icons">
-				<li><a href="https://www.linkedin.com/in/brock-l-akerman/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
-				<li><a href="https://github.com/Bakerman1982" class="icon fa-github"><span class="label">GitHub</span></a></li>
-			</ul>
-			<ul class="copyright">
-				<li>Templated Design by <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</footer>
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="availability">Open to Freelance and Consulting Opportunities.</br>
+						Seeking mentorship, too!</p>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/brock-l-akerman/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Bakerman1982" class="icon fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>Templated Design by <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
 
-		<!-- Scripts -->
-			<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
-			<script src="{{ site.baseurl }}/assets/js/jquery.poptrox.min.js"></script>
-			<script src="{{ site.baseurl }}/assets/js/skel.min.js"></script>
-			<script src="{{ site.baseurl }}/assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="{{ site.baseurl }}/assets/js/main.js"></script>
-			<script>
-				document.getElementById('menu-toggle').addEventListener('click', function () {
-					const menuItems = document.getElementById('menu-items');
-					menuItems.classList.toggle('visible');
-				});
-			</script>
+				<!-- Scripts -->
+					<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+					<script src="{{ site.baseurl }}/assets/js/jquery.poptrox.min.js"></script>
+					<script src="{{ site.baseurl }}/assets/js/skel.min.js"></script>
+					<script src="{{ site.baseurl }}/assets/js/util.js"></script>
+					<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+					<script src="{{ site.baseurl }}/assets/js/main.js"></script>
+					<script>
+						document.getElementById('menu-toggle').addEventListener('click', function () {
+							const menuItems = document.getElementById('menu-items');
+							menuItems.classList.toggle('visible');
+						});
+					</script>
 			
 	</body>
 </html>

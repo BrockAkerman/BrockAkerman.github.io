@@ -3810,8 +3810,129 @@ html {
 }
 
 
-/* SPLIDE, IMG CAROUSEL */
-.splide__slide img {
+/* SLIDESHOW ON ABOUTME SECTION*/
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+  }
+  
+  .about-section {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	line-height: 1.6;
+  }
+  
+  .slideshow-container-right {
+	position: relative;
+	width: 500px;
+	float: right; /* Aligns the slideshow to the right */
+	margin-left: 20px; /* Adds space between the text and slideshow */
+	margin-left: 10px; /* Adds space between the text and slideshow */
+	/*margin-bottom: 20px; *//* Adds space below the slideshow */
+  }
+
+  .slideshow-container-left {
+	position: relative;
+	width: 500px;
+	float: left; /* Aligns the slideshow to the right */
+	margin-right: 20px; /* Adds space between the text and slideshow */
+	margin-bottom: 20px; /* Adds space below the slideshow */
+  }
+  
+  .slideshow {
+	position: relative;
+	width: 500px; /* Fixed width */
+	height: 400px; /* Fixed height */
+	overflow: hidden; /* Ensures images don't spill out */
+	border-radius: 10px; /* Rounded edges */
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow for the border */
+	border: 2px solid #ccc; /* Subtle border around the slideshow */
+	margin: 20px auto; /* Centers the slideshow horizontally */
+  }
+  
+  .slideshow img {
+	position: absolute; /* Stacks images on top of each other */
+	animation-name: my-animation;
+	animation-timing-function: linear; 
+	top: 0;
+	left: 0;
+	width: 100%; /* Stretches image to fit the width of the container */
+	height: 100%; /* Stretches image to fit the height of the container */
+	object-fit: contain; /* Ensures images scale without distortion */
+	border: 2px solid #ffffff; /* 2px border around images for clarity */
+	box-sizing: border-box; /* Ensures border is included in total dimensions */
+	display:  none; 
+  }
+  
+  .slideshow img:first-child {
+	display: block; /* Show the first image initially */
+	border-color: #ffffff; /* Different color for the second image */
+  }
+
+  
+/* Animation */
+/* Keyframe animation for fading images */
+
+  .slideshow img:nth-child(1) {
+	animation-delay: 5s; 
+  }
+
+  .slideshow img:nth-child(2) {
+	animation-delay: 5s; 
+	
+  }
+    
+  .slideshow img:nth-child(2) {
+	animation-delay: 5s; 
+  }
+
+  @keyframes my-animation {
+    0% { opacity: 0; }
+    20% { opacity: 1; } 
+    80% { opacity: 1; } 
+    100% { opacity: 0; } 
+}
+  
+
+  /* Lightbox styles */
+.lightbox {
+	display: none; /* Hidden by default */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+  }
+  
+  .lightbox-content {
+	position: relative;
+	max-width: 60%; /* 60% of viewport width */
+	max-height: 80%; /* Optional: limit height */
+	margin: auto;
+	text-align: center;
+	color: white;
+  }
+  
+  .lightbox-content img {
 	width: 100%;
 	height: auto;
+	border-radius: 10px;
   }
+  
+  .lightbox-content p {
+	margin-top: 10px;
+	font-size: 18px;
+	color: #fff;
+  }
+  
+  /* Close on clicking the backdrop */
+  .lightbox:target {
+	display: flex;
+  }
+/* END SLIDESHOW ON ABOUTME SECTION*/

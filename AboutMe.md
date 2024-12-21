@@ -53,3 +53,4 @@ permalink: /about-me/
 <img src="{{ '/assets/media/thumbs/BlogAssets/Images/Military_Medals.png' | relative_url }}"  /> -->
 
 <p></p>
+</body>

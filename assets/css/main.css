@@ -3911,19 +3911,29 @@ body {
   }
   
   .lightbox-content {
-	position: relative;
-	max-width: 60%; /* 60% of viewport width */
-	max-height: 80%; /* Optional: limit height */
-	margin: auto;
-	text-align: center;
-	color: white;
-  }
-  
-  .lightbox-content img {
-	width: 100%;
-	height: auto;
-	border-radius: 10px;
-  }
+    position: relative;
+    max-width: 80vw; /* 80% of viewport width */
+    max-height: 80vh; /* 80% of viewport height */
+    margin: auto;
+    text-align: center;
+    color: white;
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+.lightbox-content img {
+    max-width: 100%; /* Limit image width to fit container */
+    max-height: 70vh; /* Limit image height relative to viewport */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure image fits inside container without cropping */
+    border-radius: 10px;
+}
+
+
   
   .lightbox-content p {
 	margin-top: 10px;

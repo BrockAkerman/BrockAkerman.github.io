@@ -32,7 +32,7 @@ permalink: /about-me/
                <img src="{{ '/assets/media/thumbs/BlogAssets/Pictures/RedDog.jpg' | relative_url }}" 
                     alt="RedDog Ordnance, Forward Operating Base:  Solerno (2004)" 
                     onclick="openLightbox(this)">
-               <img src="{{ '/assets/media/thumbs/BlogAssets/Pictures/UNG_Mathlab.jpg' | relative_url }}" 
+               <img src="{{ '/assets/media/thumbs/BlogAssets/Pictures/UNG_MathLab.jpg' | relative_url }}" 
                     alt="UNG Mathlab" 
                     onclick="openLightbox(this)">                    
           </div>

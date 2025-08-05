@@ -1,0 +1,23 @@
+title: Statistics
+first_name: Brock
+last_name: Akerman
+email: Brock.Akerman@outlook.com
+future: true
+
+# Set baseurl to your project folder name
+baseurl: "/BrockAkerman.github.io"   # Your repo subpath
+url: "https://bakerman1982.github.io"
+
+# Ensure posts use a standard date-based URL structure
+permalink: /:year/:month/:day/:title/
+
+#paginate: 5 # Number of posts per page
+#paginate_path: "/page:num/"
+
+include:
+  - "_projects"
+
+
+# Features I would like to add
+# Possible place for commenting on blog articles
+# Hashtags for projects based on the software used. 

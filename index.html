@@ -1,0 +1,208 @@
+---
+---
+<!DOCTYPE HTML>
+<!--
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	To launch, open GitBash, type "bundle exec jekyll serve"
+	Recommend using an auto-refresh at 5 second intervals while editing. 
+	#Dummmy chunk to push to gitrepo
+-->
+<html>
+	<head>
+		<title>Brock Akerman</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="{{ 'assets/js/ie/html5shiv.js' | relative_url }}"></script><![endif]-->
+		<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+
+
+		<!--[if lte IE 8]><link rel="stylesheet" href="{{ 'assets/css/ie8.css' | relative_url }}" /><![endif]-->
+		<link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+
+	</head>
+	<body id="top">
+	
+				<!-- Hamburger Menu -->
+				{% include burger_menu.html %}
+
+
+		<!-- Header -->
+			<header id="header">
+				<a href="#" class="image avatar"><img src="assets/media/thumbs/BlogAssets/Pictures/SelfPort.jpg" alt="" /></a>
+				<h1><strong>Brock Akerman</strong></h1>
+                <h4>Optimization and Insight through<br />
+					Statistics and Mathematics<br />
+				</h4>
+				
+			</header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+					<section id="one">
+						<h2>Projects In the Pipeline<br /></h2>
+						<h5>
+							<p><u>Applications in Modeling:</u> The plan is to go over several modeling methodologies; inpired by a Linkedin graphic.  <br /></p>
+							<p><u>Sports JSON Shiny Dash Maship:</u> College football and ShinyDash board mashup.<br /></p>
+							<p></p><u>Testing of Kaggle Medical Data:</u> Pulling some epidemiological data covering challenges in the autism, sleep apnea, and pulmonary oncology realms.  <br /></p>
+						</h5>
+						<!-- <a href="assets/media/animations/ML_Algorithm.gif" class="image fit thumb">
+					  	<img src="assets/media/animations/ML_Algorithm.gif" alt="" class="small-image" /></a> -->
+				  	</section>
+				  
+
+				<!-- Two -->
+				<section id="two">
+					<h2>Portfolio</h2>
+					<div class="portfolio-container">
+					  <div class="portfolio-grid">
+						<!-- Project 1 -->
+						<article class="work-item">
+							<a href="https://github.com/Bakerman1982/ST558_FinalProj.git" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" alt="Airport JSON ShinyDash" /></a>
+							<h3>JSON-based ShinyDash for U.S. Airports</h3>
+							<p>Graphic summary overlays on airport statistics;</br> an NCSU ST558 production.  CC BY-NC 4.0</p>
+						  </article>
+								
+						  <article class="work-item">
+							<a href="{{ '/_projects/NCSU_Courses/ST518/ST_518_Project/Report_template2.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png' | relative_url }}" alt="Solubility Analysis" /></a>
+							<h3>Solubility Analysis of Cold Brand Medicines</h3>
+							<p>Effervescence analysis with BaseR and ggplot;</br>an NCSU ST518 production.  CC BY-NC 4.0</p>
+						  </article>
+					  </div>
+					</div>
+					<ul class="actions">
+						<li><a href="{{ site.baseurl }}/portfolio/" class="button">Portfolio Archive</a></li>
+					</ul>
+				</section>
+
+				<!-- Three -->
+					<section id="three">
+						<h2>Blogs and Interests</h2>
+						<div class="portfolio-container">
+							<div class="portfolio-grid">
+						{% if site.posts.size > 0 %}
+							{% for post in site.posts limit:2 %}
+							<article class="work-item">
+								<a href="{{ post.url | relative_url }}" class="image fit thumb">
+								<img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+								</a>
+								<h3>{{ post.title }}</h3>
+								<p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+								<ul class="actions">
+								<li><a href="{{ post.url | relative_url }}" class="button">Read More</a></li>
+								</ul>
+							</article>
+							{% endfor %}
+						{% else %}
+							<p>No blog posts available yet. Check back soon!</p>
+						{% endif %}
+						</div>
+						</div>
+						<ul class="actions">
+							<li><a href="{{ site.baseurl }}/blogs-and-interests/" class="button">Blog Archive</a></li>
+						</ul>
+						
+					</section>
+
+				<!-- Contact Section -->
+					<section id="four">
+						<h2>Contact Me</h2>
+						<div class="row">
+						<div class="8u 12u$(small)">
+							<!-- Formspree Example -->
+							<form method="post" action="https://formspree.io/f/mdkorwkw">
+							<div class="row uniform 50%">
+								<div class="6u 12u$(xsmall)">
+								<input type="text" name="name" id="name" placeholder="Name" required />
+								</div>
+								<div class="6u$ 12u$(xsmall)">
+								<input type="email" name="email" id="email" placeholder="Email" required />
+								</div>
+								<div class="12u$">
+								<textarea name="message" id="message" placeholder="Message" rows="4" required></textarea>
+								</div>
+								<div class="12u$">
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+								</div>
+							</div>
+							</form>
+						</div>
+						<div class="4u$ 12u$(small)">
+							<ul class="labeled-icons">
+							<li>
+								<h3 class="icon fa-home"><span class="label">Address</span></h3>
+								320 Andrew Ridge Drive<br />
+								Jefferson, Georgia, 30549<br />
+								United States
+							</li>
+							<li>
+								<h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
+								678-865-7296
+							</li>
+							<li>
+								<h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
+								<a href="mailto:Brock.Akerman@outlook.com">Brock.Akerman@outlook.com</a>
+							</li>
+							</ul>
+						</div>
+						</div>
+					</section>
+  
+					<footer style="text-align: center; margin-top: 20px; font-size: 14px;">
+						<img src="{{ '/assets/media/logos/License/CC_BY_NC.png' | relative_url }}" alt="Creative Commons Logo" style="height: 40px; margin-bottom: 5px;">
+						<p>All works, unless otherwise noted, are licensed under the <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" style="text-decoration: none;">Creative Commons BY-NC public copyright</a>.</p>
+					</footer>
+					
+			</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<p class="availability">Open to Freelance and Consulting Opportunities.</br>
+						Seeking mentorship, too!</p>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/brock-l-akerman/" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="https://github.com/Bakerman1982" class="icon fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>Templated Design by <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+				<!-- Scripts -->
+					<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+					<script src="{{ site.baseurl }}/assets/js/jquery.poptrox.min.js"></script>
+					<script src="{{ site.baseurl }}/assets/js/skel.min.js"></script>
+					<script src="{{ site.baseurl }}/assets/js/util.js"></script>
+					<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+					<script src="{{ site.baseurl }}/assets/js/main.js"></script>
+					<script>
+						document.getElementById('menu-toggle').addEventListener('click', function () {
+							const menuItems = document.getElementById('menu-items');
+							menuItems.classList.toggle('visible');
+						});
+					</script>
+			
+	</body>
+</html>
+
+<!--
+<p>Welcome to my portfolio website! I am Brock Akerman, a passionate mathematician and statistician always on a journey to learn, explore, present, and solve problems through the elegant frameworks of mathematics and data science.</p>
+
+I hold a bachelors degree in mathematics from the University of North Georgia and I am currently pursuing a masters degree in statistics at North Carolina State University. My work emphasizes visualization, modeling, teaching, and problem-solving—combining mathematical rigor with creativity to uncover insights and solutions.</p>
+
+Beyond academics and professional endeavors, I enjoy motorcycling, flying airplanes, exploring game theory and optimization, studying East Asian linguistics, and landscaping. I also find great fulfillment in serving my community as a volunteer at The Jefferson Church.</p>
+
+Feel free to explore my portfolio to see the projects and ideas that inspire me. Thank you for visiting—I hope my work sparks as much curiosity and joy for you as it does for me!</p>
+-->
+
+
+<!--
+3. Create a Separate Configuration File for Local Development
+4. Use jekyll serve with Both Config Files
+5. Verify Your Site Behavior Locally
+-->

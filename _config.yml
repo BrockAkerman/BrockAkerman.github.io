@@ -4,7 +4,7 @@ last_name: Akerman
 email: Brock.Akerman@outlook.com
 future: true
 
-baseurl: ""   # IMPORTANT: Leave blank for user sites
+baseurl: ""
 url: "https://BrockAkerman.github.io"
 
 permalink: /:year/:month/:day/:title/

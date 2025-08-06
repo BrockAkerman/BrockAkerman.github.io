@@ -1,0 +1,7 @@
+{
+    "installOptions": {
+        "installFromRepository": true,
+        "libraryPath": "A:/Programs/R/Base_R/R-4.0.4/library",
+        "installDependencies": true
+    }
+}

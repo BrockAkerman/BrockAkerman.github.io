@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+	<head>
+		<title>{{ page.title | escape }}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+        
+
+        
+	</head>
+	<body class="{% if page.url == '/about-me/' %}about-me{% endif %}">
+		{% include burger_menu.html %}
+		
+		<!-- Main Content -->
+		<div class="wrapper">
+			<div class="inner">
+				<h1>{{ page.title }}</h1>
+				<div class="content">
+					{{ content }}
+				</div>
+			</div>
+		</div>
+
+
+		<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+		<script src="{{ '/assets/js/jquery.poptrox.min.js' | relative_url }}"></script>
+		<script src="{{ '/assets/js/skel.min.js' | relative_url }}"></script>
+		<script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+		<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+		<script>
+			document.getElementById('menu-toggle').addEventListener('click', function () {
+				const menuItems = document.getElementById('menu-items');
+				menuItems.classList.toggle('visible');
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,828 @@
+---
+title: "ST_518 Project"
+author: "Mark Austin, Halid Kopanski, Brock Akermen, Justin Feathers"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document
+---
+
+```{r echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emmeans)
+library(lme4)
+library(lmerTest)
+library(olsrr)
+library(car)
+library(cowplot)
+library(lmtest)
+df_eff <- read_csv('effervescence.csv', col_types = 'fffnnn')
+```
+\pagenumbering{gobble}
+\newpage
+\pagenumbering{arabic}
+## Executive Summary
+
+We were tasked with analyzing experimental data for dissolving times of brand name versus store brand cold medicine at
+different water temperatures and stirring factors. We explored the results to determine if differences do exist
+between brand name and store brand medicine; if so, were they the result of temperature differences, stirring factors,
+or both? 
+
+The data was collected by dropping the medicine tablets into 60 mL of water of varying temperature (6$^\circ$C, 23$^\circ$C, 40$^\circ$C) from a fixed height and recording the time it took the tablet to completely dissolve from the time it was dropped. The stirring factor was used as a blocking method; Block I was stirred while Block II was not. Four different individuals performed the experiment and recorded their results; the average of these results were recorded
+as the observations.  
+
+The initial analysis showed there was evidence indicating a difference in mean dissolve time between name brand and store brand. A means table showed name brand has a mean of 73.443 with variance of 21.131, while store brand had a mean of 68.104 and variance of 67.032. There was evidence that showed stirring appeared to increase variability in name brand while decreasing variability in store brand. Additionally, plots of the data showed a meaningful interaction between brand and temperature, which became more prominent at higher temperatures.
+
+Eight models were fit in total: 3 for fixed effects, 3 for mixed effects, and 2 for adding the `order` variable as a covariate. Model 1, referred to as "the full model", included a three-way interaction between brand, temp, and stirred and produced the lowest Root Mean Square Error (RMSE) of 1.075. Model 8, which used the full model but added `order` as covariate measure, produced a RMSE of 1.083 (the 2nd lowest RMSE). We chose the best model by using the common fit criteria RMSE, Adjusted R^2^, AIC, and BIC. For RMSE, AIC, and BIC, lower values are better, while a higher value of Adjusted R^2^ is preferred as it explains the percentage of variation explained by the model. Model 1 produced the best results across all four model selection criteria with RMSE of 1.075, Adjusted R^2^ of 0.977, AIC of 155.337, and BIC of 179.663. Model 1's assumptions of normality and constant variance were generally met, despite having slightly heavy tails and mild heteroscedasticity. The Cook's Distance plot showed observations 2, 3, and 8 potentially being problematic outliers, but because the values were all under 0.5, we chose to leave them in the analysis to avoid creating imbalances.
+
+An Analysis of Variance (ANOVA) was conducted for the full model to check differences and run several hypothesis tests. A significant result is declared when the F critical value (F-crit) is less than the calculated F-score. The results showed that there is at least one difference in means (F-crit = 2.06, F-score = 183.21) and there were significant interactions between brand and temperature (F-crit = 3.2594, F-score = 100.3688), brand and stirring (F-crit = 4.1132, F-score = 17.758), and brand, temperature, and stirring (F-crit = 3.2594, F-score = 3.919). The same analysis also showed that there is not sufficient evidence to claim meaningful interactions between temperature and stirring (F-crit = 3.2594, F-score = 0.0537).  
+
+A number of contrast analyses were conducted to see how much the significant means differed from one another. Our findings showed that, on average, stirring medicine reduced dissolving time by 1.78 to 3.04 seconds, name brand medicine dissolved between 4.71 and 5.97 seconds slower than store brand, and stirring reduced name brand dissolving time by 2.83 to 4.61 seconds compared to 0.22 to 2.00 seconds for store brand. Pairwise analyses were conducted for the three levels of temperature using Bonferroni correction which showed significant differences for each of the pairs. The 95% confidence limits were (6.25, 8.38), (13.32, 15.44), and (6.00, 8.13) for the pair wise comparisons of $6^\circ C~vs~23^\circ C$, $6^\circ C~vs~40^\circ C$, and $23^\circ C~vs~40^\circ C$, respectively. When comparing each temperature to the remainder of the group, $23^\circ C$ was not significantly different.  
+
+To recap, we have determined that, on average, name brand dissolving times were between 4.71 and 5.97 seconds slower than store brands, water temperature had an inverse relationship with dissolving times, there was a highly significant interaction between brand and temperature, and stirring reduced dissolving time by 1.78 and 3.04 seconds. Stirring was found to have a highly significant interaction with brand (p=0.0002) and a significant interaction with both brand and temperature (p=0.029); because these interactions were so significant, we suggest using stirring as a main effect rather than a blocking variable.
+
+\newpage
+
+### Introduction 
+We have been presented with cold medicine data which considers brand type, water temperature, and water agitation as an effect on dissolving times. The goal of this paper is to answer the following questions:  
+
+* Are the dissolving characteristics different between brands?
+* Does temperature of the water influence dissolving characteristics? If so, is there an interaction effect between brand and temperature?
+* Does stirring influence dissolving times and is there an interaction with the other two effects?  What is the proper role for stirring?  
+
+### Experimental Design  
+
+The data collected consisted of name brand versus store brand cold medicine tablets that were dissolved at varying
+water temperatures (6$^\circ$ C, 23$^\circ$ C, 40$^\circ$ C). A complete block design was formulated using 2 blocks
+with 4 observations on each of the treatment combinations in each block. Block I was stirred with a magnetic
+stirring plate at 350 rpm while Block II was not stirred.
+
+Each tablet was dropped into 60 mL of water from a fixed height and dissolving time was measured from the time the
+tablet was dropped until it was completely dissolved. This process was completed by 4 different experimenters
+and the average time (t/4) was recorded as the observation.
+
+## Exploratory Data Analysis
+
+### Summary
+
+In total, the provided dataset contains 48 rows and 5 columns. The 5 columns include 3 explanatory categorical variables (Brand, Temp in $^\circ$C, and Stirring), a single continuous response variable (Time, in seconds) and one descriptor (order). Prior to analysis, the data will be explored to gain a better understanding of what to expect and, more importantly, check for any potential violations of analytic assumptions.
+
+From the summary statistics table (see Appendix I, Table 4), we can see that each group has exactly 4 entries, eliminating concerns with respect to design imbalance. Constructing a means table for the data without taking into account stirring, we can see that there does appear to be a disparity between the mean dissolving times of store brand cold medications when compared to name brand. 
+
+```{r, echo=FALSE, message=FALSE, error=FALSE}
+df_stats <-
+df_eff %>% group_by(Brand, Temp, Stirred) %>% 
+summarise('Min' = min(Time),
+          '25%' = quantile(Time, probs = 0.25),
+          'Mean' = mean(Time), 
+          'Median' = median(Time),
+          '75%' = quantile(Time, probs = 0.75),
+          'Max' = max(Time),
+          'Range' = Max - Min,
+          'Var' = var(Time), 
+          'n' = n()) 
+
+means_table <- df_eff %>% group_by(Brand, Temp) %>% summarise('Mean' = mean(Time))
+means_table <- means_table %>% pivot_wider(names_from = Brand, values_from = Mean)
+means_table$TempMean <- rowMeans(means_table[,2:3])
+means_table <- cbind('Temp' = c('6', '23', '40', 'Brand Mean'),rbind(means_table[,2:4], colMeans(means_table[,2:4])))
+knitr::kable(means_table, digits = 2, col.names = c("Temp", "Name", "Store", "Temp. Mean"),
+             caption = "Means Table")
+```
+
+When inspecting the marginal means of store versus name brand, we find that store brand dissolves in less time, on average, than the name brand. This disparity becomes more pronounced as the effect of temperature is introduced. It was observed that increasing temperature has a more dramatic effect on store brand medicine than name brand. Dissolving time for store brand medicine drops from 78.42 to 59.04 ($\Delta$ of -19.38 seconds) across a temperature change from 6$^\circ$C to 40$^\circ$C. Whereas, name brand medicine only drops from 77.60 to 68.20 ($\Delta$ of -9.40 seconds) across the same temperature change.
+
+```{r,  echo=FALSE, message=FALSE, error=FALSE, fig.dim=c(6.5, 2.1), dpi=300}
+change_var <-
+df_eff %>% group_by(Brand, Temp) %>% summarise('Mean' = mean(Time), 
+                                               'Var' = var(Time), 
+                                               'Max' = max(Time), 
+                                               'Min' = min(Time), 
+                                               'Spread' = Max - Min)
+
+var_table <- df_eff %>% group_by(Brand, Temp, Stirred) %>% summarise('Var' = var(Time))
+
+var_table$Group <- ifelse(var_table$Brand == 'name' & var_table$Stirred == 'yes', 'Stirred Name',
+                          ifelse(var_table$Brand == 'name' & var_table$Stirred == 'no', 'Non Stirred Name',
+                                 ifelse(var_table$Brand == 'store' & var_table$Stirred == 'yes', 'Stirred Store',
+                                        ifelse(var_table$Brand == 'store' & var_table$Stirred == 'no', 'Non Stirred Store', NA))))
+
+change_varplot <-
+ggplot(change_var) + geom_point(aes(x = Temp, y = Var, col = Brand)) +
+                     geom_line(aes(x = Temp, y = Var, col = Brand, group = Brand)) + 
+                     labs(title = "Change in Variance",
+                          subtitle = "Over Temperature (Combined)",
+                          x = '',
+                          y = 'Variance') +
+                     theme(legend.position = c(0.85, 0.75),
+                           plot.title = element_text(size = 8, face = "bold"),
+                           plot.subtitle = element_text(size = 7, face = "bold"),
+                           axis.text = element_text(size = 7),
+                           axis.title = element_text(size = 8),
+                           legend.text = element_text(size=5, face="bold"),
+                           legend.title = element_text(size=6, face="bold"),
+                           legend.key.size = unit(0.4, 'cm'),
+                           legend.key = element_rect(colour = "transparent", 
+                                                     fill = alpha("white", 0)),                                          legend.background = element_rect(
+                                                     fill = alpha("white", 0)))
+
+change_var2 <-
+df_eff %>% filter(Stirred == "yes") %>% group_by(Brand, Temp) %>% summarise('Mean' = mean(Time), 
+                                               'Var' = var(Time), 
+                                               'Max' = max(Time), 
+                                               'Min' = min(Time), 
+                                               'Spread' = Max - Min)
+change_var2plot <-
+ggplot(change_var2) + geom_point(aes(x = Temp, y = Var, col = Brand)) +
+                     geom_line(aes(x = Temp, y = Var, col = Brand, group = Brand)) + 
+                     labs(title = "Change in Variance",
+                          subtitle = "Over Temperature (Stirred)",
+                          x = '',
+                          y = '') +
+                     theme(legend.position = c(0.85, 0.8),
+                           plot.title = element_text(size = 8, face = "bold"),
+                           plot.subtitle = element_text(size = 7, face = "bold"),
+                           axis.text = element_text(size = 7),
+                           axis.title = element_text(size = 8),
+                           legend.text = element_text(size=5, face="bold"),
+                           legend.title = element_text(size=6, face="bold"),
+                           legend.key.size = unit(0.4, 'cm'),
+                           legend.key = element_rect(colour = "transparent", 
+                                                     fill = alpha("white", 0)),                                          legend.background = element_rect(
+                                                     fill = alpha("white", 0)))
+
+change_var3 <-
+df_eff %>% filter(Stirred == "no") %>% group_by(Brand, Temp) %>% summarise('Mean' = mean(Time), 
+                                               'Var' = var(Time), 
+                                               'Max' = max(Time), 
+                                               'Min' = min(Time), 
+                                               'Spread' = Max - Min)
+change_var3plot <-
+ggplot(change_var3) + geom_point(aes(x = Temp, y = Var, col = Brand)) +
+                     geom_line(aes(x = Temp, y = Var, col = Brand, group = Brand)) + 
+                     labs(title = "Change in Variance",
+                          subtitle = "Over Temperature (Not Stirred)",
+                          x = '',
+                          y = '') +
+                     theme(legend.position = c(0.85, 0.8),
+                           plot.title = element_text(size = 8, face = "bold"),
+                           plot.subtitle = element_text(size = 7, face = "bold"),
+                           axis.text = element_text(size = 7),
+                           axis.title = element_text(size = 8),
+                           legend.text = element_text(size=5, face="bold"),
+                           legend.title = element_text(size=6, face="bold"),
+                           legend.key.size = unit(0.4, 'cm'),
+                           legend.key = element_rect(colour = "transparent", fill = alpha("white", 0)),                                            legend.background = element_rect(fill = alpha("white", 0))
+                           )
+
+change_var4plot <- 
+ggplot(var_table) + geom_point(aes(x = Temp, y = Var, col = Group)) + 
+    geom_line(aes(x = Temp, y = Var, col = Group, group = Group)) +
+    geom_hline(yintercept = 2, lty = 'dashed') +
+         labs(title = "Change in Variance",
+              subtitle = "Over Temperature",
+              x = '',
+              y = '') +
+         theme(legend.position = c(0.85, 0.8),
+               plot.title = element_text(size = 8, face = "bold"),
+               plot.subtitle = element_text(size = 7, face = "bold"),
+               axis.text = element_text(size = 7),
+               axis.title = element_text(size = 8),
+               legend.text = element_text(size=5, face="bold"),
+               legend.title = element_text(size=6, face="bold"),
+               legend.key.size = unit(0.4, 'cm'),
+               legend.key = element_rect(colour = "transparent", fill = alpha("white", 0)),
+               legend.background = element_rect(fill = alpha("white", 0))
+               )
+
+plot_grid(change_varplot,change_var4plot, nrow = 1 , ncol = 2)
+```
+
+While combing over the summary table, the variability between factors caught our attention.  We noticed that some of the variances behaved differently between stirring condition while holding brand type and temperatures constant.  Two plots were created to illustrate these differences.  In the left plot above, we can see a clear departure in differences of variances between brand types. On the right, stirred name brand medicines at higher temperatures had much greater differences.  
+
+### Interactions
+
+From the boxplots below, we can immediately see that stirring seems to increase the variance of the name-brand medicine--while also decreasing the mean differences of brand observations within each temperature grouping.  An interaction effect between temperature and brand can be deduced if lines are drawn through the centers of the boxes. Earlier, we had introduced an insight from the summary statistics output indicating an inverse relationship between temperature and dissolve time--as temperature increases dissolve time decreases.  The boxplot reinforces this idea.  We can also claim that temperature has an inverse effect on dissolving times whether stirring is present or not--indications of temperature having a strong effect on dissolving time by itself.  Stirring might have an additive effect regardless of temperature.
+
+It is simply conjecture at this point, however, we noticed that observations of dissolve time while stirring the water seems to have increased the name brand variability, while not stirring the water seems to have increased the store brand variability. Perhaps it is worth looking into the blocking effects of stirred on variability at various temperatures. 
+
+```{r,  echo=FALSE, message=FALSE, error=FALSE, fig.dim=c(6.5, 2.5), dpi=300}
+df_eff %>% ggplot() + geom_boxplot(aes(fill = Brand, y = Time, x = Temp)) + 
+  facet_grid(cols = vars(Stirred)) + labs(title = "Stirred") + theme(
+  plot.title = element_text(hjust = 0.5)
+)
+```
+
+The possible interaction between brand and temperature becomes even more noticeable in the three-factor interaction plots below. Specifically, the brand and temperature interaction can be seen when the temperature increases. The slope for the store brand has a more pronounced negative slope than the slope of the name brand. In addition, there might be a slight three-factor interaction between brand, temperature, and stirring as the name and store brand lines appear to be closer together in the stirred=yes plot than the stirred=no plot.
+
+```{r, echo=FALSE, message=FALSE, error=FALSE, fig.dim=c(6.5,4), dpi=250}
+##3 factor interaction plot based on HW7 code
+par(mfrow=c(2,2), mar = c(3.5,3.5,2,2))
+with(df_eff%>%filter(Stirred=="yes"),interaction.plot(Temp,Brand,Time,
+            type="b", pch=20, col=c(2,4), ylab="", xlab = "",
+            main="Mean Time vs. Temp: Stirred = Yes", 
+            cex.main = 0.75, cex.axis = 0.7, legend = FALSE))
+legend("topright",
+       title = "Brand",
+       c("Name", "Store"),
+       bty = "n",
+       cex = 0.7,
+       col = c("#DF536B","#2297E6"),
+       pch = c(19,19), lty = c(2,1))
+title(xlab = "Temperature", ylab = "Mean Dissolving Time", line = 2.25, cex.lab = 0.7)
+
+with(df_eff%>%filter(Stirred=="no"),interaction.plot(Temp,Brand,Time,
+          type="b", pch=20, col=c(2,4), ylab="", xlab = "",
+          main="Mean Time vs. Temp: Stirred = No", 
+          cex.main = 0.75, cex.axis = 0.7, legend = FALSE))
+legend("topright",
+       title = "Brand",
+       c("Name", "Store"),
+       bty = "n",
+       cex = 0.7,
+       col = c("#DF536B","#2297E6"),
+       pch = c(19,19), lty = c(2,1))
+title(xlab = 'Temperature', ylab = "Mean Dissolving Time", line = 2.25, cex.lab = 0.7)
+with(df_eff%>%filter(Brand=="store"),interaction.plot(Temp,Stirred,Time,
+            type="b", pch=20, col=c(2,4), ylab="", xlab = "",
+            main="Mean Time vs. Temp: Brand = Store", 
+            cex.main = 0.75, cex.axis = 0.7, legend = FALSE))
+legend("topright",
+       title = "Stirred",
+       c("Yes", "No"),
+       bty = "n",
+       cex = 0.7,
+       col = c("#DF536B","#2297E6"),
+       pch = c(19,19), lty = c(2,1))
+title(xlab = "Temperature", ylab = "Mean Dissolving Time", line = 2.25, cex.lab = 0.7)
+
+with(df_eff%>%filter(Brand=="name"),interaction.plot(Temp,Stirred,Time,
+          type="b", pch=20, col=c(2,4), ylab="", xlab = "",
+          main="Mean Time vs. Temp: Brand = Name", 
+          cex.main = 0.75, cex.axis = 0.7, legend = FALSE))
+legend("topright",
+       title = "Stirred",
+       c("Yes", "No"),
+       bty = "n",
+       cex = 0.7,
+       col = c("#DF536B","#2297E6"),
+       pch = c(19,19), lty = c(2,1))
+title(xlab = 'Temperature', ylab = "Mean Dissolving Time", line = 2.25, cex.lab = 0.7)
+```
+
+### Assumptions and Violations
+
+The Time versus Order scatter shows no obvious grouping, whether by brand or blocking factor. Density plots do reveal multiple peaks in the data indicating the presence of multiple populations. These could be based on temperature, or some unaccounted for lurking variable. 
+
+```{r, echo=FALSE, message=FALSE, error=FALSE, fig.dim=c(6.5,4.25), dpi=250}
+#model1
+aov_eff <- aov(lm_eff <- lm(Time ~ Brand * Temp * Stirred, data = df_eff))
+
+cooksD_values <- cooks.distance(lm_eff)
+ 
+CD_plot <- ggplot() + 
+  geom_col(aes(y = cooksD_values, x = 1:length(cooksD_values)), 
+  width = 0.025, col = 'red')  + 
+  geom_point(aes(y = cooksD_values, x = 1:length(cooksD_values)), shape = 20) + 
+  xlab('Sample Points') + ylab("Cook's Distance") + 
+  geom_hline(yintercept = 0.25, lty = 2) + 
+  labs(title = "Cook's Distance") + 
+  theme(
+      plot.title = element_text(size = 10, face = "bold"),
+      axis.text = element_text(size = 7),
+      axis.title = element_text(size = 8)
+)
+
+scttr_plot <-
+ggplot(df_eff) + geom_point(aes(x = Order, y = Time, col = Brand, pch = Stirred)) +
+ labs(title = "Time versus Order",
+              x = 'Order',
+              y = 'Time (seconds)') +
+         theme(#legend.position = c(0.9, 0.15),
+               plot.title = element_text(size = 8, face = "bold"),
+               plot.subtitle = element_text(size = 7, face = "bold"),
+               axis.text = element_text(size = 7),
+               axis.title = element_text(size = 8),
+               legend.text = element_text(size=5, face="bold"),
+               legend.title = element_text(size=6, face="bold"),
+               legend.key.size = unit(0.4, 'cm'),
+               legend.key = element_rect( fill = alpha("white", 0.5)),
+               legend.background = element_rect(fill = alpha("white", 0.5)))
+
+#CD_plot <- ols_plot_cooksd_chart(lm_eff)
+qqplot1 <- ggplot(df_eff, aes(sample = Time)) + 
+  stat_qq(shape = 20) + 
+  stat_qq_line(linetype = "dashed", col = 'red') + 
+  labs(x = "Theoretical Quantiles", 
+       y = "Sample Quantiles", 
+       title = "Normal Q-Q Plot") + 
+  theme(
+      plot.title = element_text(size = 10, face = "bold"),
+      axis.text = element_text(size = 7),
+      axis.title = element_text(size = 8)
+)
+
+d_plot1 <-
+ggplot(df_eff) + geom_density(aes(Time, fill = Brand), adjust = 1) + xlim(c(40, 100)) +
+ labs(title = "Brand Density Plots",
+              x = '',
+              y = '') +
+         theme(legend.position = c(0.85, 0.8),
+               plot.title = element_text(size = 8, face = "bold"),
+               plot.subtitle = element_text(size = 7, face = "bold"),
+               axis.text = element_text(size = 7),
+               axis.title = element_text(size = 8),
+               legend.text = element_text(size=5, face="bold"),
+               legend.title = element_text(size=6, face="bold"),
+               legend.key.size = unit(0.4, 'cm'),
+               legend.key = element_rect(colour = "transparent", fill = alpha("white", 0)),
+               legend.background = element_rect(fill = alpha("white", 0)))
+d_plot2 <- 
+ggplot(df_eff) + geom_density(aes(Time, fill = Stirred), adjust = 1) + xlim(c(40, 100)) +
+ labs(title = "Stirred Block Density Plots",
+              x = '',
+              y = '') +
+         theme(legend.position = c(0.85, 0.8),
+               plot.title = element_text(size = 8, face = "bold"),
+               plot.subtitle = element_text(size = 7, face = "bold"),
+               axis.text = element_text(size = 7),
+               axis.title = element_text(size = 8),
+               legend.text = element_text(size=5, face="bold"),
+               legend.title = element_text(size=6, face="bold"),
+               legend.key.size = unit(0.4, 'cm'),
+               legend.key = element_rect(colour = "transparent", fill = alpha("white", 0)),
+               legend.background = element_rect(fill = alpha("white", 0)))
+
+plot_grid(scttr_plot, qqplot1, d_plot1, d_plot2, nrow = 2, ncol = 2)
+```
+
+Finally, we check the normality of the data. Here a Q-Q plot is generated for raw time data. The data appears to suffer from heavy tails, multimodality and/or gaps in data between the left tail and the center. Since downstream analysis hinges on the assumption that our data is normally distributed, these issues may pose a problem.
+
+## Analysis and Results
+
+### Model Development
+
+```{r, echo = FALSE, message = FALSE, error = FALSE}
+#model with stirred as block effect without interaction
+#model2
+aov_block_eff <- aov(lm_block_eff <- lm(Time ~ Brand * Temp + Stirred, data = df_eff))
+#model3
+aov_block_eff_noint <- aov(lm_block_eff <- lm(Time ~ Brand + Temp + Stirred, data = df_eff))
+```
+
+```{r define mod7,  echo = FALSE, message = FALSE, error = FALSE}
+#added covariate Order model with stirred as block effect without interaction
+#model7
+##Create new Order^2 variable
+df_eff$Order2<-df_eff$Order^2
+
+aov_block_order_eff <- aov(lm_block_order_eff <- lm(Time ~ Brand * Temp + Stirred + Order +Order2, data = df_eff))
+```
+
+```{r,  echo = FALSE, message = FALSE, error = FALSE, fig.dim=c(7,4), dpi=300}
+#model8
+aov_three_order_eff <- aov(lm_three_order_eff <- lm(Time ~ Brand * Temp * Stirred + Order +Order2, data = df_eff))
+```
+
+The following models were developed and analyzed for this paper:
+
+Fixed Effects Models:  
+
+$Model~1: Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\gamma \beta)_{jk} + (\alpha \beta \gamma)_{ijk} + \epsilon_{ijkl}$\
+$Model~2: Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + \epsilon_{ijkl}$\
+$Model~3: Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + \epsilon_{ijkl}$
+
+Mixed Effects models:    
+$Model~4: Y_{ijk} = \mu + \alpha_i + B_j + (\alpha B)_{ij} + \epsilon_{ijk}$\
+Where brand is fixed and temperature is random.  
+$Model~5: Y_{ijk} = \mu + A_i + \beta_j  + (A \beta)_{ij} + \epsilon_{ijk}$\
+Where brand is random and temperature is fixed.\
+$Model~6: Y_{ijk} = \mu + A_i + B_j  + (AB)_{ij} + \epsilon_{ijk}$\
+Where both brand and temperature are random.\
+
+Where $\alpha$ is brand effect, $\beta$ is temperature effect, $\gamma$ is stir effect. i, j, k are (1 = Name, 2 = Store), (1 = 6$^\circ$ C, 2 = 23$^\circ$ C, 3 = 40$^\circ$ C), and (1 = Stirred, 2 = Not Stirred), respectively. $\epsilon_{ijkl}$ is assumed to be normally distributed with a $\mu_\epsilon$ of 0 and a variance of $\sigma^2_\epsilon$. $\mu$ is the overall mean and is an unknown value.
+
+With Order as a Model covariate:\
+We developed Models 7 and 8 to account for run order variable Order as a covariate.  We first considered the linear relationship between only Order and the response Time.  
+```{r Time and Order Plot, echo=FALSE, fig.dim=c(4, 2.5), fig.align='center',message=FALSE, warning=FALSE, dpi=250}
+##get correlation to add to plot
+correlation <- cor(df_eff$Time,df_eff$Order)
+
+##construct scatter plot of Time by Order with fitted SLR line
+## add correlation result to this plot
+gOrderTime <- ggplot(df_eff,aes(x=Order,y=Time))
+gOrderTime + 
+    geom_point(pch = 20) + geom_smooth(method = lm, col = "Red", se = F, size = 0.5) + 
+    geom_text(x = 35, y = 63, size = 4, label = paste0("Correlation = ",round(correlation, 2))) +  
+    geom_smooth(method = lm, formula = y~poly(x,2), col="Blue", se = F, size = 0.5) + 
+    
+    labs(title = "Scatter Plot of Time by Order with Fitted \nLinear=Red and Quadratic=Blue Regression Lines",
+             x = 'Order',
+             y = 'Time in Seconds') +
+    theme(legend.position = c(0.85, 0.8),
+          plot.title = element_text(size = 8, face = "bold"),
+          plot.subtitle = element_text(size = 7, face = "bold"),
+          axis.text = element_text(size = 7),
+          axis.title = element_text(size = 8),
+          legend.text = element_text(size=5, face="bold"),
+          legend.title = element_text(size=6, face="bold"),
+          legend.key.size = unit(0.4, 'cm'),
+          legend.key = element_rect(colour = "transparent", fill = alpha("white", 0)),
+          legend.background = element_rect(fill = alpha("white", 0)))
+```
+  
+The preceding scatter plot shows only a weak positive linear relationship between Order and Time with a small correlation=0.2.  However, the plot does show a plausible quadratic relationship between Order and Time.  
+
+A fitted quadratic regression model of Time versus additive quadratic Order was significant with overall F test p-value=0.013 and all coefficients having p-values less than .05 (See Appendix I Tables 32 and 33). Thus, we decided to include both Order and $Order^2$ as additive covariates in Models 7 and 8.  
+  
+$Model~7: Y_{ijklm} = \mu + \alpha_i + \beta_j + \gamma_k + \nu_l +\nu_l^2  + (\alpha \beta)_{ij} + \epsilon_{ijklm}$\
+Similar to model 2, but with an introduced covariate effect, $\nu$, to represent order.
+
+$Model~8: Y_{ijklm} = \mu + \alpha_i + \beta_j + \gamma_k + \nu_l + \nu_l^2 + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\gamma \beta)_{jk} + (\alpha \beta \gamma)_{ijk} + \epsilon_{ijklm}$\
+Similar to model 1, but with an introduced effect, $\nu$, to represent order.
+
+### Model Selection
+
+```{r,  echo = FALSE, message = FALSE, error = FALSE}
+RMSE_function <- function(df_aov){
+    
+    r_mse <- sqrt(sum(df_aov$residuals^2)/df_aov$df)
+    
+    r_s <- 1 - tail(summary(df_aov)[1][[1]][[2]], n = 1) / sum(summary(df_aov)[1][[1]][2])
+
+    a_r_s <- 1 - (1 - r_s)*(nrow(df_aov$model) - 1)/(df_aov$df)
+    
+    aic_ <- AIC(df_aov)
+    
+    bic_ <- BIC(df_aov)
+    
+    output_stats <- c(
+        r_mse,
+        r_s,
+        a_r_s,
+        aic_,
+        bic_
+    )
+    return(output_stats)
+}
+
+
+Model1 <- RMSE_function(aov_eff)
+Model2 <- RMSE_function(aov_block_eff)
+Model3 <- RMSE_function(aov_block_eff_noint)
+Model7 <- RMSE_function(aov_block_order_eff)
+Model8 <- RMSE_function(aov_three_order_eff)
+
+d <- rbind(Model1, Model2, Model3, Model7, Model8)
+colnames(d) <- c('Root MSE', '$R^2$', 'adj $R^2$', 'AIC', 'BIC')
+knitr::kable(d, escape = FALSE, digits = 3, align = "ccccc")
+```
+
+The mixed/random effects Models 4, 5, 6 all had Root MSE=1.833 (see Appendix I, Tables 22, 24, & 26).  
+
+Several criteria were used to select the final model including Root MSE(error standard deviation estimate), Adjusted $R^2$, AIC, and BIC.  Model 1 had the best outcome in all these criteria with Root MSE=1.075, Adjusted $R^2$=0.9770, AIC= 155.34, and BIC= 179.66.    
+
+Next, model assumptions are checked for Model 1 using diagnostic plots.  
+
+```{r echo=FALSE}
+par(mfrow=c(2,2), mar = c(5,5,2,2))
+plot(lm_three_order_eff, pch = 4)
+```
+
+Multiple diagnostic plots indicate observations 2, 3, and 8 could be outliers. Evidence for outliers was seen in the EDA boxplots. Plotting the Cook's Distance for each point based on our model. We have chosen not to remove any outliers from the data because the calculated Cook's distance is below 0.5 (>1 is generally considered to be large) and because we do not want to introduce imbalances in the analysis. The risks associated with imbalanced data outweighed the risk of the outliers affecting the model. 
+
+```{r,  echo = FALSE, message = FALSE, error = FALSE, fig.align='center',fig.dim=c(5, 2), dpi=300}
+CD_plot
+```
+
+The residual-to-fitted plot also shows that there may be an issue with mild heteroscedasticity.  The implication is that the criteria that residuals are drawn from a population of constant variance may not be met.  The QQ plot indicates the normality assumption is likely met although there are somewhat heavy tails due to outlier observations.
+
+Overall the plots indicate the model assumptions have been met with the caveat that there are a few outliers in the data.
+
+### ANOVA Analysis
+
+```{r, echo = FALSE, message = FALSE, error = FALSE}
+knitr::kable(summary(aov_eff)[[1]], 'simple', digits = 3, caption = 'Model 1: ANOVA Table')
+```
+
+#### Hypothesis Testing\
+
+The following hypothesis testing is based on the results of the Model 1 ANOVA table. All rejection criteria is based on rejecting $H_0$ when $F_{crit}$ < $F_{score}$:  
+
+**Full model ANOVA (see Appendix I: Table 16 for details):**  
+$H_0: \mu_1 = \mu_2 =...=\mu_i= 0$\
+$H_a:$ Not all means are equal to zero.\
+$F_{score}$ = $\frac{MS[Treatment]}{MS(E)} = \frac{211.65}{1.155} = 183.21$\
+Degrees of freedom = 11 and 36\
+$F_{crit}$ = 2.06\
+Decision:  Reject $H_0$.  There is sufficient evidence to support the claim that there is at least one mean that differs with a significance level of $\alpha$ = 0.05. Specific differences in the data will be analyzed in the Contrasts section.\
+
+**Interaction Effects**
+
+$H_0: (\alpha\beta)_{ij} = 0$\
+$H_a: (\alpha\beta)_{ij} \neq 0$\
+$F_{score}$ = 100.3688\
+Degrees of freedom = 2 and 36\
+$F_{crit}$ = 3.2594\
+Decision:  $Reject H_0$.  There is sufficient evidence to support the claim that there is an interaction effect between brand type and temperature with a significance level of $\alpha$ = 0.05.\
+
+$H_0: (\alpha\gamma)_{ik} = 0$\
+$H_a: (\alpha\gamma)_{ik} \neq 0$\
+$F_{score}$ = 17.758\
+Degrees of freedom = 1 and 36\
+$F_{crit}$ = 4.1132\
+Decision:  $Reject H_0$.  There is sufficient evidence to support the claim that there is an interaction effect between brand type and stirring with a significance level of $\alpha$ = 0.05.\
+
+$H_0: (\beta\gamma)_{ij} = 0$\
+$H_a: (\beta\gamma)_{ij} \neq 0$\
+$F_{score}$ = 0.0537\
+Degrees of freedom = 2 and 36\
+$F_{crit}$ = 3.259446\
+Decision:  Fail to Reject $H_0$.  There is insufficient evidence to support the claim that there is an interaction effect between temperature and stirring with a significance level of $\alpha$ = 0.05.\
+
+$H_0: (\alpha\beta\gamma)_{ijk} = 0$\
+$H_a: (\alpha\beta\gamma)_{ijk} \neq 0$\
+$F_{score}$ = 3.919\
+Degrees of freedom = 2 and 36\
+$F_{crit}$ = 3.259446\
+Decision:  Reject $H_0$.  There is sufficient evidence to support the claim that there is an interaction effect between brand, temperature, and stirring with a significance level of $\alpha$ = 0.05.\
+
+We saw that three factor interaction exists from earlier interaction plots.  Hypothesis tests were used to determine which interactions were significant.  As a result, we determined that there is evidence for an interaction between brand and temperature and brand and stirring.  We also found that there was a difference in the means within treatments.  
+
+With regards to Appendix I: Table 15, type III sums of squares show that temperature explains the most amount of variance. Temperature adds 221.58 sum of squares given all the other variables in the model. The next highest contributor to variance is the interaction effect between brand and temperature, which adds 80.11 given all the other variables in the model. Brand adds only adds 2.6 to the sum of squares given the other variables. The next lowest are both interaction effects involving stirring. The interaction effect for stirring & temperature and stirring & brand only add 3.67 and 0.4 to variance respectively. They are also not significant since their respective p-values are greater than 0.05.  
+
+### Contrasts
+
+```{r, echo = FALSE, message = FALSE, error = FALSE}
+means_eff <- emmeans(aov_eff, specs = c('Brand', 'Temp', 'Stirred'))
+#summary(means_eff)
+```
+
+```{r, echo = FALSE, message = FALSE, error = FALSE}
+cont_str_brd <-
+contrast(means_eff, list(stirred = c(1/6, 1/6, 1/6, 1/6, 1/6, 1/6, -1/6, -1/6, -1/6, -1/6, -1/6, -1/6),
+                         branding = rep(c(1/6,-1/6), 6)
+                         )
+         )
+
+cont_strbrd <-
+
+contrast(means_eff, list(stirredbrand = c(1/3, 0,  1/3, 0, 1/3, 0, -1/3, 0, -1/3, 0, -1/3, 0),
+                         stirredstore = c(0, 1/3, 0,  1/3, 0, 1/3, 0, -1/3, 0, -1/3, 0, -1/3)
+                         )
+         )
+cont_temp <- 
+contrast(means_eff, list(temp6_23 = c(1/4, 1/4, -1/4, -1/4, 0, 0, 1/4, 1/4, -1/4, -1/4, 0, 0),
+                         temp6_40 = c(1/4, 1/4, 0, 0, -1/4, -1/4, 1/4, 1/4, 0, 0, -1/4, -1/4),
+                         temp23_40 = c(0, 0, 1/4, 1/4, -1/4, -1/4, 0, 0, 1/4, 1/4, -1/4, -1/4),
+                         temp6_others = c(1/4, 1/4, -1/8, -1/8, -1/8, -1/8, 1/4, 1/4, -1/8, -1/8, -1/8, -1/8),
+                         temp23_others = c(-1/8, -1/8, 1/4, 1/4, -1/8, -1/8, -1/8, -1/8, 1/4, 1/4, -1/8, -1/8),
+                         temp40_others = c(-1/8, -1/8, -1/8, -1/8, 1/4, 1/4, -1/8, -1/8, -1/8, -1/8, 1/4, 1/4)
+                         ), options=list(adjust="bonferroni")
+         )
+```
+
+Conducting a linear contrast analysis on each of the explanatory variables reveals that there are significant differences between groups based on factors.
+
+In the first case (see Appendix I: Table 11), we contrasted the means of stirred versus not stirred. Here the difference in means is -2.41 with an upper 95% confidence limit of -3.04 and a lower 95% CI limit of -1.78. In other words, on average stirring medicine reduces dissolving time by between 1.78 and 3.04 seconds regardless of brand or temperature. When looking only at brand, name brand dissolving times were on average between 4.71 and 5.97 (95% CI) seconds slower than store brand. Since neither of the intervals contained zero we can conclude that there is a difference between brands and between the presence of stirring.
+
+While significant for both store and name brands, stirring had more of an impact on dissolving times for name brand than it did for the store brand. Stirring reduced name brand dissolving times by 2.83 and 4.61 seconds whereas for the store brand that interval was 0.22 and 2 seconds (see Appendix I: Table 12).
+
+A similar analysis was completed for the three levels of temperature (see Appendix I: Table 13). Completing a contrast analysis using a Bonferroni correction we found that in pairwise cases each level was significantly different from the other. The 95% confidence limits were (6.25, 8.38), (13.32, 15.44), and (6.00, 8.13) for the pair wise comparisons of $6^\circ C~vs~23^\circ C$, $6^\circ C~vs~40^\circ C$, and $23^\circ C~vs~40^\circ C$, respectively. Zero did not fall in any of those ranges. When comparing individual levels versus the remainder of the group, $23^\circ C$ was found not to be significantly different from the rest of the levels. That confidence interval ranged from -1.04 to 0.80 seconds of dissolving time. Due to that, we do not have enough evidence to say $23^\circ C$ is different from either $6^\circ C$ or $40^\circ C$.  
+
+```{r,  echo = FALSE, message = FALSE, error = FALSE, warning=FALSE}
+lm_eff_me <- lm(Time ~ Brand * Temp, data = df_eff)
+aov_eff_me <- aov(lm_eff_me)
+anova_eff_me <- anova(lm_eff_me)
+
+me_table <- as_tibble(summary(aov_eff_me)[[1]][,1:3])
+me_table <- cbind('Source' = c('Brand', 'Temp', 'Brand*Temp', 'Residual'), 
+                  me_table, 
+                  'Error Term' = c("MSAB", "MSAB", "MSE", "NA"))
+
+MSA <-  me_table[1, 4]
+MSB <-  me_table[2, 4]
+MSAB <- me_table[3, 4]
+MSE <-  round(me_table[4, 4],3)
+
+a <- length(levels(df_eff$Brand))
+b <- length(levels(df_eff$Temp))
+n <- nrow(df_eff)/(a*b)
+
+sigma_ab <- round((MSAB - MSE) / n,3)
+sigma_a <- round((MSA - MSAB) / (b * n), 3)
+sigma_b <- round((MSB - MSAB) / (a*n), 3)
+
+f_scores <- c(MSA/MSAB,MSB/MSAB,MSAB/MSE, NA)
+
+error_dof <- c(rep(tail(me_table$Df, n = 2)[1], 2), tail(me_table$Df, n = 1)[1], NA)
+
+me_table['Error Df'] <- error_dof
+
+me_table["F Score"] <- f_scores
+f_test <- round(1 - pf(me_table['F Score'][[1]], 
+                       me_table['Df'][[1]], 
+                       me_table['Error Df'][[1]]),
+                4)
+
+me_table['Pr>F'] <- f_test
+
+se_mu <- sqrt((MSA+MSB-MSAB)/(a*b*n))
+
+dof_app <- (MSA + MSB - MSAB)^2 / (MSA^2/(a-1) + MSB^2/(b-1) + MSAB^2 / ((a-1)*(b-1)))
+
+CV_hat <- sqrt(sum(c(sigma_a, sigma_b,sigma_ab, MSE)))/mean(df_eff$Time)
+
+re_table <- as_tibble(cbind(c('Brand', 'Temp' , 'Brand*Temp', 'Residual'), round(c(sigma_a, sigma_b,sigma_ab, MSE), 4))) 
+colnames(re_table) <- c('Cov Parm', 'Estimate')
+re_table$Estimate <- as.numeric(re_table$Estimate)
+re_table$Portion <- round(as.numeric(re_table$Estimate) / sum(as.numeric(re_table$Estimate)),3)
+```
+
+## Conclusion
+
+Based on lowest RMSE criteria and adequate diagnostic assumption checks we chose the following three factor interaction model as our final model.  In this model, the three factors are assumed to be fixed effects.    
+  
+$Model~1: Y_{ijkl} = \mu + \alpha_i + \beta_j + \gamma_k + (\alpha \beta)_{ij} + (\alpha \gamma)_{ik} + (\gamma \beta)_{jk} + (\alpha \beta \gamma)_{ijk} + \epsilon_{ijkl}$\
+
+Where $\alpha$ is brand effect, $\beta$ is temperature effect, $\gamma$ is stir effect. i, j, k are (1 = Name, 2 = Store), (1 = 6$^\circ$ C, 2 = 23$^\circ$ C, 3 = 40$^\circ$ C), and (1 = Stirred, 2 = Not Stirred), respectively. $\epsilon_{ijkl}$ is assumed to be normally distributed with a $\mu_\epsilon$ of 0 and a variance of $\sigma^2_\epsilon$. $\mu$ is the overall mean and is an unknown value.
+
+Next we address the primary research questions.   
+
+* Are the dissolving characteristics different between brands?  
+When looking only at brand, name brand dissolving times were on average between 4.71 and 5.97 (95% CI) seconds slower than store brand.  
+
+* Does temperature of the water influence dissolving characteristics? If so, is there an interaction effect between brand and temperature?  
+When looking only at temperature, the general trend was a decrease in dissolving times as temperature increased.  Comparing specific temperatures, we found a significant difference between dissolving mean times for the lowest and highest temperatures $6^\circ C$ and $40^\circ C$.  
+We found a highly significant two factor interaction (p-value<.0001) between brand and temperature.  Stirring reduced name brand dissolving times by 2.83 and 4.61
+seconds whereas for the store brand that interval was 0.22 and 2 seconds.
+
+* Does stirring influence dissolving times and is there an interaction with the other two effects?  What is the proper role for stirring?  
+Looking only at stirring, dissolving time was reduced for stirred medicine by between 3.04 and 1.78 seconds (95% CI).  
+We found a significant three factor interaction (p-value= 0.029) between stirring, brand, and temperature confirming earlier insights from three factor interaction plots.  A highly significant two factor interaction (p-value=0.0002) exists between stirring and brand.  
+Rather than treating stirring as a blocking variable, we suggest treating stirring as a third interacting factor as we did in our final model.  
+
+Finally, we pose some questions and possible routes for future research.  
+
+Would different name and store brands have similar dissolving times?  
+Our final model assumed all fixed effects meaning we assumed particular name and store brands were used in this study.  A future study could incorporate additional specific name and store brands to examine whether additional types of name and store brands would have similar dissolving times.
+
+What question are the researchers wanting to answer with the chosen temperature range?  
+This experiment included a wide range of temperatures(6$^\circ$C, 23$^\circ$C, 40$^\circ$C).  6$^\circ$C is below  and 40$^\circ$C is above typical room temperature.  Are the researchers trying to include possible outdoor usage of the medicines?  Answers to these questions could lead to different ranges of chosen temperatures for a future study.   
+
+
+\newpage
+
+## Appendix I: Analysis Tables and Figures
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(6,3.5), dpi=300}
+knitr::kable(df_stats, caption = "Data Summary Table")
+df_eff %>% group_by(Brand) %>% summarise('Mean' = mean(Time), 'Var' = var(Time),'Max' = max(Time), 'Min' = min(Time), 'Spread' = Max - Min) %>% knitr::kable(caption = 'Means by Brand')
+df_eff %>% group_by(Temp) %>% summarise('Mean' = mean(Time), 'Var' = var(Time), 'Max' = max(Time), 'Min' = min(Time), 'Spread' = Max - Min) %>% knitr::kable(caption = 'Means by Temperature')
+df_eff %>% group_by(Brand, Temp) %>% summarise('Mean' = mean(Time), 'Var' = var(Time), 'Max' = max(Time), 'Min' = min(Time), 'Spread' = Max - Min) %>% knitr::kable(caption = 'Means by Brand and Temperature')
+df_eff %>% group_by(Brand, Stirred) %>% summarise('Mean' = mean(Time), 'Var' = var(Time), 'Max' = max(Time), 'Min' = min(Time), 'Spread' = Max - Min) %>% knitr::kable(caption = 'Means by Brand and Stirring')
+df_eff %>% group_by(Temp, Stirred) %>% summarise('Mean' = mean(Time), 'Var' = var(Time), 'Max' = max(Time), 'Min' = min(Time), 'Spread' = Max - Min) %>% knitr::kable(caption = 'Means by Temperature and Stirring')
+knitr::kable(summary(means_eff), caption = "Least Squares Means")
+knitr::kable(confint(cont_str_brd), caption = "Contrast Stirred and Brand")
+knitr::kable(confint(cont_strbrd), caption = "Contrast Stirred Only and Brand Only")
+knitr::kable(confint(cont_temp), caption = "Contrast Temperatures")
+```
+
+\newpage
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(summary(aov_eff)[[1]], 'simple', digits = 3, caption = 'Model 1: ANOVA Table')
+knitr::kable(Anova(aov_eff, type=3), 'simple', digits = 3, caption = 'Model 1: Type III ANOVA Table') # type 3 SS
+par(mfrow=c(2,2), mar = c(5,5,2,2))
+plot(aov_eff, pch = 4)
+```
+
+\newpage
+
+**SAS Overall ANOVA Model Table**
+
+|Source|DF|Sum of Squares|Mean Square|F Value|Pr>F|
+|---|---|---|---|---|---|
+|Model|11|2328.174357|211.652214|183.21|<.0001|
+|Error|36|41.589732|1.155270|||
+|CorrectedTotal|47|2369.764090|||
+
+Table: Overall ANOVA Table
+
+Produced from the following code:  
+
+```
+proc import datafile = "/home/u39732161/data/effervescence.csv" 
+     out = proj_data
+     dbms = csv replace;
+run;
+
+proc anova data = proj_data;
+	class Brand Temp Stirred;
+	model Time = Brand|Temp|Stirred;
+run;
+```
+
+\newpage
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(summary(aov_block_eff)[[1]], 
+             'simple' , caption = "Model 2: ANOVA Table")
+knitr::kable(Anova(aov_block_eff, type=3), 
+             'simple', digits = 3, caption = 'Model 2: Type III ANOVA Table')
+par(mfrow=c(2,2), mar = c(5,5,2,2))
+plot(aov_block_eff, pch = 4)
+```
+
+\newpage
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(summary(aov_block_eff_noint)[[1]], 
+             'simple', caption = "Model 3: ANOVA Table")
+knitr::kable(Anova(aov_block_eff_noint, type=3), 
+             'simple', digits = 3, caption = 'Model 3: Type III ANOVA Table')
+par(mfrow=c(2,2), mar = c(5,5,2,2))
+plot(aov_block_eff_noint, pch = 4)
+```
+
+\newpage
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+
+name_mean <- df_eff %>% filter(Brand == 'name') %>% select(Time) %>% unlist() %>% mean()
+brand_fe <- df_eff %>% group_by(Brand) %>% summarise('Mean' = mean(Time), 'Effect' = Mean - name_mean)
+
+name_mean <- df_eff %>% filter(Temp == '6') %>% select(Time) %>% unlist() %>% mean()
+temp_fe <- df_eff %>% group_by(Temp) %>% summarise('Mean' = mean(Time), 'Effect' = Mean - name_mean)
+```
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(me_table, caption = 'Mixed Effects Models')
+
+knitr::kable(brand_fe, digits = 3,
+             caption = 'Model4: Brand is Fixed and Temperature is Random')
+
+knitr::kable(cbind(c('Temp', 'Brand*Temp', 'Residual'), 
+                   c(sigma_b, sigma_ab, MSE)), col.names = c('Cov Parm', 'Estimate'), caption = "")
+```
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(temp_fe, caption = 'Model5: Brand is Random and Temperature is Fixed', 
+             digits = 3)
+knitr::kable(cbind(c('Brand', 'Brand*Temp', 'Residual'), 
+                   c(sigma_a, sigma_ab, MSE)), col.names = c('Cov Parm', 'Estimate'), 
+             caption = "")
+```
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(cbind(c('Brand', 'Temp' , 'Brand*Temp', 'Residual'), 
+                   c(sigma_a, sigma_b,sigma_ab, MSE)), col.names = c('Cov Parm', 'Estimate'), 
+             caption = 'Model6: Brand and Temperature are Random')
+```
+
+\newpage
+
+```{r model7, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+##get correlation to add to plot
+#correlation <- cor(df_eff$Time,df_eff$Order)
+
+##construct scatter plot of Time by Order with fitted SLR line
+## add correlation result to this plot
+#gOrderTime <- ggplot(df_eff,aes(x=Order,y=Time))
+#gOrderTime + geom_point() +geom_smooth(method=lm,col="Red",se = F) + 
+#  geom_text(x=35,y=63,size=6, label = paste0("Correlation = ",round(correlation, 2))) + 
+#  labs(title = "Scatter Plot of Time by Order with Fitted \nLinear=Red and Quadratic=Blue Regression Lines") +  
+#  geom_smooth(method=lm,formula = y~poly(x,2),col="Blue",se=F)
+
+
+##Create new Order^2 variable
+df_eff$Order2<-df_eff$Order^2
+
+#Fit quadratic model with order and order^2
+slrOrderQ<-lm(Time~Order+ Order2,data = df_eff)
+#summary(slrOrderQ)
+
+knitr::kable(summary(aov_block_order_eff)[[1]], 
+             'simple', caption = "Model 7: ANOVA Table")
+knitr::kable(Anova(aov_block_order_eff, type=3), 'simple', 
+             digits = 3, caption = 'Model 7: Type III ANOVA Table')
+par(mfrow=c(2,2), mar = c(5,5,2,2))
+plot(aov_block_order_eff, pch = 4)
+```
+
+\newpage
+
+```{r, echo =  FALSE, message=FALSE, error=FALSE, fig.dim=c(7,4), dpi=300}
+knitr::kable(summary(aov_three_order_eff)[[1]], 
+             'simple', caption = "Model 8: ANOVA Table")
+knitr::kable(Anova(aov_three_order_eff, type=3), 
+             'simple', digits = 3, caption = 'Model 8: Type III ANOVA Table')
+par(mfrow=c(2,2), mar = c(5,5,2,2))
+plot(lm_three_order_eff, pch = 4)
+```
+
+\newpage
+
+## Appendix: Code
+
+```{r, ref.label=knitr::all_labels(),echo=TRUE,eval=FALSE}
+```

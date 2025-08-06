@@ -1,0 +1,466 @@
+---
+title: "Analysis of the Difference in Means of Systolic Blood Pressure between Smokers and Non-Smokers."
+author: "Brock Akerman and Hanan Ali"
+date: "ST502 - Spring 2022"
+output: html_document
+---
+
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+library(ggplot2)
+library(readr)
+library(qqplotr)
+```
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+framingham_data <- read_csv("framingham_data.csv")
+View(framingham_data)
+attach(framingham_data)
+names(framingham_data)
+class(currentSmoker)
+class(sysBP)
+```
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+Q1 <- quantile(framingham_data$sysBP, .25)
+Q3 <- quantile(framingham_data$sysBP, .75)
+IQR <- IQR(framingham_data$sysBP)
+framingham_data_no_outlier <- subset(framingham_data, framingham_data$sysBP > (Q1 -1.5*IQR) & framingham_data$sysBP < (Q3 + 1.5*IQR))
+```
+A sample of data is extracted from the Framingham Heart Study which includes the systolic blood pressure of participants who are identified as either smokers or non-smokers. Smokers in this study are defined as participants who have smoked cigarettes anytime the year preceding the physical examination while non-smokers are those who have abstained from smoking during that same period of time (Magnani, 2017). The data contains a column of qualitative binary values characterizing the subjects smoking habit and a second column pairing it with a single measurement of systolic blood pressure measured in millimeters of mercury (mmHg).
+
+We are interested in making inference about the difference in blood pressure means between smokers and non-smokers.  To test whether a difference between means exists we will utilize the pooled t-test and the Welch-Satterthwaite t-test.  Random sampling and a normal distribution are assumed for our samples; however, examining plots of the data before conducting any t-tests is good practice. If assumptions about samples are made and there is an opportunity to strengthen the results of our test by reinforcing those assumptions we should do so.
+\
+\
+
+```{r, echo=FALSE, fig.align="center", comment="##Figure 1.1"}
+ggplot(framingham_data,mapping = aes(`sysBP`)) +
+  geom_histogram(binwidth = 2, fill="#CC0000", color="#000000") + 
+  labs(title="Framingham Data:  Systolic Blood Pressure Observations", y="Frequency", x="Systolic Blood Pressure (mmHg)")
+```  
+\
+\
+
+```{r, echo=FALSE, fig.align="center", comment="##Figure 1.3"}
+ggplot(framingham_data, mapping = aes(sample = framingham_data$sysBP)) +
+  geom_qq(size = 1, fill="#CC0000", color="#CC0000") +
+  labs(title="Framingham Data:  Systolic Blood Pressure Observations", y="Blood Pressure (mmHg)", x="Normal Quantiles")  
+```
+\
+\
+
+```{r, echo=FALSE, fig.align="center", comment="##Figure 1.2"}
+ggplot(framingham_data, mapping = aes(x=`sysBP`)) +
+  geom_boxplot(fill="#CC0000") +
+  labs(title="Framingham Data:  Sample Systolic Blood Pressure for Smokers and Non-Smokers", x="Systolic Blood Pressure (mmHg)") +
+  theme(axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+```
+\
+\
+
+Visually summarizing the histogram shows a skew toward the right.  There was the presence of outliers influencing the distribution and causing an observable skew.  The concerning values are systolic blood pressure observations where the subject had a 180 mmHg reading or higher.  A pressure observed above 180mmHg is consider a medical emergency and requires urgent care and hospitalization (Heart.org, 2017).  
+\
+The Quantile-Quantile plot exhibits a linear tendency though variability in observations in the right tail may be distorting linearity.  It is not enough to reject the normality assumption on this fact alone though purging outliers would serve to strengthen the argument in favor of assuming normality.  
+\
+I produced a boxplot to examine the distribution and highlight outliers.  We found six values that were outside of the interquartile multiplier range--five observations from the non-smokers sample and one observation from the smokers sample group.  We will report both t-tests with outliers and without outliers for comparison.
+\
+\
+
+```{r, echo=FALSE, fig.align="center", comment="##Figure 1.1"}
+ggplot(framingham_data_no_outlier,mapping = aes(`sysBP`)) +
+  geom_histogram(binwidth = 2, fill="#CC0000", color="#000000") + 
+  labs(title="Framingham Data:  Systolic Blood Pressure Observations (Outliers Omitted)", y="Frequency", x="Systolic Blood Pressure (mmHg)")
+```
+\
+\
+
+```{r, echo=FALSE, fig.align="center", comment="##Figure 1.3"}
+ggplot(framingham_data_no_outlier, mapping = aes(sample = `sysBP`)) +
+  geom_qq(size = 1, fill="#CC0000", color="#CC0000") +
+  labs(title="Framingham Data:  Systolic Blood Pressure Observations (Outliers Omitted)", y="Blood Pressure (mmHg)", x="Normal Quantiles")  
+```
+\
+\
+After removing the outliers we can see that the histogram looks more normalized when compared to the histogram with outliers.  The skew is gentler and better representative of the data overall.  Likewise, the Q-Q plot appears slightly more linear than before.  The preliminary analysis is complete and we are ready to use our t-tests to make inference on our sampled means. 
+\
+\
+
+#### Pooled T-test (outliers included)
+
+###### **P-Value**
+\
+$H_{0}: \mu_{1}-\mu_{2} = 0$, There is no difference between means of smokers and non-smokers.  
+$H_{0}: \mu_{1}-\mu_{2} ≠ 0$, There is a difference between means of smokers and non-smokers.  
+\
+\
+$\bar{X}_{1} = \frac{1}{225}\sum(x_{1},x_{2},...,x_{225}) = 137.22444$  
+$s^2_{1} = \frac{1}{225^2}\sum^{225}_{i=1}(x_{i}-\bar{x_{1}}) = 562.1447$  
+$n_{1} = 225$  
+\
+\
+$\bar{X}_{2} = \frac{1}{75}\sum(x_{1},x_{2},...,x_{75}) = 128.06667$  
+$s^2_{2} = \frac{1}{75^2}\sum^{75}_{j=1}(x_{j}-\bar{x_{2}}) = 352.2117$  
+$n_{2} = 75$  
+\
+\
+$S^2_{p} = \frac{(n_{1}-1)S^2_{1}+(n_{2}-1)S^2_{2}}{n_{1}+n_{2}-2} = \frac{(225-1)562.1447+(75-1)352.2117}{225+75-2} = 510.01370$  
+\
+$S_{p} = \sqrt(S^2_{p}) = \sqrt(510.01370) = 22.58350$
+\
+\
+$T = \frac{\bar{X_{1}} - \bar{X_{2}}} {S_{p}\sqrt(\frac{1}{n_{1}}+\frac{1}{n_{2}})} = \frac{137.22444 - 128.06667} {22.5835\sqrt(\frac{1}{225}+\frac{1}{75})} = 3.0413$
+\
+\
+Under the null hypothesis, $H_{0}: T  \sim  t_{298}$. The rejection region for the test $H_{a}: \mu_{1}-\mu_{2} ≠ D_{0}:$  
+\
+Rejection Region: 
+${t_{obs} : |t_{obs}| > t_{\frac{\alpha}{2},df}}$
+\
+Rejection Region: 
+${t_{obs} : |3.04131| > 1.96796}$
+\
+\
+P-Value (two-tailed):  
+$2*(1-pt(T = 3.0413,df = n_{1}+n_{2}-2)) = 2*(1-0.9987) =  0.00258$
+\
+\
+
+###### **Conclusion:**  
+Reject $H_{0}$.  At the 0.05 significance level, there is sufficient evidence to support the claim that mean systolic blood pressure between smokers and non-smokers is different.  
+\
+\
+
+###### **Confidence Interval**
+\
+Lower_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) - t_{(\frac{\alpha}{2},df)}(S_{p})(\sqrt(\frac{1}{n_{1}}+\frac{1}{n_{2}})) = (137.22444 - 128.06667) - (1.96796)(22.58350)(\sqrt(\frac{1}{225}+\frac{1}{75}) = 3.23194$
+\
+\
+Upper_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) + t_{(\frac{\alpha}{2},df)}(S_{p})(\sqrt(\frac{1}{n_{1}}+\frac{1}{n_{2}})) = (137.22444 - 128.06667) + (1.96796)(22.58350)(\sqrt(\frac{1}{225}+\frac{1}{75}) = 15.0835$
+\
+\
+
+###### **Conclusion:**  
+We are 95% confident that the mean difference in systolic blood pressure between smokers and non-smokers is between 3.23194 mmHg and 15.0835 mmHg.  
+\
+\
+
+#### Pooled T-test (outliers omitted)
+
+###### **P-Value**
+\
+\
+$H_{0}: \mu_{1}-\mu_{2} = 0$, There is no difference between means of smokers and non-smokers.  
+$H_{0}: \mu_{1}-\mu_{2} ≠ 0$, There is a difference between means of smokers and non-smokers.  
+\
+\
+$\bar{X}_{1} = \frac{1}{220}\sum(x_{1},x_{2},...,x_{220}) = 135.6409$  
+$s^2_{1} = \frac{1}{220^2}\sum^{220}_{i=1}(x_{i}-\bar{x_{1}}) = 460.7586$  
+$n_{1} = 220$  
+\
+\
+$\bar{X}_{2} = \frac{1}{74}\sum(x_{1},x_{2},...,x_{74}) = 127.0946$  
+$s^2_{2} = \frac{1}{74^2}\sum^{74}_{j=1}(x_{j}-\bar{x_{2}}) = 285.1964$  
+$n_{2} = 74$  
+\
+\
+$S^2_{p} = \frac{(n_{1}-1)S^2_{1}+(n_{2}-1)S^2_{2}}{n_{1}+n_{2}-2} = \frac{(22401)460.7586+(74-1)285.1964}{220+74-2} = 416.868$  
+\
+$S_{p} = \sqrt(S^2_{p}) = \sqrt(416.868) = 20.41735$
+\
+\
+$T = \frac{\bar{X_{1}} - \bar{X_{2}}} {S_{p}\sqrt(\frac{1}{n_{1}}+\frac{1}{n_{2}})} = \frac{135.6409 - 127.0946} {20.41735\sqrt(\frac{1}{220}+\frac{1}{74})} =3.1148$
+\
+\
+Under the null hypothesis, $H_{0}: T  \sim  t_{292}$. The rejection region for the test $H_{a}: \mu_{1}-\mu_{2} ≠ D_{0}:$  
+\
+Rejection Region: 
+${t_{obs} : |t_{obs}| > t_{\frac{\alpha}{2},df}}$
+\
+Rejection Region: 
+${t_{obs} : |3.1148| > 1.968121}$
+\
+\
+
+P-Value (two-tailed):  
+$2*(1-pt(T = 3.1148,df = 220+74-2)) = 2*(1-0.99898) =  0.00204$
+\
+\
+
+###### **Conclusion:**  
+Reject $H_{0}$.  At the 0.05 significance level, there is sufficient evidence to support the claim that mean systolic blood pressure between smokers and non-smokers is different.  
+\
+\
+
+###### **Confidence Interval**
+\
+Lower_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) - t_{(\frac{\alpha}{2},df)}(S_{p})(\sqrt(\frac{1}{n_{1}}+\frac{1}{n_{2}})) = (135.6409 - 127.0946) - (1.96796)(20.41735)(\sqrt(\frac{1}{220}+\frac{1}{74}) = 3.14669$
+\
+\
+Upper_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) + t_{(\frac{\alpha}{2},df)}(S_{p})(\sqrt(\frac{1}{n_{1}}+\frac{1}{n_{2}})) = (135.6409 - 127.0946) + (1.96796)(20.41735)(\sqrt(\frac{1}{220}+\frac{1}{74}) = 13.9459$
+\
+\
+
+###### **Conclusion:**  
+We are 95% confident that the mean difference in systolic blood pressure between smokers and non-smokers is between 3.14669 mmHg and 13.9459 mmHg.  
+\
+\
+\
+\
+
+#### Welch-Satterthwaite T-test (outliers included)
+
+###### **P-Value**
+For the Welch-Satterthwaite t-test we will test using the same hypothesis as in the t-test pooled; however, with the assumption about the variance removed, the test statistic formula.  
+\
+\
+$H_{0}: \mu_{1}-\mu_{2} = 0$, There is no difference between means of smokers and non-smokers.  
+$H_{0}: \mu_{1}-\mu_{2} ≠ 0$, There is a difference between means of smokers and non-smokers.  
+\
+\
+$\bar{X}_{1} = \frac{1}{225}\sum(x_{1},x_{2},...,x_{225}) = 137.22444$  
+$s^2_{1} = \frac{1}{225^2}\sum^{225}_{i=1}(x_{i}-\bar{x_{1}}) = 562.1447$  
+$n_{1} = 225$  
+\
+\
+$\bar{X}_{2} = \frac{1}{75}\sum(x_{1},x_{2},...,x_{75}) = 128.06667$  
+$s^2_{2} = \frac{1}{75^2}\sum^{75}_{j=1}(x_{j}-\bar{x_{2}}) = 352.2117$  
+$n_{2} = 75$  
+\
+\
+$v = \frac{(\frac{s^2_{1}}{n_{1}}+\frac{s^2_{2}}{n_{2}})^2}{\frac{(\frac{s^2_{1}}{n_{1}})}{n_{1}-1}+{\frac{(\frac{s^2_{2}}{n_{2}})}{n_{2}-1}}} = \frac{(\frac{562.1447}{225}+\frac{352.2117}{75})^2}{\frac{(\frac{562.1447}{225})^2}{225-1}+{\frac{(\frac{352.2117}{75})^2}{75-1}}} = 158.8316$
+\
+\
+$T = \frac{\bar{X}_1-\bar{X}_2-D_{0}}{\sqrt(\frac{s^2_1}{n_{1}}+\frac{s^2_2}{n_{2}})} = \frac{137.22444-128.06667}{\sqrt(\frac{562.1447}{225}+\frac{352.2117}{75})} = 3.4142$
+\
+\
+Under the null hypothesis, $H_{0}: T  \sim  t_{v,\frac{\alpha}{2}} \sim t_{158.8316,0.025}$. The rejection region for the test $H_{a}: \mu_{1}-\mu_{2} ≠ D_{0}:$  
+\
+\
+Rejection Region: 
+${t_{obs} : |t_{obs}| > t_{0.025,158}}$
+\
+\
+Rejection Region: 
+${t_{obs} : |3.4142| > 1.9751}$
+\
+\
+
+P-Value (two-tailed):  
+$2*(1-pt(T = 3.4142,df = 225+75-2)) = 2*(1-0.9996358) =  0.0007284$\
+\
+
+###### **Conclusion:**  
+Reject $H_{0}$.  At the 0.05 significance level, there is sufficient evidence to support the claim that mean systolic blood pressure between smokers and non-smokers is different.  
+
+###### **Confidence Interval**
+\
+Lower_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) - t_{(\frac{\alpha}{2},v)}(\sqrt(\frac{S^2_{1}}{n_{1}}+\frac{S^2_{2}}{n_{2}})) = (137.22444 - 128.06667) - (1.975092)(\sqrt(\frac{562.1447}{225}+\frac{352.2117}{75}) = 3.86004$
+\
+\
+Upper_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) + t_{(\frac{\alpha}{2},v)}(\sqrt(\frac{S^2_{1}}{n_{1}}+\frac{S^2_{2}}{n_{2}})) = (137.22444 - 128.06667) + (1.975092)(\sqrt(\frac{562.1447}{225}+\frac{352.2117}{75}) = 14.4555$\
+\
+
+###### **Conclusion:**  
+We are 95% confident that the mean difference in systolic blood pressure between smokers and non-smokers is between 3.23194 mmHg and 15.0835 mmHg.  
+\
+\
+
+#### Welch-Satterthwaite T-test (outliers omitted)
+
+###### **P-Value**
+\
+
+$H_{0}: \mu_{1}-\mu_{2} = 0$, There is no difference between means of smokers and non-smokers.  
+$H_{0}: \mu_{1}-\mu_{2} ≠ 0$, There is a difference between means of smokers and non-smokers.  
+\
+\
+$\bar{X}_{1} = \frac{1}{220}\sum(x_{1},x_{2},...,x_{220}) = 135.6409$  
+$s^2_{1} = \frac{1}{220^2}\sum^{220}_{i=1}(x_{i}-\bar{x_{1}}) = 460.7586$  
+$n_{1} = 220$  
+\
+\
+$\bar{X}_{2} = \frac{1}{74}\sum(x_{1},x_{2},...,x_{74}) = 127.0946$  
+$s^2_{2} = \frac{1}{74^2}\sum^{74}_{j=1}(x_{j}-\bar{x_{2}}) = 285.1964$  
+$n_{2} = 74$  
+\
+\
+$v = \frac{(\frac{s^2_{1}}{n_{1}}+\frac{s^2_{2}}{n_{2}})^2}{\frac{(\frac{s^2_{1}}{n_{1}})}{n_{1}-1}+{\frac{(\frac{s^2_{2}}{n_{2}})}{n_{2}-1}}} = \frac{(\frac{460.7586}{220}+\frac{285.1964}{74})^2}{\frac{(\frac{460.7586}{220})^2}{220-1}+{\frac{(\frac{285.1964}{74})^2}{74-1}}} = 158.314$
+\
+\
+$T = \frac{\bar{X}_1-\bar{X}_2-D_{0}}{\sqrt(\frac{s^2_1}{n_{1}}+\frac{s^2_2}{n_{2}})} = \frac{135.6409-127.0946}{\sqrt(\frac{460.7586}{220}+\frac{285.1964}{74})} = 3.50412$
+\
+\
+Under the null hypothesis, $H_{0}: T  \sim  t_{v,\frac{\alpha}{2}} \sim t_{158.8316,0.025}$. The rejection region for the test $H_{a}: \mu_{1}-\mu_{2} ≠ D_{0}:$  
+\
+
+Rejection Region: 
+${t_{obs} : |t_{obs}| > t_{0.025,158}}$
+\
+
+Rejection Region: 
+${t_{obs} : |3.50412| > 1.9751}$
+\
+\
+
+P-Value (two-tailed):  
+$2*(1-pt(T = 3.50412,df = 220+74-2)) = 2*(1-0.999735) =  0.00053$\
+\
+
+###### **Conclusion:**  
+Reject $H_{0}$.  At the 0.05 significance level, there is sufficient evidence to support the claim that mean systolic blood pressure between smokers and non-smokers is different.  
+\
+\
+
+###### **Confidence Interval**
+\
+Lower_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) - t_{(\frac{\alpha}{2},v)}(\sqrt(\frac{S^2_{1}}{n_{1}}+\frac{S^2_{2}}{n_{2}})) = (135.6409 - 127.0946) - (1.975092)(\sqrt(\frac{460.7586}{220}+\frac{285.1964}{74}) = 3.7292$
+\
+
+Upper_Bound  
+$(\bar{X_{1}}-\bar{X_{2}}) + t_{(\frac{\alpha}{2},v)}(\sqrt(\frac{S^2_{1}}{n_{1}}+\frac{S^2_{2}}{n_{2}})) = (135.6409 - 127.0946) + (1.975092)(\sqrt(\frac{460.7586}{220}+\frac{285.1964}{74}) = 13.3634$\
+\
+
+###### **Conclusion:**  
+We are 95% confident that the mean difference in systolic blood pressure between smokers and non-smokers is between 3.23194 mmHg and 15.0835 mmHg.  
+\
+\
+
+
+#### Discussion
+Are the mean systolic blood pressures different between smokers and non-smokers?  All four t-test concluded with the same result; a rejection of the null hypothesis.  We found evidence in all four tests of evidence supporting a difference between systolic blood pressure means of participants who smoke versus those who do not.
+
+An important step at the beginning of the analysis of our data was the identification of outliers.  We were able to tighten-up the distribution by removing outliers through a boxplot.  Once we saw several observations that extended beyond the whiskers of the plot, we calculated the interquartile range and calculated the minimum and maximum values of the whiskers to find and remove those values that extended past the minimum and maximum.  We now have data more representative of the population of Framingham, Massachusettes.  The histogram return less skewed while the QQ plot returned more linear. 
+
+From the summary below we observe that the p-values for the Pooled t-tests would result in rejecting the null hypothesis but were closer to the significance alpha of 0.05 than those from the Satterthwaite t-tests.  Those tests with outliers were closer to the significance alpha of 0.05 than those p-values from the same tests without the outliers.  What we are finding is that if we were to take many samples, on average we would find samples would reject more frequently in Satterhwait t-tests and pooled t-tests.  We would would also reject more often with many samples where outliers were omitted than if they were to remain.  
+
+| Test Type | P-Value |
+| :--- | ---: |
+| t-Test pooled with outliers | 0.00258 |
+| t-Test pooled without outliers | 0.00204 |
+| t-Test Satterthwaite with outliers | 0.00073 |
+| t-Test Satterthwaite without outliers | 0.00053 |
+
+Confidence levels list below contain the range of the difference between each of the means.  In our t-Test pooled with outliers had the widest range of 11.85156 mmHg.  Our smallest range was the Satterthwaite t-Test without outliers with a range of 9.6342 mmHg.  The pooled t-test without outliers and the Satterthwaite t-test with outliers had a very similar range with a difference of approximately 0.11 mmHg.  
+
+| Test Type | Lower Bound | Upper Bound |
+| :--- | ---: | ---: |
+| t-Test pooled with outliers | 3.23194 | 15.0835 |
+| t-Test pooled without outliers | 3.14669 | 13.9459 |
+| t-Test Satterthwaite with outliers | 3.86004 | 14.4555 |
+| t-Test Satterthwaite without outliers | 3.7292 | 13.3634 |
+
+Looking at all the data and summary statistics I would use the Satterthwaite t-Test with outliers removed.  When presenting results; particularly when they have implications on health consultation and treatment or bureaucratic policy making, it would be safer to err on the side of being more conservative with our data.  The Satterthwaite follows this principle by not making assumptions about the equality of variance.  By using unpooled testing results you are receiving output more raw and natural than synthetically assuming a characteristic of sample data that may be true but is unverified.  Likewise, the removal of outliers creates more representative observations about the population.  Our data originally contained observations which would have required urgent emergency medical care and likely hospitalization.  I would argue that blood  pressure that high is not normal and thus not suited for a normal distribution of blood pressures in a population.  We trimmed those data points off which produced a distribution that we could better work with.  
+
+I would have chosen the Satterthwaite t-Test with outliers as my next option.  The assumption of equal variance has a enormous impact on the testing results and it manifested in our work as higher p-values and wider confidence interval ranges.
+
+The confidence interval of the difference in means is significant because of the medical implications.  According to the Mayo Clinic, blood pressures can be compartmentalized into several categories of increasing  severity; Normal (< 120 mmHg), Elevated (120-129 mmHg), Stage One (130-139 mmHg), Stage Two (> 140 mmHg), and Hypertensive Crisis (> 180 mmHg) (Mayo Clinic, 2018).  Both of our observed means sit on the upper limit of their respective range.  A confidence interval disparity could bring the non-smokers into the stage one from stage two or the smokers from stage one to stage two hypertension.  
+
+The sample mean for smokers falls within the elevated risk category while the sample mean for non-smokers is on the high-end of the stage one hypertension category.  We are certain a difference in the mean systolic blood pressure exists.  We can interpret these results as suggesting smoking cigarette has a suppression affect on blood pressure; however, blood pressure suppression through smoking may not be the best means of lowering blood pressure (Centers for Disease Control and Prevention, 2017).  There are other means of controlling blood pressure without harming the body through a smoking habit.  Diet, exercise, and blood pressure medications such as beta-blockers, alpha blockers and central or receptor agonists can be perscribed to lower pressure without the risks associated with smoking.
+\
+\
+
+#### Bibliography  
+
+Burke GM, Genuardi M, Shappell H, D'Agostino RB Sr, Magnani JW. Temporal Associations Between Smoking and Cardiovascular Disease, 1971 to 2006 (from the Framingham Heart Study). Am J Cardiol. 2017;120(10):1787-1791. doi:10.1016/j.amjcard.2017.07.087
+\
+
+Hypertensive Crisis: When You Should Call 9-1-1 for High Blood Pressure. (2017). Www.heart.org. https://www.heart.org/en/health-topics/high-blood-pressure/understanding-blood-pressure-readings/hypertensive-crisis-when-you-should-call-911-for-high-blood-pressure
+\
+
+Mayo Clinic. (2018). High blood pressure (hypertension) - Diagnosis and treatment. Mayoclinic.org. https://www.mayoclinic.org/diseases-conditions/high-blood-pressure/diagnosis-treatment/drc-20373417
+\
+
+Centers for Disease Control and Prevention. (2017, February 9). Health Effects of Smoking and Tobacco Use. Centers for Disease Control and Prevention. https://www.cdc.gov/tobacco/basic_information/health_effects/index.htm#:~:text=Smoking%20causes%20cancer%2C%20heart%20disease
+\
+\
+\
+\
+
+#### R CODE
+
+Pooled T-Test (Outliers Included)
+```{r}
+#Variable Naming Convention:  <SampledGroup>_<content>_<specialcondition>
+#Code until break contains t-test pooled values for p-value with outliers 
+NS_RawData_OL <- framingham_data[currentSmoker==0,2] #Grouped non-smokers together with outliers
+S_RawData_OL <- framingham_data[currentSmoker==1,2] #Grouped smokers together with outliers
+
+NS_RawData_OL <- unlist(framingham_data[currentSmoker==0,2])
+NS_Mean_OL <- mean(NS_RawData_OL) #Mean systolic blood pressure of non-smokers with outliers
+
+S_RawData_OL = unlist(framingham_data[currentSmoker==1,2])
+S_Mean_OL = mean(S_RawData_OL) #Mean systolic blood pressure of smokers with outliers
+
+NS_STDDEV_OL = sd(NS_RawData_OL) #Standard deviation systolic blood pressure for non-smokers with outliers
+S_STDDEV_OL = sd(S_RawData_OL) #Standard deviation systolic blood pressure for smokers with outliers
+
+NS_OBS_OL = length(NS_RawData_OL) #number of non-smokers in the sample with outliers
+S_OBS_OL = length(S_RawData_OL) #number of non-smokers in the sample with outliers
+
+SNS_WgtAve_OL = ((NS_OBS_OL-1)*NS_STDDEV_OL^2 + (S_OBS_OL-1)*S_STDDEV_OL^2)/(NS_OBS_OL+S_OBS_OL-2) #Weighted average of combined sample variances as a measure squared with outliers
+SNS_TStat_OL = (NS_Mean_OL - S_Mean_OL)/(sqrt(SNS_WgtAve_OL)*sqrt(1/NS_OBS_OL + 1/S_OBS_OL)) #Test statistic for the t-test pooled with outliers. 
+SNS_PVAL_OL <- 2*(1-pt(3.04,298)) #P-Value for a two tailed t-test with degrees of freedom 3.04131 and 298.  
+
+
+
+
+#Code until break contains t-test pooled values for Confidence Interval test method with outliers 
+SNS_Crit_OL <- qt(0.025,298)
+
+Lower_Bound_OL <- (NS_Mean_OL - S_Mean_OL) - (SNS_Crit_OL)*(sqrt(SNS_WgtAve_OL)*sqrt(1/NS_OBS_OL + 1/S_OBS_OL)) #Lower Bound of the Confidence Interval test for the difference of means with outliers
+
+Upper_Bound_OL <- (NS_Mean_OL - S_Mean_OL) + (SNS_Crit_OL)*(sqrt(SNS_WgtAve_OL)*sqrt(1/NS_OBS_OL + 1/S_OBS_OL)) #Upper Bound of the Confidence Interval test for the difference of means with outliers
+```
+\
+Pooled T-Test (Outliers Omitted)
+```{r}
+#Code until break contains t-test pooled values for p-value with no outliers 
+NS_RawData_NoOL <- framingham_data[currentSmoker==0,2] #Grouped non-smokers together with no outliers
+S_RawData_NoOL <- framingham_data[currentSmoker==1,2] #Grouped smokers together with no outliers
+
+NS_RawData_NoOL <- unlist(framingham_data[currentSmoker==0,2])
+NS_Mean_NoOL <- mean(NS_RawData_NoOL) #Mean systolic blood pressure of non-smokers with no outliers
+
+S_RawData_NoOL = unlist(framingham_data[currentSmoker==1,2])
+S_Mean_NoOL = mean(S_RawData_NoOL) #Mean systolic blood pressure of smokers with no outliers
+
+NS_STDDEV_NoOL = sd(NS_RawData_NoOL) #Standard deviation systolic blood pressure for non-smokers with no outliers
+S_STDDEV_NoOL = sd(S_RawData_NoOL) #Standard deviation systolic blood pressure for smokers with no outliers
+
+NS_OBS_NoOL = length(NS_RawData_NoOL) #number of non-smokers in the sample with no outliers
+S_OBS_NoOL = length(S_RawData_NoOL) #number of non-smokers in the sample with no outliers
+
+SNS_WgtAve_NoOL = ((NS_OBS_NoOL-1)*NS_STDDEV_NoOL^2 + (S_OBS_NoOL-1)*S_STDDEV_NoOL^2)/(NS_OBS_NoOL+S_OBS_NoOL-2) #Weighted average of combined sample variances as a measure squared with no outliers
+SNS_TStat_NoOL = (NS_Mean_NoOL - S_Mean_NoOL)/(sqrt(SNS_WgtAve_NoOL)*sqrt(1/NS_OBS_NoOL + 1/S_OBS_NoOL)) #Test statistic for the t-test pooled with no outliers. 
+SNS_PVAL_NoOL <- 2*(1-pt(3.04,298)) #P-Value for a two tailed t-test with degrees of freedom 3.04131 and 298.  
+
+
+
+
+#Code until break contains t-test pooled values for Confidence Interval test method with no outliers 
+SNS_Crit_NoOL <- qt(0.025,298)
+
+Lower_Bound_NoOL <- (NS_Mean_NoOL - S_Mean_NoOL) - (SNS_Crit_NoOL)*(sqrt(SNS_WgtAve_NoOL)*sqrt(1/NS_OBS_NoOL + 1/S_OBS_NoOL)) #Lower Bound of the Confidence Interval test for the difference of means with no outliers
+
+Upper_Bound_NoOL <- (NS_Mean_NoOL - S_Mean_NoOL) + (SNS_Crit_NoOL)*(sqrt(SNS_WgtAve_NoOL)*sqrt(1/NS_OBS_NoOL + 1/S_OBS_NoOL)) #Upper Bound of the Confidence Interval test for the difference of means with no outliers
+```
+\
+Welch-Satterthwaite T-test (Outliers Included)
+```{r}
+SNS_TStat_OL_SW <- (NS_Mean_OL-S_Mean_OL)/sqrt((NS_STDDEV_OL/NS_OBS_OL)+(S_STDDEV_OL/S_OBS_OL)) #Test Statistic for non equal variance with outliers. 
+v <- (((NS_STDDEV_OL/NS_OBS_OL)+(S_STDDEV_OL/S_OBS_OL))^2)/(((NS_STDDEV_OL/NS_OBS_OL)^2/(NS_OBS_OL-1))+(S_STDDEV_OL/S_OBS_OL)^2/(S_OBS_OL-1)) #Degrees of Freedom
+```
+\
+Welch-Satterthwaite T-test (Outliers Omitted)
+```{r}
+SNS_TStat_NoOL_SW <- (NS_Mean_NoOL-S_Mean_NoOL)/sqrt((NS_STDDEV_NoOL/NS_OBS_NoOL)+(S_STDDEV_NoOL/S_OBS_NoOL)) #Test Statistic for non equal variance with outliers. 
+v <- (((NS_STDDEV_NoOL/NS_OBS_NoOL)+(S_STDDEV_NoOL/S_OBS_NoOL))^2)/(((NS_STDDEV_NoOL/NS_OBS_NoOL)^2/(NS_OBS_NoOL-1))+(S_STDDEV_NoOL/S_OBS_NoOL)^2/(S_OBS_NoOL-1)) #Degrees of Freedom
+```

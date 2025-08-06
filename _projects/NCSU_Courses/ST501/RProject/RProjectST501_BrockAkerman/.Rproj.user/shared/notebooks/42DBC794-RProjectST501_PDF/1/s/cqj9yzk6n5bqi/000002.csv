@@ -1,0 +1,5 @@
+"0","x <- seq(-4,5, by = 0.1)
+y <- dnorm(x, mean = lambda, sd = lambda/sqrt(m))
+curve(dnorm(x, mean=lambda, sd=lambda/sqrt(m)), add=TRUE, col=""orange"", lwd=2)
+"
+"2","'add' will be ignored as there is no existing plot"

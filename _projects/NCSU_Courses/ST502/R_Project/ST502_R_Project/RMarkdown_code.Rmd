@@ -1,0 +1,127 @@
+---
+title: "Hypothesis t-Test of Systolic Blood Pressures of Smokers and Non-Smokers"
+author: "Brock Akerman and Hanan Ali"
+date: "ST502 - Spring 2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{packages, echo=FALSE, include=FALSE}
+library(ggplot2)
+library(readr)
+```
+```{data, echo=FALSE, include=FALSE}
+framingham_data <- read_csv("framingham_data.csv")
+View(framingham_data)`
+attach(framingham_data)
+names(framingham_data)
+class(currentSmoker)
+class(sysBP)
+```
+
+<!--
+Paragraph 1 – Introduction\
+    •	The data
+•	
+Paragraph 2 – t-test pooled\
+Paragraph 3 – t-test Satterthwaite\
+Paragraph 4 – Comparison between both t-tests\
+Paragraph 5 – Conclusion Remarks\
+-->
+
+
+The Framingham Heart Study is a on-going, long-term observational study that has focused on the generational cardiovascular health of residents of Framingham, Massachusetts since 1948. Over its decades-long life, the Framingham Heart Study has made significant contributions to modern cardiovascular epidemiology.  It has published findings that have linked particular lifestyle habits—including diet, exercise, and smoking--with affects on overall cardiovascular health; and the results continue to impact the medical and public health spheres and even federal government policy today.
+
+The participants consist of randomly sampled volunteers who commit to receiving a rigorous examination which includes a physical examination, laboratory blood testing and a lifestyle interview every 2-6 years. A sample of data collected from this study includes the systolic blood pressure of participants who are identified as either smokers or non-smokers. Smokers in this study are defined as participants who have smoked cigarettes anytime the year preceding the physical examination while non-smokers are those who have abstained from smoking during that same time period of time. (SOURCE: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6541867/). The data contains a column of qualitative binary values characterizing the subjects smoking habit and a second column pairing it with a single measurement of systolic blood pressure measured in millimeters of mercury (mmHg).
+
+We are interested in examining the difference in blood pressure means between smokers and non-smokers.  The implications of having an elevated systolic blood pressure include associations with lowered quality of life from dementia, angina, and heart 
+disease along with several life-threatening conditions such as an increase in risk of heart attack and stroke.  Discovering a mean difference in systolic blood pressure between smokers and non-smokers can assist the public by informing them of the potential complications to their cardiovascular health a result of their lifestyle choices while shaping public health policy.  
+
+To test the difference between means we will use the t-test (pooled) which assumes equal variance and the Welch-Satterthwaite t-test which does not make an equality assumption about the variances.  Random sampling and a normal distribution are assumed for each of the samples.  
+```{plot_smokers}
+<INSERT CODE CHUNK OF RESULTS THAT PLOT S>
+```
+```{plot_nonsmokers}
+<INSERT CODE CHUNK OF RESULTS THAT PLOT NS>
+```
+```{plot_QQ_smokers}
+<INSERT CODE CHUNK OF RESULTS THAT PLOT QQ>
+```
+```{plot_QQ_nonsmokers}
+<INSERT CODE CHUNK OF RESULTS THAT PLOT QQ>
+```
+
+
+### t-test pooled  
+###### P-Value method
+The status quo is that the mean systolic blood pressures are equal between smokers and non-smokers.  We would like to test whether there is evidence to support the claim against the status quo--that there does exist a difference between means.  
+
+H0:μ1-μ2=0, There is no difference between means of smokers and non-smokers.  
+H1:μ1-μ2≠0, There is a difference between means of smokers and non-smokers.  
+```{pooledstats}
+<INSERT CODE CHUNK OF RESULTS FROM THE POOLED T-TEST>
+```
+We reject H0.  There is sufficient evidence to support the claim that mean systolic blood pressure between smokers and non-smokers differs at a significant level of 0.05.  
+###### Confidence Interval method
+
+
+
+### t-test satterthwaite
+###### P-Value method
+For the Welch-Satterthwaite t-test we will test using the same hypothesis as in the t-test pooled; however, with the assumption about the variance removed, the test statistic formula.  
+
+H0:μ1-μ2=0, There is no difference between means of smokers and non-smokers.  
+H1:μ1-μ2≠0, There is a difference between means of smokers and non-smokers.  
+
+```{satterthwaite stats}
+<INSERT CODE CHUNK OF RESULTS FROM THE SATTERTHWAITE T-TEST>
+```
+We reject H0.  There is sufficient evidence to support the claim that mean systolic blood pressure between smokers and non-smokers differs at a significant level of 0.05.  ###### Confidence Interval method
+
+
+### comparison of tests
+Both test rejected the null hypothesis.  
+
+
+### concluding remarks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{pooledplots fig.asp = 0.8, fig.width = 3}
+ggplot(framingham_data_nonsmokers,mapping = aes(`sysBP`)) +
+  geom_histogram(binwidth = 1, fill="#CC0000", color="#000000") + 
+  labs(title="Framingham Data:  Non-Smoker Systolic Blood Pressure Histogram", y="Frequency", x="Systolic Blood Pressure Observations");
+```
+
+```{pooledplots fig.asp = 0.8, fig.width = 3}
+ggplot(framingham_data_smokers,mapping = aes(`sysBP`)) +
+  geom_histogram(binwidth = 1, fill="#CC0000", color="#000000") + 
+  labs(title="Framingham Data:  Non-Smoker Systolic Blood Pressure Histogram", y="Frequency", x="Systolic Blood Pressure Observations");
+```

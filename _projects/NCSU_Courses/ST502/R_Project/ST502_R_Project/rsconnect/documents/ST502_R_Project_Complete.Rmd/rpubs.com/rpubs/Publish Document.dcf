@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/895970/af2acb61f5a34805beafbc3e4a962e3a
+bundleId: https://api.rpubs.com/api/v1/document/895970/af2acb61f5a34805beafbc3e4a962e3a
+url: http://rpubs.com/Bakerman82/895970
+when: 1651224088.86697
+lastSyncTime: 1651224088.86697

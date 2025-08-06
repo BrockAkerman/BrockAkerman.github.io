@@ -13,7 +13,7 @@ permalink: /portfolio/
 
     <!-- Project 8 -->
       <article class="work-item">
-        <a href="https://github.com/Bakerman1982/ST542_ConsultProj/blob/main/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.png' | relative_url }}" alt="Bridging the Gap" /></a>
+        <a href="https://github.com/Bakerman1982/ST542_ConsultProj/blob/main/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.PNG' | relative_url }}" alt="Bridging the Gap" /></a>
         <h3>Bridging the Gap</h3>
         <p>Exploring Perception Gaps in Dental Veterinary Training and Graduate Preparedness</p>
       </article>

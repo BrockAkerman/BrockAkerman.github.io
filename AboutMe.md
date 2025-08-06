@@ -52,3 +52,4 @@ I chose to pursue graduate studies at NC State because I’ve never been able to
 Though my formal education has concluded, my learning journey is far from over. I’ve recently begun training for a commercial pilot’s license—just for the fun of it! One day, I hope to combine my passion for flying and service by volunteering with organizations like Civil Air Patrol or Angel Flights, providing transportation to those in need.
 
 Outside of work, I enjoy spending time with my wife and our large, lively family, playing the piano, riding motorcycles, lifting weights, attending church, and keeping my lawn and garden in top shape.
+</body>

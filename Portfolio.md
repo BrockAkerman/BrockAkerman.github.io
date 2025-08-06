@@ -6,9 +6,19 @@ permalink: /portfolio/
 
 <section id="portfolio">
   <h2>Academic Featured</h2>
+  
+
   <div class="portfolio-container">
     <div class="portfolio-grid">
-      <!-- Project Feature1 -->
+
+    <!-- Project 8 -->
+      <article class="work-item">
+        <a href="https://github.com/Bakerman1982/ST542_ConsultProj/blob/main/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.png' | relative_url }}" alt="Bridging the Gap" /></a>
+        <h3>Bridging the Gap</h3>
+        <p>Exploring Perception Gaps in Dental Veterinary Training and Graduate Preparedness</p>
+      </article>
+
+    <!-- Project Feature1 -->
       <article class="work-item">
         <a href="https://github.com/Bakerman1982/ST558_FinalProj.git" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" alt="Airport JSON ShinyDash" /></a>
         <h3>Airport JSON ShinyDash</h3>

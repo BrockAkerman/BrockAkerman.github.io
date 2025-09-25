@@ -1,0 +1,781 @@
+Folder PATH listing for volume UserFiles
+Volume serial number is 0438-8D2D
+A:.
+|   .gitignore
+|   .gitlab-ci.yml
+|   AboutMe.md
+|   BlogPosts.md
+|   CHANGELOG
+|   CONTRIBUTING.md
+|   favicon.ico
+|   Gemfile
+|   Gemfile.lock
+|   index.html
+|   LICENSE.txt
+|   Portfolio.md
+|   README.md
+|   slideshow-test.html
+|   strata_jekyll_theme.gemspec
+|   tree.txt
+|   _config.yml
+|   
++---.github
+|       FUNDING.yml
+|       
++---.jekyll-cache
+|   |   .gitignore
+|   |   
+|   \---Jekyll
+|       \---Cache
+|           +---Jekyll--Cache
+|           |   \---b7
+|           |           9606fb3afea5bd1609ed40b622142f1c98125abcfe89a76a661b0e8e343910
+|           |           
+|           \---Jekyll--Converters--Markdown
+|               +---04
+|               |       1e66d5e063c13a5a9466762f069bd4626bc135fceeac7c68ee6e469dcabdc1
+|               |       
+|               +---30
+|               |       3ac7bb96684022761960af765da19ae4b196a5ce8eee87596d9e4495400401
+|               |       
+|               +---83
+|               |       421ff2377461a9b7cadc8421ca02dfb6836ffbcf927f2983dda75ea0a3e269
+|               |       
+|               +---91
+|               |       60806dfd45f473ffa6093ef3ef1e2e100423827b262ac8028ec82aa05803a2
+|               |       
+|               \---df
+|                       ac811ab82d67c187fc30f709655d3284291b802d06a337f9f0651b8bcae258
+|                       
++---assets
+|   +---css
+|   |   |   font-awesome.min.css
+|   |   |   ie8.css
+|   |   |   main.css
+|   |   |   
+|   |   \---images
+|   |           05.jpg
+|   |           bg.jpg
+|   |           overlay.png
+|   |           
+|   +---favicon
+|   |       about.txt
+|   |       android-chrome-192x192.png
+|   |       android-chrome-512x512.png
+|   |       apple-touch-icon.png
+|   |       favicon-16x16.png
+|   |       favicon-32x32.png
+|   |       favicon.ico
+|   |       favicon_io.zip
+|   |       site.webmanifest
+|   |       
+|   +---fonts
+|   |       fontawesome-webfont.eot
+|   |       fontawesome-webfont.svg
+|   |       fontawesome-webfont.ttf
+|   |       fontawesome-webfont.woff
+|   |       fontawesome-webfont.woff2
+|   |       FontAwesome.otf
+|   |       
+|   +---fulls
+|   |       01.jpg
+|   |       02.jpg
+|   |       03.jpg
+|   |       04.jpg
+|   |       05.jpg
+|   |       06.jpg
+|   |       avatar.jpg
+|   |       bg.jpg
+|   |       strata.jpg
+|   |       
+|   +---js
+|   |   |   jquery.min.js
+|   |   |   jquery.poptrox.min.js
+|   |   |   main.js
+|   |   |   script.js
+|   |   |   skel.min.js
+|   |   |   util.js
+|   |   |   
+|   |   \---ie
+|   |           backgroundsize.min.htc
+|   |           html5shiv.js
+|   |           PIE.htc
+|   |           respond.min.js
+|   |           
+|   +---literature
+|   |       Brock_Akerman_MATH3390.pdf
+|   |       Undergraduate_Research_Paper.pdf
+|   |       
+|   \---media
+|       +---animations
+|       |       1732042095786.gif
+|       |       Filler_GIF_01.gif
+|       |       leap-of-faith-indiana-jones.gif
+|       |       ML_Algorithm.gif
+|       |       
+|       +---blog_tile_img
+|       |       Abstract_Journey_01.png
+|       |       Abstract_Journey_02.png
+|       |       Abstract_Journey_03.png
+|       |       Abstract_Journey_04.png
+|       |       
+|       +---fulls
+|       |       01.jpg
+|       |       02.jpg
+|       |       03.jpg
+|       |       04.jpg
+|       |       05.jpg
+|       |       06.jpg
+|       |       
+|       +---logos
+|       |   |   AMS-logo.jpg
+|       |   |   ASA_logo.jpg
+|       |   |   dplyr.png
+|       |   |   ggplot2.png
+|       |   |   Ggplot2_hex_logo.png
+|       |   |   googlesheets4.png
+|       |   |   knitr.png
+|       |   |   lubridate.png
+|       |   |   MALS-42insignia.jpg
+|       |   |   Mathematical_Association_of_America_logo.svg
+|       |   |   NCSU.png
+|       |   |   PDF.png
+|       |   |   purrr.png
+|       |   |   quarto.png
+|       |   |   readr.png
+|       |   |   readxl.png
+|       |   |   RED_DOG_5.png
+|       |   |   reticulate.png
+|       |   |   rmarkdown.png
+|       |   |   RStudio.png
+|       |   |   R_Logo_Collage.png
+|       |   |   shiny.png
+|       |   |   stringr.png
+|       |   |   SVA.png
+|       |   |   tibble.png
+|       |   |   tidyr.png
+|       |   |   tidyverse.png
+|       |   |   TJC_Logo.jpg
+|       |   |   UNG.png
+|       |   |   USMC.png
+|       |   |   Yoshukai-Karate.png
+|       |   |   
+|       |   \---License
+|       |           CC_BY_NC.png
+|       |           
+|       \---thumbs
+|           |   01.jpg
+|           |   02.jpg
+|           |   03.jpg
+|           |   04.jpg
+|           |   05.jpg
+|           |   06.jpg
+|           |   
+|           +---BlogAssets
+|           |   +---AI_Image
+|           |   +---Images
+|           |   |       Military_MedalRibbon_Combo.png
+|           |   |       Military_Medals.png
+|           |   |       Military_NonMedal_Ribbons.png
+|           |   |       Military_Ribbons.png
+|           |   |       
+|           |   \---Pictures
+|           |           74562_1612963598264_3724324_n_1612963598264.jpg
+|           |           CapGownDiploma.jpg
+|           |           Diploma.jpg
+|           |           IMG_0384.jpg
+|           |           RedDog.jpg
+|           |           SelfPort.jpg
+|           |           UNG_MathLab.jpg
+|           |           
+|           \---ProjectAssets
+|               +---CDLX_Assets
+|               +---Freelance_Assets
+|               +---NCSU_Assets
+|               |   +---ST501
+|               |   |       MainTile.png
+|               |   |       
+|               |   +---ST502
+|               |   |       MainTile.png
+|               |   |       
+|               |   +---ST518
+|               |   |       MainTile.png
+|               |   |       
+|               |   +---ST531
+|               |   |       MainTile.png
+|               |   |       
+|               |   +---ST542
+|               |   |       DVM_Density.PNG
+|               |   |       
+|               |   \---ST558
+|               |       |   MainTile.png
+|               |       |   
+|               |       +---PROJ01
+|               |       |       MainTile.png
+|               |       |       
+|               |       +---PROJ02
+|               |       \---PROJ03
+|               |               MainTile.png
+|               |               
+|               \---UNG_Assets
+|                       Oxygen_Cover.png
+|                       SweetPotato_Cover.png
+|                       
++---_includes
+|       burger_menu.html
+|       footer.html
+|       head.html
+|       header.html
+|       
++---_layouts
+|       about-me.html
+|       default.html
+|       page.html
+|       portfolio.html
+|       post.html
+|       post_archive.html
+|       
++---_posts
+|       .gitkeep
+|       2024-12-12-Start-Somewhere.md
+|       2025-01-01-Getting-Ready-For-Spring-Sem-25.md
+|       2025-08-06-Long-wait.md
+|       2025-09-05.md
+|       
++---_projects
+|   +---CDLX
+|   +---Freelance
+|   +---NCSU_Courses
+|   |   +---ST501
+|   |   |   \---RProject
+|   |   |       |   R-Project_501.html
+|   |   |       |   Rproject.pdf
+|   |   |       |   RProject_BrockAkerman.html
+|   |   |       |   RProject_Proof_BrockAkerman.pdf
+|   |   |       |   RProject_RScript_BrockAkerman.pdf
+|   |   |       |   
+|   |   |       +---R-Project_501_files
+|   |   |       |       MathJax.js.download
+|   |   |       |       
+|   |   |       +---RProjectST501_BrockAkerman
+|   |   |       |       .RData
+|   |   |       |       .Rhistory
+|   |   |       |       PackageLoadScript.R
+|   |   |       |       RProjectST501_BrockAkerman.R
+|   |   |       |       RProjectST501_BrockAkerman.Rproj
+|   |   |       |       RProjectST501_BrockAkerman_Part2.html
+|   |   |       |       RProjectST501_BrockAkerman_Part2.log
+|   |   |       |       RProjectST501_BrockAkerman_Part2.Rmd
+|   |   |       |       RProjectST501_BrockAkerman_Part2.tex
+|   |   |       |       RProjectST501_PDF.aux
+|   |   |       |       RProjectST501_PDF.html
+|   |   |       |       RProjectST501_PDF.log
+|   |   |       |       RProjectST501_PDF.Rmd
+|   |   |       |       RProjectST501_PDF.synctex(busy)
+|   |   |       |       RProjectST501_PDF.tex
+|   |   |       |       
+|   |   |       \---RProject_BrockAkerman_files
+|   |   |               MathJax.js.download
+|   |   |               
+|   |   +---ST502
+|   |   |   \---R_Project
+|   |   |       |   .Rhistory
+|   |   |       |   final-R-project-prompt.pdf
+|   |   |       |   framingham_data.csv
+|   |   |       |   R-project_Part1 .R
+|   |   |       |   
+|   |   |       \---ST502_R_Project
+|   |   |           |   .RData
+|   |   |           |   .Rhistory
+|   |   |           |   framingham_data.csv
+|   |   |           |   framingham_data_nonsmokers.csv
+|   |   |           |   framingham_data_smokers.csv
+|   |   |           |   Hanan_Part2_Code.R
+|   |   |           |   Hanan_R_Code.R
+|   |   |           |   Open_Workspace.R
+|   |   |           |   Part1.R
+|   |   |           |   Part2.R
+|   |   |           |   Part_1.html
+|   |   |           |   Part_1.Rmd
+|   |   |           |   Part_2.html
+|   |   |           |   Part_2.Rmd
+|   |   |           |   Part_2_Workspace.R
+|   |   |           |   Project1.html
+|   |   |           |   Project1.log
+|   |   |           |   Project1.md
+|   |   |           |   Project1.odt
+|   |   |           |   Project1.Rmd
+|   |   |           |   Project1.rtf
+|   |   |           |   Project1.tex
+|   |   |           |   RMarkdown_code.html
+|   |   |           |   RMarkdown_code.Rmd
+|   |   |           |   RProject_RCode.txt
+|   |   |           |   ST502_R_Project.Rproj
+|   |   |           |   ST502_R_Project_Complete.html
+|   |   |           |   ST502_R_Project_Complete.pdf
+|   |   |           |   ST502_R_Project_Complete.Rmd
+|   |   |           |   t-test_nonpooled.R
+|   |   |           |   t-test_pooled.R
+|   |   |           |   
+|   |   |           +---Project1_files
+|   |   |           |   +---figure-gfm
+|   |   |           |   |       unnamed-chunk-4-1.png
+|   |   |           |   |       unnamed-chunk-5-1.png
+|   |   |           |   |       unnamed-chunk-6-1.png
+|   |   |           |   |       
+|   |   |           |   \---figure-markdown_strict
+|   |   |           |           unnamed-chunk-4-1.png
+|   |   |           |           unnamed-chunk-5-1.png
+|   |   |           |           unnamed-chunk-6-1.png
+|   |   |           |           
+|   |   |           \---rsconnect
+|   |   |               \---documents
+|   |   |                   +---Project1.Rmd
+|   |   |                   |   \---rpubs.com
+|   |   |                   |       \---rpubs
+|   |   |                   |               Document.dcf
+|   |   |                   |               Publish Document.dcf
+|   |   |                   |               
+|   |   |                   \---ST502_R_Project_Complete.Rmd
+|   |   |                       \---rpubs.com
+|   |   |                           \---rpubs
+|   |   |                                   Document.dcf
+|   |   |                                   Publish Document.dcf
+|   |   |                                   
+|   |   +---ST518
+|   |   |   \---ST_518_Project
+|   |   |       |   .RData
+|   |   |       |   .Rhistory
+|   |   |       |   AIC, BIC, CP.Rmd
+|   |   |       |   Appendix_SAS-results.pdf
+|   |   |       |   Appendix_SAS.sas
+|   |   |       |   Contrast_Analysis.pdf
+|   |   |       |   Contrast_Analysis.Rmd
+|   |   |       |   EDA.pdf
+|   |   |       |   EDA.Rmd
+|   |   |       |   eff.sas7bdat
+|   |   |       |   effervescence.csv
+|   |   |       |   Executive Summary.Rmd
+|   |   |       |   Executive-Summary.pdf
+|   |   |       |   Introduction.Rmd
+|   |   |       |   mixed_effect_SASlike.ipynb
+|   |   |       |   OldOrderWork.pdf
+|   |   |       |   OldOrderWork.Rmd
+|   |   |       |   project.ipynb
+|   |   |       |   project_mark.pdf
+|   |   |       |   project_mark.Rmd
+|   |   |       |   README.md
+|   |   |       |   Report_template.pdf
+|   |   |       |   Report_template.Rmd
+|   |   |       |   Report_template2.pdf
+|   |   |       |   Report_template2.Rmd
+|   |   |       |   simple.Rmd
+|   |   |       |   ST 518 FA22 Project Report Rubric.pdf
+|   |   |       |   ST 518 FA22 Semester Project.pdf
+|   |   |       |   untitled.txt
+|   |   |       |   
+|   |   |       \---.ipynb_checkpoints
+|   |   |               Appendix_SAS-results-checkpoint.pdf
+|   |   |               Contrast_Analysis-checkpoint.Rmd
+|   |   |               EDA-checkpoint.pdf
+|   |   |               EDA-checkpoint.Rmd
+|   |   |               mixed_effect_SASlike-checkpoint.ipynb
+|   |   |               OldOrderWork-checkpoint.pdf
+|   |   |               project-checkpoint.ipynb
+|   |   |               project_mark-checkpoint.Rmd
+|   |   |               Report_template-checkpoint.pdf
+|   |   |               Report_template-checkpoint.Rmd
+|   |   |               Report_template2-checkpoint.pdf
+|   |   |               Report_template2-checkpoint.Rmd
+|   |   |               simple-checkpoint.Rmd
+|   |   |               untitled-checkpoint.txt
+|   |   |               
+|   |   +---ST531
+|   |   |       project_v3_20230426.pdf
+|   |   |       
+|   |   +---ST542
+|   |   |       Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf
+|   |   |       
+|   |   \---ST558
+|   |       |   Modeling.pdf
+|   |       |   Project_01_Proof.pdf
+|   |       |   
+|   |       \---ST558_Project_2
+|   |           |   .gitignore
+|   |           |   .RData
+|   |           |   .Rhistory
+|   |           |   .xls
+|   |           |   LICENSE
+|   |           |   project2.pdf
+|   |           |   README.md
+|   |           |   ST558_Project_2.Rproj
+|   |           |   
+|   |           \---Project_02
+|   |               |   .Rhistory
+|   |               |   server.R
+|   |               |   ui.R
+|   |               |   
+|   |               \---www
+|   |                       AWC.jfif
+|   |                       NOAA_Logo.png
+|   |                       NWS_Logo.png
+|   |                       
+|   \---UNG_Courses
+|           Brock_Akerman_MATH3390.pdf
+|           Undergraduate_Research_Paper.pdf
+|           
++---_sass
+|   |   ie8.scss
+|   |   main.scss
+|   |   
+|   \---libs
+|           _functions.scss
+|           _mixins.scss
+|           _skel.scss
+|           _vars.scss
+|           
+\---_site
+    |   CHANGELOG
+    |   CONTRIBUTING.md
+    |   favicon.ico
+    |   index.html
+    |   LICENSE.txt
+    |   README.md
+    |   slideshow-test.html
+    |   strata_jekyll_theme.gemspec
+    |   
+    +---2024
+    |   \---12
+    |       \---12
+    |           \---Start-Somewhere
+    |                   index.html
+    |                   
+    +---2025
+    |   \---01
+    |       \---01
+    |           \---Getting-Ready-For-Spring-Sem-25
+    |                   index.html
+    |                   
+    +---about-me
+    |       index.html
+    |       
+    +---assets
+    |   +---css
+    |   |   |   font-awesome.min.css
+    |   |   |   ie8.css
+    |   |   |   main.css
+    |   |   |   
+    |   |   \---images
+    |   |           05.jpg
+    |   |           bg.jpg
+    |   |           overlay.png
+    |   |           
+    |   +---favicon
+    |   |       about.txt
+    |   |       android-chrome-192x192.png
+    |   |       android-chrome-512x512.png
+    |   |       apple-touch-icon.png
+    |   |       favicon-16x16.png
+    |   |       favicon-32x32.png
+    |   |       favicon.ico
+    |   |       favicon_io.zip
+    |   |       site.webmanifest
+    |   |       
+    |   +---fonts
+    |   |       fontawesome-webfont.eot
+    |   |       fontawesome-webfont.svg
+    |   |       fontawesome-webfont.ttf
+    |   |       fontawesome-webfont.woff
+    |   |       fontawesome-webfont.woff2
+    |   |       FontAwesome.otf
+    |   |       
+    |   +---fulls
+    |   |       01.jpg
+    |   |       02.jpg
+    |   |       03.jpg
+    |   |       04.jpg
+    |   |       05.jpg
+    |   |       06.jpg
+    |   |       avatar.jpg
+    |   |       bg.jpg
+    |   |       strata.jpg
+    |   |       
+    |   +---js
+    |   |   |   jquery.min.js
+    |   |   |   jquery.poptrox.min.js
+    |   |   |   main.js
+    |   |   |   script.js
+    |   |   |   skel.min.js
+    |   |   |   util.js
+    |   |   |   
+    |   |   \---ie
+    |   |           backgroundsize.min.htc
+    |   |           html5shiv.js
+    |   |           PIE.htc
+    |   |           respond.min.js
+    |   |           
+    |   +---literature
+    |   |       Brock_Akerman_MATH3390.pdf
+    |   |       Undergraduate_Research_Paper.pdf
+    |   |       
+    |   \---media
+    |       +---animations
+    |       |       1732042095786.gif
+    |       |       Filler_GIF_01.gif
+    |       |       leap-of-faith-indiana-jones.gif
+    |       |       ML_Algorithm.gif
+    |       |       
+    |       +---blog_tile_img
+    |       |       Abstract_Journey_01.png
+    |       |       Abstract_Journey_02.png
+    |       |       Abstract_Journey_03.png
+    |       |       Abstract_Journey_04.png
+    |       |       
+    |       +---fulls
+    |       |       01.jpg
+    |       |       02.jpg
+    |       |       03.jpg
+    |       |       04.jpg
+    |       |       05.jpg
+    |       |       06.jpg
+    |       |       
+    |       +---logos
+    |       |   |   AMS-logo.jpg
+    |       |   |   ASA_logo.jpg
+    |       |   |   dplyr.png
+    |       |   |   ggplot2.png
+    |       |   |   Ggplot2_hex_logo.png
+    |       |   |   googlesheets4.png
+    |       |   |   knitr.png
+    |       |   |   lubridate.png
+    |       |   |   MALS-42insignia.jpg
+    |       |   |   Mathematical_Association_of_America_logo.svg
+    |       |   |   NCSU.png
+    |       |   |   PDF.png
+    |       |   |   purrr.png
+    |       |   |   quarto.png
+    |       |   |   readr.png
+    |       |   |   readxl.png
+    |       |   |   RED_DOG_5.png
+    |       |   |   reticulate.png
+    |       |   |   rmarkdown.png
+    |       |   |   RStudio.png
+    |       |   |   R_Logo_Collage.png
+    |       |   |   shiny.png
+    |       |   |   stringr.png
+    |       |   |   SVA.png
+    |       |   |   tibble.png
+    |       |   |   tidyr.png
+    |       |   |   tidyverse.png
+    |       |   |   TJC_Logo.jpg
+    |       |   |   UNG.png
+    |       |   |   USMC.png
+    |       |   |   Yoshukai-Karate.png
+    |       |   |   
+    |       |   \---License
+    |       |           CC_BY_NC.png
+    |       |           
+    |       \---thumbs
+    |           |   01.jpg
+    |           |   02.jpg
+    |           |   03.jpg
+    |           |   04.jpg
+    |           |   05.jpg
+    |           |   06.jpg
+    |           |   
+    |           +---BlogAssets
+    |           |   +---Images
+    |           |   |       Military_Medals.png
+    |           |   |       Military_NonMedal_Ribbons.png
+    |           |   |       Military_Ribbons.png
+    |           |   |       
+    |           |   \---Pictures
+    |           |           74562_1612963598264_3724324_n_1612963598264.jpg
+    |           |           Diploma.jpg
+    |           |           IMG_0384.jpg
+    |           |           RedDog.jpg
+    |           |           SelfPort.jpg
+    |           |           UNG_MathLab.jpg
+    |           |           
+    |           \---ProjectAssets
+    |               +---NCSU_Assets
+    |               |   +---ST501
+    |               |   |       MainTile.png
+    |               |   |       
+    |               |   +---ST502
+    |               |   |       MainTile.png
+    |               |   |       
+    |               |   +---ST518
+    |               |   |       MainTile.png
+    |               |   |       
+    |               |   +---ST531
+    |               |   |       MainTile.png
+    |               |   |       
+    |               |   \---ST558
+    |               |       |   MainTile.png
+    |               |       |   
+    |               |       +---PROJ01
+    |               |       |       MainTile.png
+    |               |       |       
+    |               |       \---PROJ03
+    |               |               MainTile.png
+    |               |               
+    |               \---UNG_Assets
+    |                       Oxygen_Cover.png
+    |                       SweetPotato_Cover.png
+    |                       
+    +---blogs-and-interests
+    |       index.html
+    |       
+    +---portfolio
+    |       index.html
+    |       
+    \---_projects
+        +---NCSU_Courses
+        |   +---ST501
+        |   |   \---RProject
+        |   |       |   R-Project_501.html
+        |   |       |   Rproject.pdf
+        |   |       |   RProject_BrockAkerman.html
+        |   |       |   RProject_Proof_BrockAkerman.pdf
+        |   |       |   RProject_RScript_BrockAkerman.pdf
+        |   |       |   
+        |   |       +---R-Project_501_files
+        |   |       |       MathJax.js.download
+        |   |       |       
+        |   |       +---RProjectST501_BrockAkerman
+        |   |       |       PackageLoadScript.R
+        |   |       |       RProjectST501_BrockAkerman.R
+        |   |       |       RProjectST501_BrockAkerman.Rproj
+        |   |       |       RProjectST501_BrockAkerman_Part2.html
+        |   |       |       RProjectST501_BrockAkerman_Part2.log
+        |   |       |       RProjectST501_BrockAkerman_Part2.Rmd
+        |   |       |       RProjectST501_BrockAkerman_Part2.tex
+        |   |       |       RProjectST501_PDF.aux
+        |   |       |       RProjectST501_PDF.html
+        |   |       |       RProjectST501_PDF.log
+        |   |       |       RProjectST501_PDF.Rmd
+        |   |       |       RProjectST501_PDF.synctex(busy)
+        |   |       |       RProjectST501_PDF.tex
+        |   |       |       
+        |   |       \---RProject_BrockAkerman_files
+        |   |               MathJax.js.download
+        |   |               
+        |   +---ST502
+        |   |   \---R_Project
+        |   |       |   final-R-project-prompt.pdf
+        |   |       |   framingham_data.csv
+        |   |       |   R-project_Part1 .R
+        |   |       |   
+        |   |       \---ST502_R_Project
+        |   |           |   framingham_data.csv
+        |   |           |   framingham_data_nonsmokers.csv
+        |   |           |   framingham_data_smokers.csv
+        |   |           |   Hanan_Part2_Code.R
+        |   |           |   Hanan_R_Code.R
+        |   |           |   Open_Workspace.R
+        |   |           |   Part1.R
+        |   |           |   Part2.R
+        |   |           |   Part_1.html
+        |   |           |   Part_1.Rmd
+        |   |           |   Part_2.html
+        |   |           |   Part_2.Rmd
+        |   |           |   Part_2_Workspace.R
+        |   |           |   Project1.html
+        |   |           |   Project1.log
+        |   |           |   Project1.md
+        |   |           |   Project1.odt
+        |   |           |   Project1.Rmd
+        |   |           |   Project1.rtf
+        |   |           |   Project1.tex
+        |   |           |   RMarkdown_code.html
+        |   |           |   RMarkdown_code.Rmd
+        |   |           |   RProject_RCode.txt
+        |   |           |   ST502_R_Project.Rproj
+        |   |           |   ST502_R_Project_Complete.html
+        |   |           |   ST502_R_Project_Complete.pdf
+        |   |           |   ST502_R_Project_Complete.Rmd
+        |   |           |   t-test_nonpooled.R
+        |   |           |   t-test_pooled.R
+        |   |           |   
+        |   |           +---Project1_files
+        |   |           |   +---figure-gfm
+        |   |           |   |       unnamed-chunk-4-1.png
+        |   |           |   |       unnamed-chunk-5-1.png
+        |   |           |   |       unnamed-chunk-6-1.png
+        |   |           |   |       
+        |   |           |   \---figure-markdown_strict
+        |   |           |           unnamed-chunk-4-1.png
+        |   |           |           unnamed-chunk-5-1.png
+        |   |           |           unnamed-chunk-6-1.png
+        |   |           |           
+        |   |           \---rsconnect
+        |   |               \---documents
+        |   |                   +---Project1.Rmd
+        |   |                   |   \---rpubs.com
+        |   |                   |       \---rpubs
+        |   |                   |               Document.dcf
+        |   |                   |               Publish Document.dcf
+        |   |                   |               
+        |   |                   \---ST502_R_Project_Complete.Rmd
+        |   |                       \---rpubs.com
+        |   |                           \---rpubs
+        |   |                                   Document.dcf
+        |   |                                   Publish Document.dcf
+        |   |                                   
+        |   +---ST518
+        |   |   \---ST_518_Project
+        |   |           AIC, BIC, CP.Rmd
+        |   |           Appendix_SAS-results.pdf
+        |   |           Appendix_SAS.sas
+        |   |           Contrast_Analysis.pdf
+        |   |           Contrast_Analysis.Rmd
+        |   |           EDA.pdf
+        |   |           EDA.Rmd
+        |   |           eff.sas7bdat
+        |   |           effervescence.csv
+        |   |           Executive Summary.Rmd
+        |   |           Executive-Summary.pdf
+        |   |           Introduction.Rmd
+        |   |           mixed_effect_SASlike.ipynb
+        |   |           OldOrderWork.pdf
+        |   |           OldOrderWork.Rmd
+        |   |           project.ipynb
+        |   |           project_mark.pdf
+        |   |           project_mark.Rmd
+        |   |           README.md
+        |   |           Report_template.pdf
+        |   |           Report_template.Rmd
+        |   |           Report_template2.pdf
+        |   |           Report_template2.Rmd
+        |   |           simple.Rmd
+        |   |           ST 518 FA22 Project Report Rubric.pdf
+        |   |           ST 518 FA22 Semester Project.pdf
+        |   |           untitled.txt
+        |   |           
+        |   +---ST531
+        |   |       project_v3_20230426.pdf
+        |   |       
+        |   \---ST558
+        |       |   Modeling.pdf
+        |       |   Project_01_Proof.pdf
+        |       |   
+        |       \---ST558_Project_2
+        |           |   LICENSE
+        |           |   project2.pdf
+        |           |   README.md
+        |           |   ST558_Project_2.Rproj
+        |           |   
+        |           \---Project_02
+        |               |   server.R
+        |               |   ui.R
+        |               |   
+        |               \---www
+        |                       AWC.jfif
+        |                       NOAA_Logo.png
+        |                       NWS_Logo.png
+        |                       
+        \---UNG_Courses
+                Brock_Akerman_MATH3390.pdf
+                Undergraduate_Research_Paper.pdf
+                

@@ -13,17 +13,17 @@ permalink: /about-me/
 
      <div class="slideshow-container-right">
           <div class="slideshow">
-               <img src="{{ '/assets/media/thumbs/BlogAssets/Images/Military_Ribbons.png' | relative_url }}" 
-                    alt="Marine Corps Ribbon Awards" 
+               <img src="{{ '/assets/media/thumbs/BlogAssets/Pictures/CapGownDiploma.jpg' | relative_url }}" 
+                    alt="Graduation" 
+                    onclick="openLightbox(this)">
+               <img src="{{ '/assets/media/thumbs/BlogAssets/Images/Military_MedalRibbon_Combo.png' | relative_url }}" 
+                    alt="Marine Corps Medals and Ribbons" 
                     onclick="openLightbox(this)">
                <img src="{{ '/assets/media/thumbs/BlogAssets/Pictures/74562_1612963598264_3724324_n_1612963598264.jpg' | relative_url }}" 
                     alt="Supporting ordnance disposal protection Baghram Air Base, Afghanistan 2004" 
                     onclick="openLightbox(this)">
                <img src="{{ '/assets/media/logos/USMC.png' | relative_url }}" 
                     alt="Marine Corps Seal" 
-                    onclick="openLightbox(this)">
-               <img src="{{ '/assets/media/thumbs/BlogAssets/Images/Military_Medals.png' | relative_url }}" 
-                    alt="Marine Corps Medal Awards" 
                     onclick="openLightbox(this)">
                <img src="{{ '/assets/media/thumbs/BlogAssets/Pictures/IMG_0384.jpg' | relative_url }}" 
                     alt="Dress Blue Deltas" 

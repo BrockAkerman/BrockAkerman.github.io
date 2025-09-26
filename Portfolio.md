@@ -47,6 +47,19 @@ permalink: /portfolio/
         <p>A data-driven analysis project for MATH3390 focusing on crop yields.</p>
       </article>
 
+
+
+	<!-- Project 8 -->
+	<article class="work-item">
+		<a href="{{ '/portfolio/st501-project/' | relative_url }}" class="image fit thumb"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST501/MainTile.png' | relative_url }}" alt="Convergence Theory Visualization" />
+  	</a>
+	<h3>Visualization of Convergence Theory in Probability and Statistics</h3>
+	<p>The Poisson Distribution, the Exponential Distribution, and Monte Carlo simulations</p>
+	</article>
+
+
+
+
       <!-- Project 5 -->
       <article class="work-item">
         <a href="{{ '/_projects/NCSU_Courses/ST501/RProject/RProject_RScript_BrockAkerman.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST501/MainTile.png' | relative_url }}" alt="" /></a>

@@ -3946,3 +3946,21 @@ body {
 	display: flex;
   }
 /* END SLIDESHOW ON ABOUTME SECTION*/
+
+
+/* ... existing styles ... */
+
+/* Custom Project Page Styles */
+.project-page-content {
+    /* Creates 1/2 inch margins on the left and right */
+    margin-left: 0.5in;
+    margin-right: 0.5in;
+    /* Optional: If your content has a max width, you may need 
+       to center it if you use margins, or use padding instead: */
+    /* max-width: 1000px; */
+    /* margin: 0 auto; */
+}
+
+/* Lightbox styles */
+.lightbox {
+/* ... existing lightbox styles ... */

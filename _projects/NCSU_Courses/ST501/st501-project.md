@@ -11,8 +11,6 @@ tags:
   - Probability Theory
 ---
 
-# Visualization of Convergence Theory in Probability and Statistics
-
 ### Project Overview
 
 This project, completed for ST 501, focused on analyzing and visualizing data using R. I used several key R packages, including `ggplot2` for creating detailed plots, `dplyr` for data manipulation, and `knitr` for generating reproducible reports.
@@ -24,9 +22,3 @@ This project, completed for ST 501, focused on analyzing and visualizing data us
 <img src="/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST501/MainTile.png" alt="ST501 Project Main Tile" style="width:100%; max-width:600px; display:block; margin:auto;">
 
 The goal was to apply statistical concepts to a real-world dataset. The project involved data cleaning, exploratory data analysis, and fitting a regression model to predict an outcome variable. The final report detailed my methodology, findings, and conclusions.
-
-tags:  North Carolina State University, ST501
-
-* [Link to PDF Report]({{ '/_projects/NCSU_Courses/ST501/RProject/RProject_RScript_BrockAkerman.pdf' | relative_url }})
-
-tile_image: /assets/media/thumbs/ProjectAssets/NCSU_Assets/ST501/MainTile.png

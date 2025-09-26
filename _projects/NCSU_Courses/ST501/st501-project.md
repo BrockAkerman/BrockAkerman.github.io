@@ -9,11 +9,14 @@ tags:
   - R Programming
   - Data Visualization
   - Probability Theory
+  - Poisson
+  - Exponential
+  - Monte Carlo
 ---
 
 ### Project Overview
 
-This analysis, completed for ST 501, focused on explaining the fundamentals behind the central limit theorem.  Using visualization tools from ggplot and baseR as a visual aide, I discussed and applied the central limit theorem to the Poisson distribution, the Exponential distribution and a simulation using a Monte Carlo algorithm.  By modifying the distribution inputs, I was able to demonstrate the effects of sampling size, the rate paramter and the scale parameter had on convergence in density plots.  `dplyr` was utilized for data manipulation, and `knitr` for generating reproducible reports.  One of the many sampling plots is shown below.
+This analysis, completed as a part of the Fundamentals of Statistical Inference I course at North Carolina State University, focused on explaining the fundamentals of the central limit theorem. Using visualization tools from `ggplot2` and base R as visual aids, I applied the central limit theorem to the Poisson distribution, the Exponential distribution, and a simulation using a Monte Carlo algorithm. By modifying distribution inputs, I demonstrated how sample size, the rate parameter, and the scale parameter affect convergence in density plots. The `dplyr` package was used for data manipulation, and `knitr` for generating reproducible reports. One of the sampling plots is shown below.
 
 <img src="/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST501/MainTile.png" alt="ST501 Project Main Tile" style="width:100%; max-width:600px; display:block; margin:auto;">
 

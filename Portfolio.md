@@ -39,14 +39,14 @@ permalink: /portfolio/
       <!-- Project 7 -->
       <article class="work-item">
         <a href="{{ '/_projects/UNG_Courses/Undergraduate_Research_Paper.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener">
-        <img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Oxygen_Cover.png' | relative_url }}" alt="Research Paper Cover" /></a>
+        <img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Oxygen_Cover2.png' | relative_url }}" alt="Research Paper Cover" /></a>
         <h3>Biological Research Capstone</h3>
         <p>Deoxygenated River Water effects on Rainbow Trout Propagation</p>
       </article>
 
       <!-- Project 6 -->
       <article class="work-item">
-        <a href="{{ '/_projects/UNG_Courses/Brock_Akerman_MATH3390.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/SweetPotato_Cover.png' | relative_url }}" alt="MATH3390 Project Cover" /></a>
+        <a href="{{ '/_projects/UNG_Courses/Brock_Akerman_MATH3390.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Sweet_Potato_Cover.png' | relative_url }}" alt="MATH3390 Project Cover" /></a>
         <h3>Agricultural-Economic Analysis</h3>
         <p>Organic vs Conventional Produce Pricing</p>
       </article>

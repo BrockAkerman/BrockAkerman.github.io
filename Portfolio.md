@@ -11,29 +11,29 @@ permalink: /portfolio/
   <div class="portfolio-container">
     <div class="portfolio-grid">
 
-<!-- Project 8 -->
-<article class="work-item">
-  <a href="{{ '/_projects/NCSU_Courses/ST542/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf' | relative_url }}" 
-     class="image fit thumb" target="_blank" rel="noopener">
-    <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.PNG' | relative_url }}" 
-         alt="Bridging the Gap" />
-  </a>
-  <h3>Bridging the Gap</h3>
-  <p>Exploring Perception Gaps in Dental Veterinary Training and Graduate Preparedness</p>
-</article>
+	<!-- Project 8 -->
+	<article class="work-item">
+	  <a href="{{ '/_projects/NCSU_Courses/ST542/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf' | relative_url }}" 
+		 class="image fit thumb" target="_blank" rel="noopener">
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.PNG' | relative_url }}" 
+			 alt="Bridging the Gap" />
+	  </a>
+	  <h3>"Bridging the Gap"</h3>
+	  <p>Exploring Perception Gaps in Veterinary Dental Training and Preparedness</p>
+	</article>
 
     <!-- Project Feature1 -->
       <article class="work-item">
         <a href="https://github.com/Bakerman1982/ST558_FinalProj.git" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" alt="Airport JSON ShinyDash" /></a>
-        <h3>Airport JSON ShinyDash</h3>
-        <p>A Shiny Dash project analyzing JSON data for ST558.</p>
+        <h3>Shiny Dashboard</h3>
+        <p>Visualization of real time JSON weather data at airports</p>
       </article>
   
       <!-- Project Feature2 -->
       <article class="work-item">
         <a href="{{ '/_projects/NCSU_Courses/ST518/ST_518_Project/Report_template2.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png' | relative_url }}" alt="Solubility Analysis" /></a>
-        <h3>Solubility Analysis of Cold Brand Medicines</h3>
-        <p>Effervescence analysis project for ST518.</p>
+        <h3>Effervescence and Solubility Analysis</h3>
+        <p>Modeling over-the-count medications</p>
       </article>
   
       <!-- Project 7 -->

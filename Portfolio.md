@@ -11,12 +11,16 @@ permalink: /portfolio/
   <div class="portfolio-container">
     <div class="portfolio-grid">
 
-    <!-- Project 8 -->
-      <article class="work-item">
-        <a href="https://github.com/Bakerman1982/ST542_ConsultProj/blob/main/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.PNG' | relative_url }}" alt="Bridging the Gap" /></a>
-        <h3>Bridging the Gap</h3>
-        <p>Exploring Perception Gaps in Dental Veterinary Training and Graduate Preparedness</p>
-      </article>
+<!-- Project 8 -->
+<article class="work-item">
+  <a href="{{ '/_projects/NCSU_Courses/ST542/Bridging_the_Gap_Dental_Veterinary_Training_Analysis.pdf' | relative_url }}" 
+     class="image fit thumb" target="_blank" rel="noopener">
+    <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/DVM_Density.PNG' | relative_url }}" 
+         alt="Bridging the Gap" />
+  </a>
+  <h3>Bridging the Gap</h3>
+  <p>Exploring Perception Gaps in Dental Veterinary Training and Graduate Preparedness</p>
+</article>
 
     <!-- Project Feature1 -->
       <article class="work-item">

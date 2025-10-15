@@ -46,7 +46,7 @@ permalink: /portfolio/
 
       <!-- Project 6 -->
       <article class="work-item">
-        <a href="{{ '/_projects/UNG_Courses/Brock_Akerman_MATH3390.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Sweet_Potato_Cover.png' | relative_url }}" alt="MATH3390 Project Cover" /></a>
+        <a href="{{ '/_projects/UNG_Courses/Brock_Akerman_MATH3390.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Sweet_Potato_Cover.PNG' | relative_url }}" alt="MATH3390 Project Cover" /></a>
         <h3>Agricultural-Economic Analysis</h3>
         <p>Organic vs Conventional Produce Pricing</p>
       </article>

@@ -74,12 +74,15 @@ permalink: /portfolio/
         <p>Bayesian LASSO Regression</p>
       </article>
 
-      <!-- Project 2 -->
-      <article class="work-item">
-        <a href="{{ '/_projects/NCSU_Courses/ST558/Project_01_Proof.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ01/MainTile.png' | relative_url }}" alt="" /></a>
-        <h3>Census Bureau Statistical Compendia</h3>
-        <p>Demonstration of the R Tidyverse</p>
-      </article>
+	<!-- Project 2 -->
+	<article class="work-item">
+	  <a href="{{ '/portfolio/st558-project01/' | relative_url }}" class="image fit thumb">
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ01/MainTile.png' | relative_url }}" alt="Census Bureau Statistical Compendia" />
+	  </a>
+	  <h3>Census Bureau Statistical Compendia</h3>
+	  <p>Demonstration of the R Tidyverse</p>
+	</article>
+
 
 	<!-- Project 1 -->
 	<article class="work-item">

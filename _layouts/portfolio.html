@@ -18,7 +18,6 @@ layout: default
     <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   </head>
 
-  <!-- ✅ Body class triggers your portfolio side margins -->
   <body class="{% if page.url == '/portfolio/' %}portfolio{% endif %}">
     {% include burger_menu.html %}
 
@@ -40,10 +39,7 @@ layout: default
           {% endif %}
         </header>
 
-        <div class="portfolio-grid">
-          <!-- ✳️ Add your gallery tiles here -->
-          {{ content }}
-        </div>
+        <p>Welcome to my portfolio. Below are selected highlights of my academic work.</p>
       </section>
 
       <!-- === Academic Featured (soft bordered box) === -->
@@ -51,30 +47,12 @@ layout: default
         <header>
           <h2>Academic Featured</h2>
         </header>
-        <div class="portfolio-grid">
-          <!-- ✳️ Add your academic feature tiles here -->
-          <!-- Example tile structure -->
-          <!--
-          <div class="portfolio-tile">
-            <img src="/assets/media/project1.jpg" alt="Project image">
-            <h3>Statistical Research Project</h3>
-            <p>Developed mixed-effects model to analyze survey responses across institutions.</p>
-          </div>
-          -->
-        </div>
-      </section>
 
-      <!-- === (Optional) Future Feature Sections === -->
-      <!--
-      <section class="portfolio-featured">
-        <header>
-          <h2>Industry Work</h2>
-        </header>
         <div class="portfolio-grid">
-          <!-- Future tiles go here -->
+          <!-- Move your actual tiles HERE -->
+          {{ content }}
         </div>
       </section>
-      -->
 
     </main>
 

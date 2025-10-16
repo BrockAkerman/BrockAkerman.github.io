@@ -3341,12 +3341,13 @@ html {
   
 
 	/* Grid layout for projects */
-		.portfolio-grid {
-		  display: grid;
-		  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* adaptive width */
-		  gap: 2em;
-		}
-
+	/* Flexible, responsive tile grid */
+	.portfolio-grid {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+	  gap: 2em;
+	  justify-content: center;
+	}
 	/* === Portfolio Page Layout === */
 
 	/* General section spacing */

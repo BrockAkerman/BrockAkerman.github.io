@@ -3380,12 +3380,12 @@ html {
 
 /* Each tile: identical width, consistent look */
 .portfolio-tile {
-  width: 600px; !important                          /* fixed tile width */
-  min-width: 600px; !important                      /* cannot shrink smaller */
-  max-width: 600px; !important
-  height: 220px; !important       /* adjust as needed for your image + text balance */
-  min-height: 220px; !important
-  max-height: 220px; !important
+  width: 600px;                           /* fixed tile width */
+  min-width: 600px;                       /* cannot shrink smaller */
+  max-width: 600px; 
+  height: 220px;       /* adjust as needed for your image + text balance */
+  min-height: 220px; 
+  max-height: 220px; 
   background: white;
   border-radius: 8px;
   padding: 1.5em;

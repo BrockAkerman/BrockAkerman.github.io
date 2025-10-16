@@ -3317,7 +3317,7 @@ html {
 
 /* Container to center grid and add margins */
 		.portfolio-container {
-			width: 85%; /* Use 85% of the viewport width */
+			width: 90%; /* Use 85% of the viewport width */
 			margin: 0 auto; /* Center the container */
 			padding: 2em 0; /* Add vertical padding */
 			max-width: 85%; /* Keeps the layout centered */
@@ -3342,10 +3342,64 @@ html {
 
 	/* Grid layout for projects */
 		.portfolio-grid {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
-			gap: 1.5em; /* Space between grid items */
+		  display: grid;
+		  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* adaptive width */
+		  gap: 2em;
 		}
+
+	/* === Portfolio Page Layout === */
+
+	/* General section spacing */
+	.portfolio-gallery,
+	.portfolio-featured {
+	  margin: 3em auto;
+	  width: 90%;
+	  max-width: 1600px;
+	}
+
+	/* Portfolio gallery (wide, open layout) */
+	.portfolio-gallery {
+	  background: none;
+	  border: none;
+	  box-shadow: none;
+	  padding: 0;
+	}
+
+	/* Featured section gets soft box styling */
+	.portfolio-featured {
+	  background: #fafafa;
+	  border: 1px solid #e0e0e0;
+	  border-radius: 10px;
+	  padding: 2em;
+	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	}
+
+	/* Optional: clean individual tile style */
+	.portfolio-tile {
+	  background: white;
+	  border-radius: 6px;
+	  padding: 1.5em;
+	  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	  transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.portfolio-tile:hover {
+	  transform: translateY(-4px);
+	  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+	}
+
+	.portfolio-tile img {
+	  width: 100%;
+	  border-radius: 4px;
+	  margin-bottom: 1em;
+	}
+
+	.portfolio-tile h3 {
+	  margin-bottom: 0.5em;
+	  color: #333;
+	}
+
+
 
 	/* Individual work items (cards) */
 		.work-item {
@@ -3383,13 +3437,6 @@ html {
 			font-size: 0.9em;
 			color: #666;
 			margin-bottom: 1em;
-		}
-
-	/* Responsive Behavior for Smaller Screens */
-		@media (max-width: 768px) {
-			.portfolio-grid {
-				grid-template-columns: 1fr; /* Switch to a single column layout */
-			}
 		}
 		
 

@@ -18,35 +18,69 @@ layout: default
     <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
   </head>
 
+  <!-- ✅ Body class triggers your portfolio side margins -->
   <body class="{% if page.url == '/portfolio/' %}portfolio{% endif %}">
     {% include burger_menu.html %}
 
-<!-- Main Content -->
-<main>
-  <div class="blogs-and-interests">
-    <div class="blog-cards-container">
-      <article class="post-container">
+    <!-- =========================
+         Main Content
+    ========================== -->
+    <main>
+
+      <!-- === Portfolio Gallery (wide, no border) === -->
+      <section class="portfolio-gallery">
         <header class="post-header">
           <h1 class="post-title">{{ page.title }}</h1>
           {% if page.date %}
           <p class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+            <time datetime="{{ page.date | date_to_xmlschema }}">
+              {{ page.date | date: "%B %d, %Y" }}
+            </time>
           </p>
           {% endif %}
         </header>
 
-        <div class="post-content">
+        <div class="portfolio-grid">
+          <!-- ✳️ Add your gallery tiles here -->
           {{ content }}
         </div>
+      </section>
 
-        <footer class="post-footer"></footer>
-      </article>
-    </div>
-  </div>
-</main>
+      <!-- === Academic Featured (soft bordered box) === -->
+      <section class="portfolio-featured">
+        <header>
+          <h2>Academic Featured</h2>
+        </header>
+        <div class="portfolio-grid">
+          <!-- ✳️ Add your academic feature tiles here -->
+          <!-- Example tile structure -->
+          <!--
+          <div class="portfolio-tile">
+            <img src="/assets/media/project1.jpg" alt="Project image">
+            <h3>Statistical Research Project</h3>
+            <p>Developed mixed-effects model to analyze survey responses across institutions.</p>
+          </div>
+          -->
+        </div>
+      </section>
 
+      <!-- === (Optional) Future Feature Sections === -->
+      <!--
+      <section class="portfolio-featured">
+        <header>
+          <h2>Industry Work</h2>
+        </header>
+        <div class="portfolio-grid">
+          <!-- Future tiles go here -->
+        </div>
+      </section>
+      -->
 
-    <!-- Scripts -->
+    </main>
+
+    <!-- =========================
+         Scripts
+    ========================== -->
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/jquery.poptrox.min.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/skel.min.js' | relative_url }}"></script>

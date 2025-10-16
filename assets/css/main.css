@@ -3341,13 +3341,22 @@ html {
   
 
 	/* Grid layout for projects */
-	/* Flexible, responsive tile grid */
+	/* Responsive 2-column grid for portfolio tiles */
 	.portfolio-grid {
 	  display: grid;
-	  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-	  gap: 2em;
-	  justify-content: center;
+	  grid-template-columns: repeat(2, minmax(520px, 1fr)); /* wider tiles */
+	  gap: 2.5em; /* more breathing space between tiles */
+	  justify-content: center; /* centers grid if fewer than 2 columns fit */
 	}
+
+	/* Switch to 1 column on tablets/phones */
+	@media (max-width: 1100px) {
+	  .portfolio-grid {
+		grid-template-columns: 1fr;
+	  }
+	}
+
+	
 	/* === Portfolio Page Layout === */
 
 	/* General section spacing */

@@ -36,7 +36,7 @@ tags:
   </p>
 
   <p><strong>Submitted Analysis:</strong> You can view the full report here:
-    <a href="{{ '/_projects/NCSU_Courses/ST502/ST502_R_Project_Complete.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
+    <a href="{{ '/_projects/NCSU_Courses/ST502/R_Project/ST502_R_Project/ST502_R_Project_Complete.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
   </p>
 
   <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST502/MainTile.png' | relative_url }}" alt="Framingham Heart Study Visualization" class="image fit" />

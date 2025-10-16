@@ -41,7 +41,7 @@ tags:
     <a href="{{ '/_projects/NCSU_Courses/ST558/Modeling.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
   </p>
 
-  <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" alt="Diabetes Modeling Visualization" class="image fit" />
+  <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ03/MainTile.png' | relative_url }}" alt="Diabetes Modeling Visualization" class="image fit" />
 </section>
 
 <!-- Key Deliverables -->

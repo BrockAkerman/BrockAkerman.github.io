@@ -3428,6 +3428,14 @@ html {
   }
 }
 
+/* === Override global .image.fit rule inside portfolio tiles === */
+.portfolio-tile .image.fit {
+  width: auto !important;   /* stop stretching to 100% */
+  max-width: 100%;          /* keep images from overflowing */
+  height: auto;
+  display: block;
+  margin: 0 auto;           /* center the image */
+}
 	
 
 

@@ -21,8 +21,10 @@ layout: default
   <body class="{% if page.url == '/portfolio/' %}portfolio-page{% endif %}">
     {% include burger_menu.html %}
 
-    <!-- Main Content -->
-    <main>
+<!-- Main Content -->
+<main>
+  <div class="blogs-and-interests">
+    <div class="blog-cards-container">
       <article class="post-container">
         <header class="post-header">
           <h1 class="post-title">{{ page.title }}</h1>
@@ -33,15 +35,16 @@ layout: default
           {% endif %}
         </header>
 
-        <!-- Portfolio Grid Section -->
         <div class="post-content">
           {{ content }}
         </div>
 
-        <!-- Optional footer placeholder (kept empty for now) -->
         <footer class="post-footer"></footer>
       </article>
-    </main>
+    </div>
+  </div>
+</main>
+
 
     <!-- Scripts -->
     <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>

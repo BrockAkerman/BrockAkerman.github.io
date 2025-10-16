@@ -33,10 +33,10 @@ tags:
   </p>
 
   <p><strong>Submitted Analysis:</strong> You can view the full report here: 
-    <a href="{{ '/_projects/NCSU_Courses/ST558/project_v3_20230426.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
+    <a href="{{ '/_projects/NCSU_Courses/ST531/project_v3_20230426.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
   </p>
 
-  <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ04/MainTile.png' | relative_url }}" alt="Bayesian Hydroformylation Modeling Visualization" class="image fit" />
+  <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST531/MainTile.png' | relative_url }}" alt="Bayesian Hydroformylation Modeling Visualization" class="image fit" />
 </section>
 
 <section id="deliverables">

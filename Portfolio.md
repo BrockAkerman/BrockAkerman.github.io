@@ -67,12 +67,25 @@ permalink: /portfolio/
         <p>Hypothesis Testing Deltas in Blood Pressures</p>
       </article>
 
+<!-- Project 4 (Updated) -->
+<article class="work-item">
+  <a href="{{ '/_projects/NCSU_Courses/ST502/ST502_R_Project_Complete.pdf' | relative_url }}" 
+     class="image fit thumb" target="_blank" rel="noopener">
+    <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST502/MainTile.png' | relative_url }}" 
+         alt="Framingham Heart Study Analysis" />
+  </a>
+  <h3>Blood Pressure Mean Comparison</h3>
+  <p>Framingham Heart Study: Testing Mean Systolic Blood Pressure Differences between Smokers and Non-Smokers</p>
+</article>
+
+
+
 	<!-- Project 3 -->
 	<article class="work-item">
 	  <a href="{{ '/portfolio/st558-hydroformylation/' | relative_url }}" class="image fit thumb">
 		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST531/MainTile.png' | relative_url }}" alt="Bayesian Modeling of Hydroformylation Reaction Data" />
 	  </a>
-	  <h3>Bayesian Modeling of Hydroformylation Reaction Data</h3>
+	  <h3>Bayesian Modeling of Hydroformylation Reaction</h3>
 	  <p>Exploring Bayesian Linear and LASSO Regression Models</p>
 	</article>
 
@@ -101,4 +114,3 @@ permalink: /portfolio/
     </div>
   </div>
 </section>
-/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ03

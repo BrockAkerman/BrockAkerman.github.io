@@ -32,9 +32,14 @@ tags:
     to assess model performance across chains.
   </p>
 
-  <p><strong>Submitted Analysis:</strong> You can view the full report here: 
-    <a href="{{ '/_projects/NCSU_Courses/ST531/project_v3_20230426.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
-  </p>
+<p><strong>Submitted Analysis:</strong> You can view the full report here: 
+  <a href="{{ '/_projects/NCSU_Courses/ST531/project_v3_20230426.pdf' | relative_url }}" target="_blank">Final Report (PDF)</a>.
+</p>
+
+<p><strong>Presentation Slides:</strong> You can view the accompanying presentation here: 
+  <a href="{{ '/_projects/NCSU_Courses/ST540/st-540-final-group-16.pdf' | relative_url }}" target="_blank">Presentation (PDF)</a>.
+</p>
+
 
   <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST531/MainTile.png' | relative_url }}" alt="Bayesian Hydroformylation Modeling Visualization" class="image fit" />
 </section>

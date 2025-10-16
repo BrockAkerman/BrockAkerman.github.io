@@ -5,7 +5,7 @@ permalink: /portfolio/
 ---
 
 <section id="portfolio">
-  <h2>Academic Featured</h2>
+  <!-- <h2>Academic Featured</h2> -->
   
 
   <div class="portfolio-container">

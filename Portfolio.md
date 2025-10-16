@@ -70,7 +70,7 @@ permalink: /portfolio/
 	<!-- Project 3 -->
 	<article class="work-item">
 	  <a href="{{ '/portfolio/st558-hydroformylation/' | relative_url }}" class="image fit thumb">
-		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ04/MainTile.png' | relative_url }}" alt="Bayesian Modeling of Hydroformylation Reaction Data" />
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST531/MainTile.png' | relative_url }}" alt="Bayesian Modeling of Hydroformylation Reaction Data" />
 	  </a>
 	  <h3>Bayesian Modeling of Hydroformylation Reaction Data</h3>
 	  <p>Exploring Bayesian Linear and LASSO Regression Models</p>

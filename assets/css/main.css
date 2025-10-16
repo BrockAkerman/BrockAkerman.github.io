@@ -3341,28 +3341,29 @@ html {
   
 
 	/* Grid layout for projects */
-	/* === Responsive centered grid for portfolio tiles === */
+	/* === Centered, uniform-width portfolio tiles === */
 	.portfolio-grid {
-	  display: grid;
-	  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-	  gap: 2.5em;                        /* even spacing between tiles */
-	  justify-content: center;           /* centers the grid tracks themselves */
-	  justify-items: center;             /* centers each tile within its grid cell */
-	  width: 100%;                       /* fill the inner border width */
+	  display: flex;
+	  flex-wrap: wrap;                /* allow wrapping to next row */
+	  justify-content: center;        /* center tiles as a group */
+	  gap: 2.5em;                     /* even horizontal & vertical spacing */
+	  width: 100%;
 	  margin: 0 auto;
 	  box-sizing: border-box;
 	}
 
-	/* Optional: limit crazy-wide monitors so the grid doesn’t stretch too far */
-	.portfolio-featured .portfolio-grid {
-	  max-width: 1100px;                 /* about two 480px tiles + gap */
+	/* Individual tiles: fixed width, consistent look */
+	.portfolio-tile {
+	  width: 500px;                   /* fixed tile width for uniformity */
+	  flex: 0 0 500px;                /* prevents shrinking or stretching */
+	  box-sizing: border-box;
 	}
 
-	/* Responsive fallback: single column on smaller viewports */
+	/* Responsive: drop to one column on narrow viewports */
 	@media (max-width: 1050px) {
-	  .portfolio-featured .portfolio-grid {
-		grid-template-columns: 1fr;
-		max-width: 700px;
+	  .portfolio-tile {
+		width: 90%;                   /* nearly full width on small screens */
+		flex: 0 0 90%;
 	  }
 	}
 

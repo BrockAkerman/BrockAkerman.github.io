@@ -3380,8 +3380,12 @@ html {
 
 /* Each tile: identical width, consistent look */
 .portfolio-tile {
-  width: 100%;                            /* Take full width of its grid cell */
-  max-width: 500px;                       /* Cap tile width for uniform sizing */
+  width: 500px;                           /* fixed tile width */
+  min-width: 500px;                       /* cannot shrink smaller */
+  max-width: 500px; 
+  height: 420px;        /* adjust as needed for your image + text balance */
+  min-height: 420px;
+  max-height: 420px;
   background: white;
   border-radius: 8px;
   padding: 1.5em;

@@ -29,12 +29,15 @@ permalink: /portfolio/
         <p>Visualization of real time JSON weather data at airports</p>
       </article>
   
-      <!-- Project Feature2 -->
-      <article class="work-item">
-        <a href="{{ '/_projects/NCSU_Courses/ST518/ST_518_Project/Report_template2.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png' | relative_url }}" alt="Solubility Analysis" /></a>
-        <h3>Effervescence and Solubility Analysis</h3>
-        <p>Modeling over-the-count medications</p>
-      </article>
+	<!-- Project Feature2 -->
+	<article class="work-item">
+	  <a href="{{ '/portfolio/st518-project/' | relative_url }}" class="image fit thumb">
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST518/MainTile.png' | relative_url }}" alt="Solubility Analysis" />
+	  </a>
+	  <h3>Effervescence and Solubility Analysis</h3>
+	  <p>Modeling over-the-count medications</p>
+	</article>
+
   
 	<!-- Project 7 -->
 	<article class="work-item">

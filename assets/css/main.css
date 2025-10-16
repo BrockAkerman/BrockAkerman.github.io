@@ -3335,16 +3335,17 @@ html {
 		  padding: 0;
 		}
 
+
 		/* === Academic Featured Section (soft bordered wrapper) === */
 		.portfolio-featured {
 		  background: #fafafa;
 		  border: 1px solid #e0e0e0;
 		  border-radius: 10px;
-		  padding: 2.5em 3em;       /* top-bottom | left-right padding */
+		  padding: 2.5em 3em;
 		  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-		  width: 95%;               /* slightly wider than container */
-		  max-width: 1800px;        /* keep centered on large screens */
-		  margin: 3em auto;         /* centers the section itself */
+		  width: 88%;               /* tighter than 95% for visible outer margin */
+		  max-width: 1700px;        /* caps overall width */
+		  margin: 3em auto;
 		}
 
 		  .blog-tile {
@@ -3364,68 +3365,66 @@ html {
   
 
 		/* Grid layout for projects */
-/* Uniform, centered grid */
-.portfolio-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;   /* centers whole row group */
-  align-items: stretch;
-  gap: 2.5em;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
+			/* === Consistent, centered portfolio grid === */
+			.portfolio-grid {
+			  display: flex;
+			  flex-wrap: wrap;              /* allows wrapping into multiple rows */
+			  justify-content: space-evenly;/* evenly space tiles within each row */
+			  align-items: flex-start;
+			  gap: 2em;                     /* equal vertical/horizontal gaps */
+			  margin: 0 auto;
+			  width: 100%;
+			  max-width: 1600px;            /* controls total layout width */
+			  box-sizing: border-box;
+			}
 
+			/* Each tile: fixed, equal size for clean alignment */
+			.portfolio-tile {
+			  flex: 0 1 460px;              /* locks tile width near 460px but still wraps evenly */
+			  max-width: 460px;
+			  min-width: 460px;
+			  background: white;
+			  border-radius: 8px;
+			  padding: 1.5em;
+			  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			  box-sizing: border-box;
+			  display: flex;
+			  flex-direction: column;
+			  justify-content: flex-start;
+			  align-items: stretch;
+			  transition: transform 0.2s ease, box-shadow 0.2s ease;
+			}
 
-/* Each tile: identical width, consistent layout */
-.portfolio-tile {
-  flex: 0 0 auto;
-  width: 500px;
-  min-width: 500px;
-  max-width: 500px;
-  background: white;
-  border-radius: 8px;
-  padding: 1.5em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+			/* Hover effect */
+			.portfolio-tile:hover {
+			  transform: translateY(-4px);
+			  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+			}
 
+			/* Tile images */
+			.portfolio-tile img {
+			  width: 100%;
+			  height: 200px;
+			  object-fit: cover;
+			  border-radius: 4px;
+			  margin-bottom: 1em;
+			}
 
-	/* Hover effect */
-	.portfolio-tile:hover {
-	  transform: translateY(-4px);
-	  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-	}
+			/* Tile titles */
+			.portfolio-tile h3 {
+			  margin-bottom: 0.5em;
+			  color: #333;
+			  font-size: 1.2em;
+			}
 
-	/* Tile images */
-	.portfolio-tile img {
-	  width: 100%;
-	  height: 200px;                 /* consistent image height */
-	  object-fit: cover;
-	  border-radius: 4px;
-	  margin-bottom: 1em;
-	}
-
-	/* Tile titles */
-	.portfolio-tile h3 {
-	  margin-bottom: 0.5em;
-	  color: #333;
-	  font-size: 1.2em;
-	}
-
-	/* Responsive: single column on narrow screens */
-@media (max-width: 1100px) {
-  .portfolio-tile {
-    width: 90%;
-    min-width: 90%;
-    max-width: 90%;
-  }
-}
+			/* Responsive: single column on small screens */
+			@media (max-width: 1100px) {
+			  .portfolio-tile {
+				flex: 0 0 90%;
+				max-width: 90%;
+				min-width: 90%;
+			  }
+			}
 
 	
 

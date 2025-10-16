@@ -81,14 +81,16 @@ permalink: /portfolio/
         <p>Demonstration of the R Tidyverse</p>
       </article>
 
-      <!-- Project 1 -->
-      <article class="work-item">
-        <a href="{{ '/_projects/NCSU_Courses/ST558/Modeling.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ03/MainTile.png' | relative_url }}" alt="" /></a>
-        <h3>Diabetes Health Indicators</h3>
-        <p>Leveraging Statistic Models to Find Best Models</p>
-      </article>
+	<!-- Project 1 -->
+	<article class="work-item">
+	  <a href="{{ '/portfolio/st558-project/' | relative_url }}" class="image fit thumb">
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ03/MainTile.png' | relative_url }}" alt="Diabetes Health Indicators Modeling" />
+	  </a>
+	  <h3>Diabetes Health Indicators</h3>
+	  <p>Leveraging Statistical Models to Find Best Models</p>
+	</article>
 
-          <!-- Add more projects here --> 
+<!-- Add more projects here --> 
           
     </div>
   </div>

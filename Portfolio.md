@@ -36,13 +36,15 @@ permalink: /portfolio/
         <p>Modeling over-the-count medications</p>
       </article>
   
-      <!-- Project 7 -->
-      <article class="work-item">
-        <a href="{{ '/_projects/UNG_Courses/Undergraduate_Research_Paper.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener">
-        <img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Oxygen_Cover2.png' | relative_url }}" alt="Research Paper Cover" /></a>
-        <h3>Biological Research Capstone</h3>
-        <p>Deoxygenated River Water effects on Rainbow Trout Propagation</p>
-      </article>
+	<!-- Project 7 -->
+	<article class="work-item">
+	  <a href="{{ '/portfolio/math4950-project/' | relative_url }}" class="image fit thumb">
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Oxygen_Cover2.png' | relative_url }}" alt="Research Paper Cover" />
+	  </a>
+	  <h3>Biological Research Capstone</h3>
+	  <p>Deoxygenated River Water effects on Rainbow Trout Propagation</p>
+	</article>
+
 
 	<!-- Project 6 -->
 	<article class="work-item">

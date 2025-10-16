@@ -3323,7 +3323,30 @@ html {
 			max-width: 85%; /* Keeps the layout centered */
 			padding-bottom: 1em; /* Adds space at the bottom for visibility */
 		}
-		  
+
+		/* === Portfolio Gallery (top section, open layout) === */
+		.portfolio-gallery {
+		  width: 90%;
+		  max-width: 1600px;
+		  margin: 3em auto;
+		  background: none;
+		  border: none;
+		  box-shadow: none;
+		  padding: 0;
+		}
+
+		/* === Academic Featured Section (soft bordered wrapper) === */
+		.portfolio-featured {
+		  background: #fafafa;
+		  border: 1px solid #e0e0e0;
+		  border-radius: 10px;
+		  padding: 2.5em 3em;       /* top-bottom | left-right padding */
+		  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		  width: 95%;               /* slightly wider than container */
+		  max-width: 1800px;        /* keep centered on large screens */
+		  margin: 3em auto;         /* centers the section itself */
+		}
+
 		  .blog-tile {
 			display: flex;
 			flex-direction: column;
@@ -3341,33 +3364,37 @@ html {
   
 
 		/* Grid layout for projects */
-	/* === Clean, uniform, centered portfolio grid === */
-	.portfolio-grid {
-	  display: flex;
-	  flex-wrap: wrap;               /* wrap tiles to new rows */
-	  justify-content: center;       /* center all tiles as a group */
-	  align-items: stretch;          /* make rows even height if possible */
-	  gap: 2.5em;                    /* space between tiles */
-	  width: 100%;
-	  margin: 0 auto;
-	  box-sizing: border-box;
-	}
+/* Uniform, centered grid */
+.portfolio-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;   /* centers whole row group */
+  align-items: stretch;
+  gap: 2.5em;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 
-	/* Each tile: same width, same height behavior */
-	.portfolio-tile {
-	  flex: 0 0 500px;               /* fixed tile width for uniformity */
-	  max-width: 500px;
-	  background: white;
-	  border-radius: 8px;
-	  padding: 1.5em;
-	  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-	  box-sizing: border-box;
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: flex-start;
-	  align-items: stretch;
-	  transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
+
+/* Each tile: identical width, consistent layout */
+.portfolio-tile {
+  flex: 0 0 auto;
+  width: 500px;
+  min-width: 500px;
+  max-width: 500px;
+  background: white;
+  border-radius: 8px;
+  padding: 1.5em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
 
 	/* Hover effect */
 	.portfolio-tile:hover {
@@ -3392,12 +3419,14 @@ html {
 	}
 
 	/* Responsive: single column on narrow screens */
-	@media (max-width: 1100px) {
-	  .portfolio-tile {
-		flex: 0 0 90%;
-		max-width: 90%;
-	  }
-	}
+@media (max-width: 1100px) {
+  .portfolio-tile {
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
+  }
+}
+
 	
 
 

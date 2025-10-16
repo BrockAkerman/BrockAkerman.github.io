@@ -44,12 +44,15 @@ permalink: /portfolio/
         <p>Deoxygenated River Water effects on Rainbow Trout Propagation</p>
       </article>
 
-      <!-- Project 6 -->
-      <article class="work-item">
-        <a href="{{ '/_projects/UNG_Courses/Brock_Akerman_MATH3390.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Sweet_Potato_Cover.PNG' | relative_url }}" alt="MATH3390 Project Cover" /></a>
-        <h3>Agricultural-Economic Analysis</h3>
-        <p>Organic vs Conventional Produce Pricing</p>
-      </article>
+	<!-- Project 6 -->
+	<article class="work-item">
+	  <a href="{{ '/portfolio/math3390-project/' | relative_url }}" class="image fit thumb">
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/UNG_Assets/Sweet_Potato_Cover.PNG' | relative_url }}" alt="MATH3390 Project Cover" />
+	  </a>
+	  <h3>Agricultural-Economic Analysis</h3>
+	  <p>Organic vs Conventional Produce Pricing</p>
+	</article>
+
 
 		<!-- Project 5 -->
 	<article class="work-item">
@@ -60,14 +63,8 @@ permalink: /portfolio/
 	  <p>Poisson, Exponential & Monte Carlo in R</p>
 	</article>
 
-      <!-- Project 4 -->
-      <article class="work-item">
-        <a href="{{ '/_projects/NCSU_Courses/ST502/R_Project/ST502_R_Project/ST502_R_Project_Complete.pdf' | relative_url }}" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST502/MainTile.png' | relative_url }}" alt="" /></a>
-        <h3>Longitudinal Framingham Heart Study</h3>
-        <p>Hypothesis Testing Deltas in Blood Pressures</p>
-      </article>
 
-	<!-- Project 4 (Updated) -->
+	<!-- Project 4 -->
 	<article class="work-item">
 	  <a href="{{ '/portfolio/st502-project/' | relative_url }}" class="image fit thumb">
 		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST502/MainTile.png' | relative_url }}" 

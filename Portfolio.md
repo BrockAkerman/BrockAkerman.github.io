@@ -90,7 +90,7 @@ permalink: /portfolio/
 	<!-- Project 1 -->
 	<article class="work-item">
 	  <a href="{{ '/portfolio/st558-project/' | relative_url }}" class="image fit thumb">
-		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST531/MainTile.png' | relative_url }}" alt="Diabetes Health Indicators Modeling" />
+		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ03/MainTile.png' | relative_url }}" alt="Diabetes Health Indicators Modeling" />
 	  </a>
 	  <h3>Diabetes Health Indicators</h3>
 	  <p>Leveraging Statistical Models to Find Best Models</p>
@@ -101,3 +101,4 @@ permalink: /portfolio/
     </div>
   </div>
 </section>
+/media/thumbs/ProjectAssets/NCSU_Assets/ST558/PROJ03

@@ -3341,18 +3341,21 @@ html {
   
 
 	/* Grid layout for projects */
-	/* Responsive 2-column grid for portfolio tiles */
+	/* Perfectly centered, responsive portfolio grid */
 	.portfolio-grid {
 	  display: grid;
-	  grid-template-columns: repeat(2, minmax(520px, 1fr)); /* wider tiles */
-	  gap: 2.5em; /* more breathing space between tiles */
-	  justify-content: center; /* centers grid if fewer than 2 columns fit */
+	  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+	  gap: 2.5em;
+	  justify-content: center; /* centers grid tracks when space remains */
+	  max-width: 1100px; /* keeps two columns aligned and prevents overflow */
+	  margin: 0 auto; /* centers the entire grid container */
 	}
 
-	/* Switch to 1 column on tablets/phones */
-	@media (max-width: 1100px) {
+	/* Force single column on smaller screens */
+	@media (max-width: 1050px) {
 	  .portfolio-grid {
 		grid-template-columns: 1fr;
+		max-width: 700px;
 	  }
 	}
 
@@ -3375,14 +3378,18 @@ html {
 	  padding: 0;
 	}
 
-	/* Featured section gets soft box styling */
+	/* === Academic Featured Section === */
 	.portfolio-featured {
 	  background: #fafafa;
 	  border: 1px solid #e0e0e0;
 	  border-radius: 10px;
-	  padding: 2em;
+	  padding: 2.5em 3em; /* top-bottom | left-right padding */
 	  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+	  width: 95%; /* widen from 90% to 95% */
+	  max-width: 1800px; /* allow larger width on big monitors */
+	  margin: 3em auto; /* centers section */
 	}
+
 
 	/* Optional: clean individual tile style */
 	.portfolio-tile {

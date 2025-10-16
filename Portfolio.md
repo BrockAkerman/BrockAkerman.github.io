@@ -22,9 +22,11 @@ permalink: /portfolio/
 	  <p>Perception Gaps in Veterinary Dental Training and Preparedness</p>
 	</article>
 
+
     <!-- Project Feature1 -->
       <article class="work-item">
-        <a href="https://github.com/Bakerman1982/ST558_FinalProj.git" class="image fit thumb" target="_blank" rel="noopener"><img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" alt="Airport JSON ShinyDash" /></a>
+        <a href="/portfolio/st558_Shiny/" class="image fit thumb">
+			<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" alt="Airport JSON ShinyDash" /></a>
         <h3>Shiny Dashboard</h3>
         <p>Visualization of real time JSON weather data at airports</p>
       </article>

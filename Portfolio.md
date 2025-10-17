@@ -14,8 +14,8 @@ permalink: /portfolio/
 
 	<!-- Project 9 -->
 	<article class="work-item">
-	  <a href="{{ '/portfolio/ST542_Pipeline/' | relative_url }}" 
-		 class="image fit thumb" target="_blank" rel="noopener">
+	  <a href="{{ '/portfolio/st542_Pipeline/' | relative_url }}" 
+   class="image fit thumb" target="_blank" rel="noopener">
 		<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/Heatmap.png' | relative_url }}" 
 			 alt="ML Pipeline" />
 	  </a>

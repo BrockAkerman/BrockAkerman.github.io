@@ -20,11 +20,11 @@ permalink: /portfolio/
       <article class="work-item">
         <a href="{{ '/portfolio/bank_lending_risk_pipeline/' | relative_url }}" 
            class="image fit thumb" target="_blank" rel="noopener">
-          <img src="{{ '/assets/media/thumbs/ProjectAssets/Independent/bank_risk_pipeline.png' | relative_url }}" 
+          <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}" 
                alt="Bank Lending Risk Pipeline" />
         </a>
         <h3>Bank Lending Risk Pipeline</h3>
-        <p>End-to-end statistical pipeline for credit risk modeling and lending decision support</p>
+        <p>End-to-end risk modeling pipeline</p>
       </article>
 
       <!-- Add future independent projects here -->

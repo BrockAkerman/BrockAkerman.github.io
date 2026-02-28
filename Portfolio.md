@@ -6,42 +6,42 @@ permalink: /portfolio/
 
 <section id="portfolio">
 
-  <!-- ============================= -->
-  <!-- Independent Projects Section -->
-  <!-- ============================= -->
+  <!-- ===================================== -->
+  <!-- Independent Research & Applied Work -->
+  <!-- ===================================== -->
 
-  <h2>Independent Projects</h2>
+  <section class="portfolio-plate">
+    <header class="plate-header">
+      <h2>Independent Research & Applied Projects</h2>
+    </header>
 
-  <div class="portfolio-container">
     <div class="portfolio-grid">
 
-      <!-- Independent Project Example -->
-      <!-- Replace link + image when ready -->
+      <!-- Independent Project -->
       <article class="work-item">
-        <a href="{{ '/portfolio/bank_lending_risk_pipeline/' | relative_url }}" 
+        <a href="{{ '/portfolio/bank_lending_risk_pipeline/' | relative_url }}"
            class="image fit thumb" target="_blank" rel="noopener">
-          <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}" 
+          <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}"
                alt="Bank Lending Risk Pipeline" />
         </a>
         <h3>Bank Lending Risk Pipeline</h3>
-        <p>End-to-end risk modeling pipeline</p>
+        <p>End-to-end credit risk modeling and validation pipeline</p>
       </article>
 
-      <!-- Add future independent projects here -->
-
     </div>
-  </div>
+  </section>
 
 
-  <!-- ============================= -->
-  <!-- Academic Projects Section -->
-  <!-- ============================= -->
+  <!-- ===================================== -->
+  <!-- Academic Research & Coursework -->
+  <!-- ===================================== -->
 
-  <h2>Academic Projects</h2>
+  <section class="portfolio-plate">
+    <header class="plate-header">
+      <h2>Academic Research & Coursework</h2>
+    </header>
 
-  <div class="portfolio-container">
     <div class="portfolio-grid">
-
 	<!-- Project 9 -->
 	<article class="work-item">
 	  <a href="{{ '/portfolio/st542_Pipeline/' | relative_url }}" 
@@ -155,6 +155,6 @@ permalink: /portfolio/
 	</article>
 
     </div>
-  </div>
+  </section>
 
 </section>

@@ -1,0 +1,140 @@
+/*
+  about-page.css
+  ─────────────────────────────────────────────────────────────
+  Exclusive to /about-me/. Loaded after main.css.
+  Provides bg.jpg mirrored side strips and a readable content column.
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* ============================================================
+   BG.JPG SIDE STRIPS — mirrored left/right
+   ============================================================ */
+
+#about-page::before,
+#about-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  background-image: url("../fulls/bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#about-page::before {
+  left: 0;
+  background-position: left center;
+}
+
+#about-page::after {
+  right: 0;
+  background-position: right center;
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+
+#about-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding: 4em calc(96px + 2em) 6em;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   CONTENT COLUMN
+   ============================================================ */
+
+#about-content {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+#about-content h1 {
+  font-size: 1.8em;
+  line-height: 1.4em;
+  color: #555;
+  font-weight: 400;
+  margin: 0 0 1em 0;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid #efefef;
+}
+
+#about-content h2 {
+  font-size: 1.3em;
+  color: #666;
+  font-weight: 400;
+  margin: 1.5em 0 0.5em 0;
+}
+
+#about-content h3 {
+  font-size: 1.1em;
+  color: #666;
+  font-weight: 400;
+  margin: 1.2em 0 0.4em 0;
+}
+
+#about-content p {
+  font-size: 0.95em;
+  line-height: 1.75em;
+  color: #888;
+  margin: 0 0 1.2em 0;
+}
+
+#about-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 1.5em auto;
+}
+
+#about-content a {
+  color: #16b386;
+}
+
+#about-content ul,
+#about-content ol {
+  padding-left: 1.5em;
+  margin: 0 0 1.2em 0;
+  color: #888;
+  font-size: 0.95em;
+  line-height: 1.75em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media screen and (max-width: 900px) {
+  #about-page {
+    padding: 4em calc(64px + 1.5em) 5em;
+  }
+
+  #about-page::before,
+  #about-page::after {
+    width: 64px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #about-page::before,
+  #about-page::after {
+    display: none;
+  }
+
+  #about-page {
+    padding: 3em 1em 4em;
+  }
+}

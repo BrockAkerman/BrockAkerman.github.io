@@ -1,39 +1,44 @@
 <!DOCTYPE HTML>
-
+<!--
+  _layouts/about-me.html  (or about-me.html if used as a standalone page)
+  About Me page with bg.jpg side strips, hamburger menu, CC footer.
+-->
 <html lang="en">
-	<head>
-		<title>{{ page.title | escape }}</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
-        
+  <head>
+    <title>{{ page.title | escape }} | Brock Akerman</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/about-page.css' | relative_url }}" />
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon" />
+  </head>
 
-        
-	</head>
-	<body class="{% if page.url == '/about-me/' %}about-me{% endif %}">
-		{% include burger_menu.html %}
-		
-		<!-- Main Content -->
-		<div class="wrapper">
-			<div class="inner">
-				<h1>{{ page.title }}</h1>
-				<div class="content">
-					{{ content }}
-				</div>
-			</div>
-		</div>
+  <body>
 
+    {% include burger_menu.html %}
 
-		<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-		<script src="{{ '/assets/js/jquery.poptrox.min.js' | relative_url }}"></script>
-		<script src="{{ '/assets/js/skel.min.js' | relative_url }}"></script>
-		<script src="{{ '/assets/js/util.js' | relative_url }}"></script>
-		<script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-		<script>
-			document.getElementById('menu-toggle').addEventListener('click', function () {
-				const menuItems = document.getElementById('menu-items');
-				menuItems.classList.toggle('visible');
-			});
-		</script>
-	</body>
+    <div id="about-page">
+      <div id="about-content">
+        <h1>{{ page.title }}</h1>
+        <div class="content">
+          {{ content }}
+        </div>
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.poptrox.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/skel.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script>
+      document.getElementById('menu-toggle').addEventListener('click', function () {
+        const menuItems = document.getElementById('menu-items');
+        menuItems.classList.toggle('visible');
+      });
+    </script>
+
+  </body>
 </html>

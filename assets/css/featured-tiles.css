@@ -1,74 +1,68 @@
 /*
   featured-tiles.css
   ─────────────────────────────────────────────────────────────
-  Styles for the two featured tile grids on the main page:
-    - #two  (Portfolio preview)
-    - #three (Blogs and Interests preview)
+  Shared tile system used on:
+    - index.html     (#two Portfolio preview, #three Blogs preview)
+    - portfolio page (via portfolio-page.css overrides)
+    - blogs page     (via blogs-page.css overrides)
 
-  Both sections share identical HTML structure:
-    section#two / section#three
-      .portfolio-container
-        .portfolio-grid
-          article.work-item      ← the tile
-            a.image.fit.thumb
-              img
-            h3
-            p
-      ul.actions                 ← Archive button row
+  ROOT CAUSE OF TEXT CLIPPING (fixed here):
+    The global body { line-height: 1.75em } in main_clean.css
+    makes every line of text ~35% taller than a normal line-height.
+    The tile has overflow:hidden at the card level, so when the
+    text area runs out of room the bottom of letters gets hard-clipped.
+    Fix: image zone is flex-shrink:0 (never compresses), text zone
+    gets flex:1 with overflow:hidden and line-clamp so text always
+    fits within whatever space remains, and the overall tile height
+    is set to give the text zone enough room for 2 lines at 1.75em.
 
-  Link this file AFTER main_clean.css in your <head>:
-    <link rel="stylesheet" href="/assets/css/featured-tiles.css">
+    At 16pt base, 1.75em line-height ≈ 49px per line.
+    2 lines title + 2 lines description + padding = ~220px text zone.
+    Image = 200px. Total = 420px.
+    We use 420px so nothing ever clips.
   ─────────────────────────────────────────────────────────────
 */
 
 /* ============================================================
-   CONTAINER — constrains the grid, centered in #main
+   CONTAINER
    ============================================================ */
 
 .portfolio-container {
   width: 100%;
-  margin: 0 0 1.5em 0;   /* space below grid, before Archive button */
+  margin: 0 0 1.5em 0;
 }
 
 /* ============================================================
-   GRID — always exactly 2 columns, uniform gap
+   GRID — 2 equal columns
    ============================================================ */
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* 2 equal columns, fluid */
-  gap: 1.75em;                            /* gutter between tiles    */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75em;
   width: 100%;
 }
 
 /* ============================================================
-   TILE — landscape card, wider than tall
-   Aspect ratio locked: 16:9 image on top, text beneath.
-   Fixed pixel height so both tiles are always identical.
+   TILE SHELL
    ============================================================ */
 
 article.work-item {
-  /* Reset any inherited margins from the old grid */
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 420px;             /* enough for image + 2-line title + 2-line desc */
+  box-sizing: border-box;
 
-  /* Card shell */
   background: #ffffff;
   border: 1px solid #e8e8e8;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-  overflow: hidden;
+  overflow: hidden;          /* hard clip at card boundary */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-  /* Flex column so image + text stack cleanly */
   display: flex;
   flex-direction: column;
-
-  /* Total tile height — wider than tall, landscape feel.
-     Image = 200px, text area ~130px → 330px total.
-     Extra headroom accounts for the global body line-height: 1.75em
-     set in main_clean.css which makes text taller than it looks. */
-  height: 330px;
 }
 
 article.work-item:hover {
@@ -77,21 +71,18 @@ article.work-item:hover {
 }
 
 /* ============================================================
-   IMAGE AREA — fixed height, image fills and crops
+   IMAGE ZONE — fixed, never compresses
    ============================================================ */
 
 article.work-item a.image {
-  /* Override .image display:inline-block from main_clean.css */
   display: block;
   width: 100%;
-  height: 200px;        /* image zone height */
+  height: 200px;
+  flex-shrink: 0;            /* image zone never shrinks */
   overflow: hidden;
-  border-radius: 0;     /* let the card's border-radius clip it */
-  flex-shrink: 0;       /* never compress the image area */
+  border-radius: 0;
 }
 
-/* Remove the default overlay pseudo-element inside cards —
-   the thumb hover effect still works via .image.thumb */
 article.work-item a.image::before {
   border-radius: 0;
 }
@@ -99,32 +90,34 @@ article.work-item a.image::before {
 article.work-item a.image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;       /* fill the box, crop if needed */
+  object-fit: cover;
   object-position: center;
   display: block;
   border-radius: 0;
 }
 
 /* ============================================================
-   TEXT AREA — sits below the image, fixed remaining height
+   TEXT ZONE — takes remaining 220px
    ============================================================ */
 
 article.work-item .text-body {
-  padding: 0.75em 1em;
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  overflow: visible;       /* was: hidden — that was clipping the text */
-  min-height: 0;
+  justify-content: center;
+  align-items: flex-start;   /* left-aligned by default (main page) */
+  padding: 0.85em 1em;
+  overflow: hidden;          /* clips at text-body boundary, not mid-letter */
 }
 
-/* Title */
+/* Title — 2-line clamp */
 article.work-item h3 {
   font-size: 0.95em;
-  line-height: 1.3em;      /* override global body line-height: 1.75em */
-  margin: 0 0 0.3em 0;
+  line-height: 1.5em;        /* explicit override of global 1.75em */
+  margin: 0 0 0.4em 0;
   color: #555;
+  width: 100%;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -132,12 +125,13 @@ article.work-item h3 {
   overflow: hidden;
 }
 
-/* Description */
+/* Description — 2-line clamp */
 article.work-item p {
   font-size: 0.82em;
-  line-height: 1.4em;      /* override global body line-height: 1.75em */
+  line-height: 1.5em;        /* explicit override of global 1.75em */
   color: #888;
   margin: 0;
+  width: 100%;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -145,12 +139,12 @@ article.work-item p {
   overflow: hidden;
 }
 
-/* Blog tiles have a "Read More" button inside the article.
-   Keep it from pushing the card out of its fixed height. */
+/* Read More button inside blog tiles */
 article.work-item ul.actions {
-  margin: 0.5em 0 0 0;
+  margin: 0.6em 0 0 0;
   padding: 0;
   list-style: none;
+  flex-shrink: 0;
 }
 
 article.work-item ul.actions li {
@@ -166,12 +160,8 @@ article.work-item ul.actions li .button {
 }
 
 /* ============================================================
-   ARCHIVE BUTTON ROW — sits below the grid
+   ARCHIVE BUTTON ROW (below grid on main page)
    ============================================================ */
-
-/* The ul.actions that wraps the "Portfolio Archive" /
-   "Blog Archive" button is a direct child of the section,
-   not inside a tile, so we scope it carefully. */
 
 #two > ul.actions,
 #three > ul.actions {
@@ -179,47 +169,8 @@ article.work-item ul.actions li .button {
 }
 
 /* ============================================================
-   RESPONSIVE — single column on narrow screens
+   CONTACT SECTION — flex row for form + info
    ============================================================ */
-
-@media screen and (max-width: 700px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr;   /* stack tiles vertically */
-  }
-
-  article.work-item {
-    height: auto;                  /* let content breathe on mobile */
-  }
-
-  article.work-item a.image {
-    height: 180px;
-  }
-}
-
-
-/* ============================================================
-   CONTACT SECTION — row layout for the form + info columns
-   (Replaces the old float-based .row / .Xu grid that was
-    stripped from main_clean.css)
-   ============================================================ */
-
-/*
-  Your contact HTML uses the old .row / .8u / .4u$ grid classes
-  which no longer exist in main_clean.css.  This block gives
-  section#four its two-column layout without bringing back the
-  entire legacy grid.
-*/
-
-#four .contact-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 2em;
-  align-items: start;
-}
-
-/* ── Fallback: if you can't edit the HTML right now, the rules
-      below target the existing .row div as a flex parent so the
-      form and contact-info columns still sit side by side.     ── */
 
 #four > .row {
   display: flex;
@@ -228,19 +179,33 @@ article.work-item ul.actions li .button {
   align-items: flex-start;
 }
 
-/* Form column (~66% wide) */
 #four > .row > div:first-child {
   flex: 2 1 400px;
   min-width: 0;
 }
 
-/* Contact info column (~33% wide) */
 #four > .row > div:last-child {
   flex: 1 1 200px;
   min-width: 0;
 }
 
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
 @media screen and (max-width: 700px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  article.work-item {
+    height: auto;
+  }
+
+  article.work-item a.image {
+    height: 180px;
+  }
+
   #four > .row {
     flex-direction: column;
   }

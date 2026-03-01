@@ -1,0 +1,301 @@
+/*
+  post-page.css
+  ─────────────────────────────────────────────────────────────
+  Styles for individual blog post pages (layout: post).
+  Mirrors the project-page.css structure exactly —
+  bg.jpg side strips, centered content column, clean typography.
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* ============================================================
+   BG.JPG SIDE STRIPS — mirrored left/right
+   ============================================================ */
+
+#post-page::before,
+#post-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  background-image: url("../fulls/bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#post-page::before {
+  left: 0;
+  background-position: left center;
+}
+
+#post-page::after {
+  right: 0;
+  background-position: right center;
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+
+#post-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding: 4em calc(96px + 2em) 6em;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   CONTENT COLUMN — readable width, centered
+   ============================================================ */
+
+#post-content {
+  max-width: 760px;            /* slightly narrower than portfolio — prose reads better */
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   HERO IMAGE — full-width at top of post, before header
+   ============================================================ */
+
+.post-hero-image {
+  width: 100%;
+  margin: 0 0 2em 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.post-hero-image img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ============================================================
+   POST HEADER — title + date/category line
+   ============================================================ */
+
+.post-header {
+  margin: 0 0 2em 0;
+  padding-bottom: 1em;
+  border-bottom: 2px solid #efefef;
+}
+
+.post-header h1 {
+  font-size: 1.9em;
+  line-height: 1.35em;
+  color: #555;
+  font-weight: 400;
+  margin: 0 0 0.4em 0;
+}
+
+.post-meta {
+  font-size: 0.82em;
+  color: #b2b2b2;
+  margin: 0;
+  line-height: 1.5em;
+}
+
+/* ============================================================
+   POST BODY — prose content from markdown
+   ============================================================ */
+
+.post-body {
+  font-size: 0.95em;
+  line-height: 1.85em;
+  color: #666;
+}
+
+.post-body p {
+  margin: 0 0 1.4em 0;
+}
+
+.post-body h2 {
+  font-size: 1.3em;
+  color: #555;
+  font-weight: 400;
+  margin: 2em 0 0.6em 0;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #efefef;
+}
+
+.post-body h3 {
+  font-size: 1.1em;
+  color: #666;
+  font-weight: 400;
+  margin: 1.5em 0 0.4em 0;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 1.5em auto;
+}
+
+.post-body a {
+  color: #16b386;
+  border-bottom: dotted 1px #16b386;
+}
+
+.post-body a:hover {
+  color: #16b386;
+  border-bottom-color: transparent;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.5em;
+  margin: 0 0 1.4em 0;
+}
+
+.post-body li {
+  padding-left: 0.25em;
+  margin-bottom: 0.3em;
+}
+
+.post-body blockquote {
+  border-left: 4px solid #efefef;
+  padding: 0.5em 0 0.5em 1.25em;
+  font-style: italic;
+  color: #aaa;
+  margin: 1.5em 0;
+}
+
+.post-body code {
+  background: #f7f7f7;
+  border: solid 1px #efefef;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 0.88em;
+  padding: 0.15em 0.5em;
+}
+
+.post-body pre {
+  background: #f7f7f7;
+  border: solid 1px #efefef;
+  border-radius: 6px;
+  padding: 1em 1.25em;
+  overflow-x: auto;
+  margin: 0 0 1.4em 0;
+}
+
+.post-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.88em;
+  line-height: 1.65em;
+}
+
+/* ============================================================
+   TAGS ROW
+   ============================================================ */
+
+.post-tags {
+  margin: 2em 0 1.5em 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.post-tags .tag {
+  font-size: 0.75em;
+  color: #aaa;
+  background: #f5f5f5;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  padding: 0.2em 0.6em;
+  line-height: 1.5em;
+}
+
+/* ============================================================
+   PREV / NEXT NAVIGATION
+   ============================================================ */
+
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 2.5em 0 0 0;
+  padding-top: 1.5em;
+  border-top: 2px solid #efefef;
+  gap: 1em;
+}
+
+.post-navigation a {
+  font-size: 0.85em;
+  color: #16b386;
+  text-decoration: none;
+  border-bottom: none;
+  line-height: 1.5em;
+  max-width: 45%;
+}
+
+.post-navigation a:hover {
+  color: #16b386;
+  text-decoration: underline;
+}
+
+.prev-post { text-align: left; }
+.next-post  { text-align: right; margin-left: auto; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media screen and (max-width: 900px) {
+  #post-page {
+    padding: 4em calc(64px + 1.5em) 5em;
+  }
+
+  #post-page::before,
+  #post-page::after {
+    width: 64px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #post-page::before,
+  #post-page::after {
+    display: none;
+  }
+
+  #post-page {
+    padding: 3em 1em 4em;
+  }
+
+  .post-hero-image img {
+    max-height: 260px;
+  }
+
+  .post-header h1 {
+    font-size: 1.4em;
+  }
+
+  .post-navigation {
+    flex-direction: column;
+    gap: 0.75em;
+  }
+
+  .post-navigation a {
+    max-width: 100%;
+  }
+
+  .next-post {
+    margin-left: 0;
+    text-align: left;
+  }
+}

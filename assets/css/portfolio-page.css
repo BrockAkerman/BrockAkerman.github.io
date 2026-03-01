@@ -1,0 +1,179 @@
+/*
+  portfolio-page.css
+  ─────────────────────────────────────────────────────────────
+  Exclusive to /portfolio/. Loaded after main.css + featured-tiles.css.
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* ============================================================
+   BG.JPG SIDE FRAME — mirrored left/right
+   Left strip anchors to left edge of image.
+   Right strip anchors to right edge of image.
+   This makes them visually mirror each other.
+   ============================================================ */
+
+#portfolio-page::before,
+#portfolio-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  background-image: url("../fulls/bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#portfolio-page::before {
+  left: 0;
+  background-position: left center;   /* anchors to left edge of image */
+}
+
+#portfolio-page::after {
+  right: 0;
+  background-position: right center;  /* anchors to right edge of image */
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+
+#portfolio-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding: 4em calc(96px + 2em) 6em;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   INNER CONTENT COLUMN
+   ============================================================ */
+
+#portfolio {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   SECTION PLATES — bordered, auto-grow
+   ============================================================ */
+
+section.portfolio-plate {
+  border: 1.5px solid #d8d8d8;
+  border-radius: 10px;
+  padding: 2em 2em 2.5em;
+  margin: 0 0 3em 0;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+
+.plate-header {
+  text-align: center;
+  margin: 0 0 1.75em 0;
+}
+
+.plate-header h2 {
+  font-size: 1.4em;
+  color: #555;
+  font-weight: 400;
+  line-height: 1.3em;
+  margin: 0;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid #e0e0e0;
+  display: inline-block;
+}
+
+/* ============================================================
+   GRID — strict 2 equal columns
+   ============================================================ */
+
+#portfolio-page .portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75em;
+  width: 100%;
+}
+
+/* ============================================================
+   TILE — uniform size, centered text
+   ============================================================ */
+
+#portfolio-page article.work-item {
+  width: 100%;
+  height: 420px;
+  box-sizing: border-box;
+}
+
+/* Text zone: centered within tile */
+#portfolio-page article.work-item .text-body {
+  align-items: center;       /* horizontal center */
+  justify-content: center;   /* vertical center within text zone */
+  text-align: center;
+}
+
+#portfolio-page article.work-item h3 {
+  text-align: center;
+}
+
+#portfolio-page article.work-item p {
+  text-align: center;
+}
+
+/* ============================================================
+   ODD-TILE CENTERING
+   ============================================================ */
+
+#portfolio-page .portfolio-grid > article.work-item:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: calc(50% - 0.875em);
+  margin: 0 auto;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media screen and (max-width: 900px) {
+  #portfolio-page {
+    padding: 4em calc(64px + 1.5em) 5em;
+  }
+
+  #portfolio-page::before,
+  #portfolio-page::after {
+    width: 64px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #portfolio-page::before,
+  #portfolio-page::after {
+    display: none;
+  }
+
+  #portfolio-page {
+    padding: 3em 1em 4em;
+  }
+
+  #portfolio-page .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #portfolio-page .portfolio-grid > article.work-item:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: 100%;
+    margin: 0;
+  }
+}

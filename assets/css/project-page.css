@@ -1,0 +1,132 @@
+/*
+  project-page.css
+  ─────────────────────────────────────────────────────────────
+  Styles for individual project splash pages (layout: project).
+  Provides bg.jpg side strips and a readable content column.
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* ============================================================
+   BG.JPG SIDE STRIPS — mirrored left/right
+   ============================================================ */
+
+#project-page::before,
+#project-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  background-image: url("../fulls/bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#project-page::before {
+  left: 0;
+  background-position: left center;
+}
+
+#project-page::after {
+  right: 0;
+  background-position: right center;
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+
+#project-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding: 4em calc(96px + 2em) 6em;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   CONTENT COLUMN — centered, readable width
+   ============================================================ */
+
+#project-content {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+#project-content h1 {
+  font-size: 1.8em;
+  line-height: 1.4em;
+  color: #555;
+  font-weight: 400;
+  margin: 0 0 1em 0;
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid #efefef;
+}
+
+#project-content h3 {
+  font-size: 1.1em;
+  color: #666;
+  margin: 1.5em 0 0.5em 0;
+}
+
+#project-content p {
+  font-size: 0.95em;
+  line-height: 1.75em;
+  color: #888;
+  margin: 0 0 1.2em 0;
+}
+
+#project-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+  margin: 1.5em auto;
+}
+
+#project-content a {
+  color: #16b386;
+}
+
+#project-content ul,
+#project-content ol {
+  padding-left: 1.5em;
+  margin: 0 0 1.2em 0;
+  color: #888;
+  font-size: 0.95em;
+  line-height: 1.75em;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media screen and (max-width: 900px) {
+  #project-page {
+    padding: 4em calc(64px + 1.5em) 5em;
+  }
+
+  #project-page::before,
+  #project-page::after {
+    width: 64px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #project-page::before,
+  #project-page::after {
+    display: none;
+  }
+
+  #project-page {
+    padding: 3em 1em 4em;
+  }
+}

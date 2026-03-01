@@ -1,12 +1,41 @@
 <!DOCTYPE html>
-<html>
-  {% include head.html %}
-<body>
-  {% include header.html %}
-  <main class="project-page-content">
-    <h1>{{ page.title }}</h1>
-    {{ content }} 
-  </main>
-  {% include footer.html %}
-</body>
+<!--
+  _layouts/project.html
+  Individual project splash page.
+-->
+<html lang="en">
+  <head>
+    <title>{{ page.title | escape }} | Brock Akerman</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+    <link rel="stylesheet" href="{{ '/assets/css/project-page.css' | relative_url }}" />
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon">
+  </head>
+
+  <body>
+    {% include burger_menu.html %}
+
+    <div id="project-page">
+      <div id="project-content">
+        <h1>{{ page.title }}</h1>
+        {{ content }}
+      </div>
+    </div>
+
+    {% include footer.html %}
+
+    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.poptrox.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/skel.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/util.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script>
+      document.getElementById('menu-toggle').addEventListener('click', function () {
+        const menuItems = document.getElementById('menu-items');
+        menuItems.classList.toggle('visible');
+      });
+    </script>
+  </body>
 </html>

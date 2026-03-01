@@ -1338,3 +1338,53 @@ body.is-touch .poptrox-popup .closer { opacity: 1.0 !important; }
     padding-left: 0;
   }
 }
+
+
+/* ============================================================
+   SHARED SITE FOOTER — CC License tag
+   Add this block to the bottom of main_clean.css
+   (or paste into any page-specific CSS that needs it)
+   ============================================================ */
+
+.site-footer {
+  width: 100%;
+  padding: 2em 1em 1.5em;
+  text-align: center;
+  border-top: 1px solid #efefef;
+  margin-top: 3em;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.site-footer .cc-logo {
+  height: 36px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 0;
+}
+
+.site-footer .cc-text {
+  font-size: 0.75em;
+  color: #aaa;
+  margin: 0;
+  line-height: 1.5em;
+}
+
+.site-footer .cc-text a {
+  color: #888;
+  border-bottom: dotted 1px #ccc;
+}
+
+.site-footer .cc-text a:hover {
+  color: #16b386;
+  border-bottom-color: #16b386;
+}

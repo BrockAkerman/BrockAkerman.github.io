@@ -1,0 +1,215 @@
+/*
+  blogs-page.css
+  ─────────────────────────────────────────────────────────────
+  Exclusive to /blogs-and-interests/. Loaded after main.css + featured-tiles.css.
+
+  Differences from portfolio page:
+    - 3-column tile grid (not 2)
+    - Tiles slightly smaller to fit 3 across comfortably
+    - Same bg.jpg mirrored side strips
+    - Same centered text within tiles
+    - Odd-tile(s) centering for 1 or 2 orphan tiles in last row
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* ============================================================
+   BG.JPG SIDE STRIPS — mirrored
+   ============================================================ */
+
+#blogs-page::before,
+#blogs-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 96px;
+  background-image: url("../fulls/bg.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.75;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#blogs-page::before {
+  left: 0;
+  background-position: left center;
+}
+
+#blogs-page::after {
+  right: 0;
+  background-position: right center;
+}
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+
+#blogs-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  padding: 4em calc(96px + 2em) 6em;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   PAGE HEADING
+   ============================================================ */
+
+#blogs-page h1 {
+  text-align: center;
+  font-size: 1.8em;
+  color: #555;
+  font-weight: 400;
+  margin: 0 0 1.5em 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   INNER CONTENT COLUMN
+   ============================================================ */
+
+#blogs-content {
+  max-width: 1050px;         /* wider than portfolio to fit 3 cols */
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   GRID — 3 equal columns
+   ============================================================ */
+
+#blogs-page .portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5em;
+  width: 100%;
+}
+
+/* ============================================================
+   TILE — slightly smaller image zone to fit 3 across
+   ============================================================ */
+
+#blogs-page article.work-item {
+  width: 100%;
+  height: 370px;             /* image 160px + text zone ~210px */
+  box-sizing: border-box;
+}
+
+#blogs-page article.work-item a.image {
+  height: 160px;             /* smaller image zone for 3-col layout */
+}
+
+/* Text zone: centered within tile */
+#blogs-page article.work-item .text-body {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#blogs-page article.work-item h3 {
+  text-align: center;
+}
+
+#blogs-page article.work-item p {
+  text-align: center;
+}
+
+#blogs-page article.work-item ul.actions {
+  justify-content: center;
+  display: flex;
+}
+
+/* ============================================================
+   ORPHAN TILE CENTERING
+   Last row with 1 orphan tile: center it
+   Last row with 2 orphan tiles: center the pair
+   ============================================================ */
+
+/* 1 orphan (e.g. 4 tiles, 7 tiles, 10 tiles) */
+#blogs-page .portfolio-grid > article.work-item:last-child:nth-child(3n+1) {
+  grid-column: 1 / -1;
+  width: calc(33.333% - 1em);
+  margin: 0 auto;
+}
+
+/* 2 orphans (e.g. 2 tiles, 5 tiles, 8 tiles) —
+   shift the second-to-last and last into the middle column pair */
+#blogs-page .portfolio-grid > article.work-item:last-child:nth-child(3n+2),
+#blogs-page .portfolio-grid > article.work-item:nth-last-child(2):nth-child(3n+2) {
+  /* Let grid handle naturally — they fill cols 1 and 2.
+     We just ensure they're centered by centering the grid tracks */
+  justify-self: center;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media screen and (max-width: 1000px) {
+  /* Drop to 2 columns on medium screens */
+  #blogs-page .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Reset 3-col orphan rules */
+  #blogs-page .portfolio-grid > article.work-item:last-child:nth-child(3n+1) {
+    grid-column: auto;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Apply 2-col odd centering */
+  #blogs-page .portfolio-grid > article.work-item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - 0.875em);
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #blogs-page {
+    padding: 4em calc(64px + 1.5em) 5em;
+  }
+
+  #blogs-page::before,
+  #blogs-page::after {
+    width: 64px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #blogs-page::before,
+  #blogs-page::after {
+    display: none;
+  }
+
+  #blogs-page {
+    padding: 3em 1em 4em;
+  }
+
+  #blogs-page .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #blogs-page .portfolio-grid > article.work-item:last-child:nth-child(odd),
+  #blogs-page .portfolio-grid > article.work-item:last-child:nth-child(3n+1) {
+    grid-column: auto;
+    width: 100%;
+    margin: 0;
+  }
+
+  #blogs-page article.work-item {
+    height: auto;
+  }
+
+  #blogs-page article.work-item a.image {
+    height: 160px;
+  }
+}

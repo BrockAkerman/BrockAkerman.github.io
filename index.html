@@ -16,6 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="{{ 'assets/js/ie/html5shiv.js' | relative_url }}"></script><![endif]-->
 		<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+		<link rel="stylesheet" href="{{ '/assets/css/featured-tiles.css' | relative_url }}">
 
 
 		<!--[if lte IE 8]><link rel="stylesheet" href="{{ 'assets/css/ie8.css' | relative_url }}" /><![endif]-->
@@ -56,67 +57,65 @@
 
 					<!-- Two -->
 					<section id="two">
-					  <h2>Portfolio</h2>
-					  <div class="portfolio-container">
+					<h2>Portfolio</h2>
+					<div class="portfolio-container">
 						<div class="portfolio-grid">
-						  
-						  <!-- Shiny Dashboard -->
-						  <article class="work-item">
-							<a href="{{ '/portfolio/st558_Shiny/' | relative_url }}" 
-							   class="image fit thumb" target="_blank" rel="noopener">
-							  <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}" 
-								   alt="Airport JSON ShinyDash" />
-							</a>
-							<h3>Shiny Dashboard</h3>
-							<p>Visualization for real-time JSON weather data at airports</p>
-						  </article>
 
-						  <!-- Power Grid Machine Learning Pipeline -->
-						  <article class="work-item">
-							<a href="{{ '/portfolio/st542_Pipeline/' | relative_url }}" 
-							   class="image fit thumb" target="_blank" rel="noopener">
-							  <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/Heatmap.png' | relative_url }}" 
-								   alt="Power Grid ML Pipeline" />
+						<article class="work-item">
+							<a href="{{ '/portfolio/loan-default-risk/' | relative_url }}" class="image fit thumb" data-poptrox="ignore">
+							<img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}" alt="Airport JSON ShinyDash" />
 							</a>
+							<div class="text-body">
+							<h3>Bank Lending Risk Pipeline</h3>
+							<p>Analysis of risk factors in bank lending decisions</p>
+							</div>
+						</article>
+
+						<article class="work-item">
+							<a href="{{ '/portfolio/st542_Pipeline/' | relative_url }}" class="image fit thumb" data-poptrox="ignore">
+							<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/Heatmap.png' | relative_url }}" alt="Power Grid ML Pipeline" />
+							</a>
+							<div class="text-body">
 							<h3>Power Grid Machine Learning Pipeline</h3>
 							<p>Optimizing renewable resources in South America</p>
-						  </article>
+							</div>
+						</article>
 
 						</div>
-					  </div>
-					  <ul class="actions">
+					</div>
+					<ul class="actions">
 						<li><a href="{{ site.baseurl }}/portfolio/" class="button">Portfolio Archive</a></li>
-					  </ul>
+					</ul>
 					</section>
 
-
-				<!-- Three -->
+					<!-- Three -->
 					<section id="three">
-						<h2>Blogs and Interests</h2>
-						<div class="portfolio-container">
-							<div class="portfolio-grid">
+					<h2>Blogs and Interests</h2>
+					<div class="portfolio-container">
+						<div class="portfolio-grid">
 						{% if site.posts.size > 0 %}
 							{% for post in site.posts limit:2 %}
 							<article class="work-item">
-								<a href="{{ post.url | relative_url }}" class="image fit thumb">
+							<a href="{{ post.url | relative_url }}" class="image fit thumb">
 								<img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
-								</a>
+							</a>
+							<div class="text-body">
 								<h3>{{ post.title }}</h3>
 								<p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
 								<ul class="actions">
 								<li><a href="{{ post.url | relative_url }}" class="button">Read More</a></li>
 								</ul>
+							</div>
 							</article>
 							{% endfor %}
 						{% else %}
 							<p>No blog posts available yet. Check back soon!</p>
 						{% endif %}
 						</div>
-						</div>
-						<ul class="actions">
-							<li><a href="{{ site.baseurl }}/blogs-and-interests/" class="button">Blog Archive</a></li>
-						</ul>
-						
+					</div>
+					<ul class="actions">
+						<li><a href="{{ site.baseurl }}/blogs-and-interests/" class="button">Blog Archive</a></li>
+					</ul>
 					</section>
 
 				<!-- Contact Section -->

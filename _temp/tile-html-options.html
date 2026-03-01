@@ -1,0 +1,64 @@
+<!--
+  featured-tiles — HTML OPTIONS
+  ════════════════════════════════════════════════════════════
+
+  OPTION A (recommended — tiny HTML edit, cleanest result):
+  Wrap the h3 + p inside a <div class="text-body">.
+  This gives the text its own padding without affecting the image.
+
+  Use this for the Portfolio tiles in section#two:
+-->
+
+<article class="work-item">
+  <a href="{{ '/portfolio/st558_Shiny/' | relative_url }}"
+     class="image fit thumb" target="_blank" rel="noopener">
+    <img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST558/MainTile.png' | relative_url }}"
+         alt="Airport JSON ShinyDash" />
+  </a>
+  <div class="text-body">
+    <h3>Shiny Dashboard</h3>
+    <p>Visualization for real-time JSON weather data at airports</p>
+  </div>
+</article>
+
+<!--
+  Use this for the Blog tiles in section#three
+  (the Liquid loop version — add the text-body wrapper):
+-->
+
+{% for post in site.posts limit:2 %}
+<article class="work-item">
+  <a href="{{ post.url | relative_url }}" class="image fit thumb">
+    <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+  </a>
+  <div class="text-body">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
+    <ul class="actions">
+      <li><a href="{{ post.url | relative_url }}" class="button">Read More</a></li>
+    </ul>
+  </div>
+</article>
+{% endfor %}
+
+
+<!--
+  ════════════════════════════════════════════════════════════
+  OPTION B (no HTML edits — add this rule to featured-tiles.css):
+  If you'd rather not touch the HTML at all, add these two rules
+  to featured-tiles.css. The padding will apply directly to h3/p
+  inside the article. Results are nearly identical to Option A.
+
+  article.work-item h3 {
+    padding: 0.75em 1em 0 1em;
+  }
+
+  article.work-item p {
+    padding: 0 1em;
+  }
+
+  article.work-item ul.actions {
+    padding: 0 1em;
+  }
+  ════════════════════════════════════════════════════════════
+-->

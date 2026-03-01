@@ -1,0 +1,247 @@
+/*
+  featured-tiles.css
+  ─────────────────────────────────────────────────────────────
+  Styles for the two featured tile grids on the main page:
+    - #two  (Portfolio preview)
+    - #three (Blogs and Interests preview)
+
+  Both sections share identical HTML structure:
+    section#two / section#three
+      .portfolio-container
+        .portfolio-grid
+          article.work-item      ← the tile
+            a.image.fit.thumb
+              img
+            h3
+            p
+      ul.actions                 ← Archive button row
+
+  Link this file AFTER main_clean.css in your <head>:
+    <link rel="stylesheet" href="/assets/css/featured-tiles.css">
+  ─────────────────────────────────────────────────────────────
+*/
+
+/* ============================================================
+   CONTAINER — constrains the grid, centered in #main
+   ============================================================ */
+
+.portfolio-container {
+  width: 100%;
+  margin: 0 0 1.5em 0;   /* space below grid, before Archive button */
+}
+
+/* ============================================================
+   GRID — always exactly 2 columns, uniform gap
+   ============================================================ */
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 2 equal columns, fluid */
+  gap: 1.75em;                            /* gutter between tiles    */
+  width: 100%;
+}
+
+/* ============================================================
+   TILE — landscape card, wider than tall
+   Aspect ratio locked: 16:9 image on top, text beneath.
+   Fixed pixel height so both tiles are always identical.
+   ============================================================ */
+
+article.work-item {
+  /* Reset any inherited margins from the old grid */
+  margin: 0;
+  padding: 0;
+
+  /* Card shell */
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Flex column so image + text stack cleanly */
+  display: flex;
+  flex-direction: column;
+
+  /* Total tile height — wider than tall, landscape feel.
+     Image = 200px, text area ~130px → 330px total.
+     Extra headroom accounts for the global body line-height: 1.75em
+     set in main_clean.css which makes text taller than it looks. */
+  height: 330px;
+}
+
+article.work-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   IMAGE AREA — fixed height, image fills and crops
+   ============================================================ */
+
+article.work-item a.image {
+  /* Override .image display:inline-block from main_clean.css */
+  display: block;
+  width: 100%;
+  height: 200px;        /* image zone height */
+  overflow: hidden;
+  border-radius: 0;     /* let the card's border-radius clip it */
+  flex-shrink: 0;       /* never compress the image area */
+}
+
+/* Remove the default overlay pseudo-element inside cards —
+   the thumb hover effect still works via .image.thumb */
+article.work-item a.image::before {
+  border-radius: 0;
+}
+
+article.work-item a.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* fill the box, crop if needed */
+  object-position: center;
+  display: block;
+  border-radius: 0;
+}
+
+/* ============================================================
+   TEXT AREA — sits below the image, fixed remaining height
+   ============================================================ */
+
+article.work-item .text-body {
+  padding: 0.75em 1em;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: visible;       /* was: hidden — that was clipping the text */
+  min-height: 0;
+}
+
+/* Title */
+article.work-item h3 {
+  font-size: 0.95em;
+  line-height: 1.3em;      /* override global body line-height: 1.75em */
+  margin: 0 0 0.3em 0;
+  color: #555;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Description */
+article.work-item p {
+  font-size: 0.82em;
+  line-height: 1.4em;      /* override global body line-height: 1.75em */
+  color: #888;
+  margin: 0;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Blog tiles have a "Read More" button inside the article.
+   Keep it from pushing the card out of its fixed height. */
+article.work-item ul.actions {
+  margin: 0.5em 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+article.work-item ul.actions li {
+  padding: 0;
+}
+
+article.work-item ul.actions li .button {
+  font-size: 0.78em;
+  min-width: 0;
+  padding: 0 0.9em;
+  height: 2.2em;
+  line-height: 2.2em;
+}
+
+/* ============================================================
+   ARCHIVE BUTTON ROW — sits below the grid
+   ============================================================ */
+
+/* The ul.actions that wraps the "Portfolio Archive" /
+   "Blog Archive" button is a direct child of the section,
+   not inside a tile, so we scope it carefully. */
+
+#two > ul.actions,
+#three > ul.actions {
+  margin: 1.25em 0 0 0;
+}
+
+/* ============================================================
+   RESPONSIVE — single column on narrow screens
+   ============================================================ */
+
+@media screen and (max-width: 700px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;   /* stack tiles vertically */
+  }
+
+  article.work-item {
+    height: auto;                  /* let content breathe on mobile */
+  }
+
+  article.work-item a.image {
+    height: 180px;
+  }
+}
+
+
+/* ============================================================
+   CONTACT SECTION — row layout for the form + info columns
+   (Replaces the old float-based .row / .Xu grid that was
+    stripped from main_clean.css)
+   ============================================================ */
+
+/*
+  Your contact HTML uses the old .row / .8u / .4u$ grid classes
+  which no longer exist in main_clean.css.  This block gives
+  section#four its two-column layout without bringing back the
+  entire legacy grid.
+*/
+
+#four .contact-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2em;
+  align-items: start;
+}
+
+/* ── Fallback: if you can't edit the HTML right now, the rules
+      below target the existing .row div as a flex parent so the
+      form and contact-info columns still sit side by side.     ── */
+
+#four > .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  align-items: flex-start;
+}
+
+/* Form column (~66% wide) */
+#four > .row > div:first-child {
+  flex: 2 1 400px;
+  min-width: 0;
+}
+
+/* Contact info column (~33% wide) */
+#four > .row > div:last-child {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+@media screen and (max-width: 700px) {
+  #four > .row {
+    flex-direction: column;
+  }
+}

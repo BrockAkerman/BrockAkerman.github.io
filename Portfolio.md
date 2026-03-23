@@ -16,6 +16,18 @@ permalink: /portfolio/
 
     <div class="portfolio-grid">
 
+<article class="work-item">
+  <a href="{{ '/portfolio/criteo-ab-testing/' | relative_url }}"
+     class="image fit" data-poptrox="ignore">
+    <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/20260321_QINI.PNG' | relative_url }}"
+         alt="Criteo A/B Testing Uplift Analysis" />
+  </a>
+  <div class="text-body">
+    <h3>Criteo A/B Testing & Uplift Modeling</h3>
+    <p>Measuring causal impact of advertising using uplift analysis</p>
+  </div>
+</article>
+
       <article class="work-item">
         <a href="{{ '/portfolio/loan-default-risk/' | relative_url }}"
            class="image fit" data-poptrox="ignore">
@@ -30,6 +42,7 @@ permalink: /portfolio/
 
     </div>
   </section>
+
 
 
   <!-- ============================================================

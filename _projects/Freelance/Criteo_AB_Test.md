@@ -23,10 +23,9 @@ Special emphasis was placed on distinguishing **incremental lift** from raw conv
 
 Visualizations and summary statistics were used throughout to communicate findings clearly, making the results accessible to both technical and non-technical stakeholders.
 
-<!-- Optional image if you want to add one later -->
-<!--
-<img src="/assets/media/thumbs/ProjectAssets/Criteo_AB_Test_Visualization.png" alt="Criteo A/B Test Visualization" style="width:100%; max-width:600px; display:block; margin:auto;">
--->
+<img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/20260321_QINI.PNG' | relative_url }}"
+     alt="Qini Curve Uplift Visualization"
+     style="width:100%; max-width:600px; display:block; margin:auto;">
 
 ### Key Outcomes
 

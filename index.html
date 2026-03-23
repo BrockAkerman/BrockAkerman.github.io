@@ -46,7 +46,7 @@
 					<section id="one">
 						<h2>Projects In the Pipeline<br /></h2>
 						<h5>
-							<p><u>A/B Testing Usecase:</u> Does Proactive Customer Intervention Reduce Overdrafts?<br /></p>
+							<p><u>Debriefing:</u> Technical Review of the Criteo Uplift Study.<br /></p>
 							<p><u>Unsupervised Learning:</u> Behavior Segmentation of Retail Banking Customers.</p>
 							<p></p><u>Debriefing:</u> Technical Review of the Bank Lending Risk Pipeline.<br /></p>
 						</h5>
@@ -55,38 +55,40 @@
 				  	</section>
 				  
 
-					<!-- Two -->
-					<section id="two">
-					<h2>Portfolio</h2>
-					<div class="portfolio-container">
-						<div class="portfolio-grid">
+				<!-- Two -->
+				<section id="two">
+				<h2>Portfolio</h2>
+				<div class="portfolio-container">
+					<div class="portfolio-grid">
 
-						<article class="work-item">
-							<a href="{{ '/portfolio/loan-default-risk/' | relative_url }}" class="image fit thumb" data-poptrox="ignore">
-							<img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}" alt="Airport JSON ShinyDash" />
-							</a>
-							<div class="text-body">
-							<h3>Bank Lending Risk Pipeline</h3>
-							<p>Analysis of risk factors in bank lending decisions</p>
-							</div>
-						</article>
-
-						<article class="work-item">
-							<a href="{{ '/portfolio/st542_Pipeline/' | relative_url }}" class="image fit thumb" data-poptrox="ignore">
-							<img src="{{ '/assets/media/thumbs/ProjectAssets/NCSU_Assets/ST542/Heatmap.png' | relative_url }}" alt="Power Grid ML Pipeline" />
-							</a>
-							<div class="text-body">
-							<h3>Power Grid Machine Learning Pipeline</h3>
-							<p>Optimizing renewable resources in South America</p>
-							</div>
-						</article>
-
+					<!-- NEW: Criteo Project (now first / featured) -->
+					<article class="work-item">
+						<a href="{{ '/portfolio/criteo-ab-testing/' | relative_url }}" class="image fit thumb" data-poptrox="ignore">
+						<img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/20260321_QINI.PNG' | relative_url }}" alt="Criteo A/B Testing Uplift Analysis" />
+						</a>
+						<div class="text-body">
+						<h3>Criteo A/B Testing & Uplift Modeling</h3>
+						<p>Measuring causal impact of advertising using uplift analysis</p>
 						</div>
+					</article>
+
+					<!-- Bank Lending moved to second position -->
+					<article class="work-item">
+						<a href="{{ '/portfolio/loan-default-risk/' | relative_url }}" class="image fit thumb" data-poptrox="ignore">
+						<img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}" alt="Bank Lending Risk Pipeline" />
+						</a>
+						<div class="text-body">
+						<h3>Bank Lending Risk Pipeline</h3>
+						<p>Analysis of risk factors in bank lending decisions</p>
+						</div>
+					</article>
+
 					</div>
-					<ul class="actions">
-						<li><a href="{{ site.baseurl }}/portfolio/" class="button">Portfolio Archive</a></li>
-					</ul>
-					</section>
+				</div>
+				<ul class="actions">
+					<li><a href="{{ site.baseurl }}/portfolio/" class="button">Portfolio Archive</a></li>
+				</ul>
+				</section>
 
 				<!-- Three — Blogs and Interests -->
 					<section id="three">

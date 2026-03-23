@@ -40,4 +40,4 @@ Visualizations and summary statistics were used throughout to communicate findin
 
 - **Full Analysis (Interactive HTML Report):**  
   View the complete project here:  
-  [Criteo A/B Test Analysis]({{ '_projects/Criteo/Criteo_AB_Test.html' | relative_url }})
+  [Criteo A/B Test Analysis]({{ '_projects/Freelance/Criteo_AB_Test.html' | relative_url }})

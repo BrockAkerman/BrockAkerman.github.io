@@ -14,21 +14,33 @@ permalink: /portfolio/
       <h2>Independent Research &amp; Applied Projects</h2>
     </header>
 
-    <div class="portfolio-grid">
+<div class="portfolio-grid">
 
 <article class="work-item">
-  <a href="{{ '/portfolio/criteo-ab-testing/' | relative_url }}"
-     class="image fit" data-poptrox="ignore">
-    <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/20260321_QINI.PNG' | relative_url }}"
-         alt="Criteo A/B Testing Uplift Analysis" />
-  </a>
-  <div class="text-body">
-    <h3>Criteo A/B Testing & Uplift Modeling</h3>
-    <p>Measuring causal impact of advertising using uplift analysis</p>
-  </div>
-</article>
+        <a href="{{ '/portfolio/ds-model-decisioner/' | relative_url }}"
+           class="image fit" data-poptrox="ignore">
+          <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/decisioner.PNG' | relative_url }}"
+               alt="Data Science Model Decisioner" />
+        </a>
+        <div class="text-body">
+          <h3>Data Science Model Decisioner</h3>
+          <p>Interactive React/Vite tool for algorithmic selection logic</p>
+        </div>
+      </article>
 
-      <article class="work-item">
+  <article class="work-item">
+        <a href="{{ '/portfolio/criteo-ab-testing/' | relative_url }}"
+          class="image fit" data-poptrox="ignore">
+          <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/20260321_QINI.PNG' | relative_url }}"
+              alt="Criteo A/B Testing Uplift Analysis" />
+        </a>
+        <div class="text-body">
+          <h3>Criteo A/B Testing & Uplift Modeling</h3>
+          <p>Measuring causal impact of advertising using uplift analysis</p>
+        </div>
+      </article>
+
+  <article class="work-item">
         <a href="{{ '/portfolio/loan-default-risk/' | relative_url }}"
            class="image fit" data-poptrox="ignore">
           <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/Loan_Default_Risk_Pairplot.PNG' | relative_url }}"
@@ -40,7 +52,7 @@ permalink: /portfolio/
         </div>
       </article>
 
-    </div>
+  </div>
   </section>
 
 

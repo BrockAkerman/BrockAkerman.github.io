@@ -17,6 +17,18 @@ permalink: /portfolio/
 <div class="portfolio-grid">
 
 <article class="work-item">
+  <a href="{{ '/portfolio/distribution-explorer/' | relative_url }}"
+     class="image fit" data-poptrox="ignore">
+    <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/distribution_explorer.PNG' | relative_url }}"
+         alt="Distribution Explorer" />
+  </a>
+  <div class="text-body">
+    <h3>Distribution Explorer</h3>
+    <p>Interactive visualization tool for exploring statistical distributions</p>
+  </div>
+</article>
+
+<article class="work-item">
         <a href="{{ '/portfolio/ds-model-decisioner/' | relative_url }}"
            class="image fit" data-poptrox="ignore">
           <img src="{{ '/assets/media/thumbs/ProjectAssets/Freelance_Assets/decisioner.PNG' | relative_url }}"
